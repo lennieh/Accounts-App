@@ -1,0 +1,26 @@
+<div class="container-fluid">
+
+  <div class="row" style="align-content: left;">
+    <div class="col-md-2 col-sm-3">
+      <mat-nav-list>
+        <mat-list-item >
+          <button mat-button [matMenuTriggerFor]="adminMenu" matTooltip="Click here to maintain company info">Admin</button>
+          <mat-menu #adminMenu="matMenu">
+            <button mat-menu-item routerLink="company"> Company Details </button>
+            <button mat-menu-item routerLink="vat"> VAT </button>
+          </mat-menu>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-button [matMenuTriggerFor]="jobMenu">Jobs </button>
+          <mat-menu #jobMenu="matMenu">
+            <button mat-menu-item routerLink="jobentry"> Enter Jobs </button>
+            <button mat-menu-item routerLink="jobreport"> Reports </button>
+          </mat-menu>
+        </mat-list-item>
+      </mat-nav-list> 
+    </div>
+    <div class="col-md-10 col-sm-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
