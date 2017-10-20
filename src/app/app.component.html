@@ -1,3 +1,5 @@
+<toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+
 <mat-toolbar color="primary">
   <button mat-button routerLink="/" mat-tooltip="Home Page">
     <mat-icon class="toolbar-icon">home</mat-icon>
@@ -12,7 +14,7 @@
   </button>
 </mat-toolbar>
 
-<div class="container body-content" style="text-align:center">
+<div class="container-fluid body-content">
   
   <router-outlet></router-outlet>
 
@@ -21,4 +23,5 @@
       <span>&copy; Lennie Harvey 2017</span>
     </mat-toolbar>
   </footer>
+
 </div>

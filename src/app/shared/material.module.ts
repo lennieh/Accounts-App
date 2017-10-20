@@ -10,8 +10,7 @@ import {
     MatTooltipModule,
     MatSidenavModule,
     MatListModule,
-    MatCardModule
-
+    MatCardModule,
 } from '@angular/material';
 
 @NgModule({

@@ -1,3 +1,12 @@
-<p>
-  about works!
-</p>
+<div>
+  <h2>About This App</h2>
+  <div *ngIf="aboutLines">
+  <div *ngFor="let aboutLine of aboutLines">
+    {{aboutLine.text}}
+  </div>
+</div>
+<div *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+</div>
+
