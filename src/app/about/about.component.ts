@@ -35,7 +35,7 @@ export class AboutComponent
         },
         error => {
           this.loading = false;
-          this.HandleError('About Page', 'Unexpected Error fetching About data');
+          this.HandleError(error, 'About', 'Unexpected Error fetching About data');
         }
 
       )

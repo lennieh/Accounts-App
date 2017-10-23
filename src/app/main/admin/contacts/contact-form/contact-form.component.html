@@ -1,0 +1,49 @@
+<div class="container" *ngIf="contact">
+  <h4>Edit {{contact.firstName}} {{contact.lastName}}</h4>
+  <form (ngSubmit)="onSubmit()"   #contactForm="ngForm">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="contact.firstName" name="firstName" #firstName="ngModel">
+      <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+        First Name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" id="lastName" required [(ngModel)]="contact.lastName" name="lastName" #lastName="ngModel">
+      <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+        Last Name is required
+      </div>
+      | </div>
+
+    <div class="form-group">
+      <label for="role">Role</label>
+      <input type="text" class="form-control" id="role" required [(ngModel)]="contact.role" name="role" #role="ngModel">
+      <div [hidden]="role.valid || role.pristine" class="alert alert-danger">
+        Role is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" required [(ngModel)]="contact.email" name="email" #email="ngModel">
+      <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+        Email is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="text" class="form-control" id="phone" required [(ngModel)]="contact.phone" name="phone" #phone="ngModel">
+      <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
+        Phone is required
+      </div>
+    </div>
+
+    <button mat-icon-button type="submit" [disabled]="!contactForm.form.valid" >
+      <mat-icon aria-label="save">save</mat-icon>
+    </button>
+
+  </form>
+</div>

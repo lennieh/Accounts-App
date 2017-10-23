@@ -17,8 +17,11 @@
               </p>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
+              <button mat-button>
+                <a href='mailto:{{contact.email}}'>
+                  <mat-icon>email</mat-icon>
+                </a>
+              </button>
             </mat-card-actions>
           </mat-card>
         </div>

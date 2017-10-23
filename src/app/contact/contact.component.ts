@@ -22,10 +22,10 @@ export class ContactComponent
   }
 
   ngOnInit() {
-    this.getContact();
+    this.getContacts();
   }
 
-  private getContact(): void {
+  private getContacts(): void {
     this.loading = true;
     var contacts = this.contactService.getContacts().subscribe(
       data => {
@@ -34,7 +34,7 @@ export class ContactComponent
       },
       error => {
         this.loading = false;
-        this.HandleError('Contact Error', 'Unexpected Error fetching contacts');
+        this.HandleError(error, 'Contact', 'Unexpected Error fetching contacts');
       }
     );
     

@@ -1,4 +1,5 @@
-import { Toast, ToasterService }       from 'angular2-toaster';
+import { Toast, ToasterService }        from 'angular2-toaster';
+import { HttpErrorResponse }            from '@angular/common/http';
 
 export abstract class AbstractPageWithToaster
 {
@@ -16,8 +17,8 @@ export abstract class AbstractPageWithToaster
       this.toasterService.pop(toast);
     }
 
-    protected HandleError(title: string, body:string)
+    protected HandleError(error: HttpErrorResponse, page: string, body:string)
     {
-        this.ShowToaster('error', title, body);
+        this.ShowToaster('error', page + ': ' + error.status, body);
     }
 }
