@@ -5,7 +5,7 @@ import { FormsModule }        from '@angular/forms';
 import { MainRoutingModule }  from './main-routing.module';
 import { SharedModule }       from '../shared/shared.module';
 
-import { ContactService }     from '../contact/contact.service';
+import { ContactService }     from '../services/contact.service';
 import { HomeComponent }      from './home/home.component';
 import { CompanyComponent }   from './admin/company/company.component';
 import { VatComponent }       from './admin/vat/vat.component';

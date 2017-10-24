@@ -11,8 +11,8 @@ import { InMemoryDataService }            from './in-memory-data.service';
 
 import { CoreModule }                     from './core/core.module';
 import { SharedModule }                   from './shared/shared.module';
-import { ContactService }                 from './contact/contact.service';
-import { AboutService }                   from './about/about.service';
+import { ContactService }                 from './services/contact.service';
+import { AboutService }                   from './services/about.service';
 
 import { MainModule }                     from './main/main.module';
 import { ContactComponent }               from './contact/contact.component';

@@ -1,15 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable }           from '@angular/core';
+import { HttpErrorResponse }    from '@angular/common/http';
 
 @Injectable()
 export class LoggerService {
 
   constructor() { }
 
-  log(msg: string) {
-    console.log(msg);
-  }
-
-  error(msg: string) {
-    console.error(msg);
+  logHttpError(source: string, error: HttpErrorResponse): void {
+    console.log(source + ": Error: " + error.status + " " + error.message);
+    //TODO: write to remote log
   }
 }

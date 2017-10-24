@@ -5,7 +5,7 @@ import { ToasterService }               from 'angular2-toaster';
 import { AbstractPageWithToaster }      from '../../../abstract/abstractPageWithToaster.component';
 
 import { Contact }                      from '../../../model/contact';
-import { ContactService }               from '../../../contact/contact.service';
+import { ContactService }               from '../../../services/contact.service';
 
 @Component({
   selector: 'app-contacts',

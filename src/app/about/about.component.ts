@@ -3,7 +3,7 @@ import { ToasterService }             from 'angular2-toaster';
 
 import { AbstractPageWithToaster }    from '../abstract/abstractPageWithToaster.component';
 import { About }                      from '../model/about';
-import { AboutService }               from './about.service';
+import { AboutService }               from '../services/about.service';
 
 @Component({
   selector: 'app-about',

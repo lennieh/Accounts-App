@@ -15,7 +15,7 @@ import { throwIfAlreadyLoaded }               from './module-import-guard';
   declarations: [
   ],
   providers: [
-    LoggerService
+     LoggerService
     ,ToasterService
   ]
 })
