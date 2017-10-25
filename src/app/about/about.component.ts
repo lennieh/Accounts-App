@@ -34,6 +34,7 @@ export class AboutComponent
           this.aboutLines = data;
         },
         error => {
+          console.log(error);
           this.loading = false;
           this.HandleError(error, 'About', 'Unexpected Error fetching About data');
         }

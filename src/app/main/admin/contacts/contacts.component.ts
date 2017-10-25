@@ -1,9 +1,10 @@
 import { Component, OnInit }            from '@angular/core';
+import { MatDialog }                    from '@angular/material';
 
 import { ToasterService }               from 'angular2-toaster';
 
 import { AbstractPageWithToaster }      from '../../../abstract/abstractPageWithToaster.component';
-
+import { AppConfirmDialog }             from '../../../core/confirmdialog.component';
 import { Contact }                      from '../../../model/contact';
 import { ContactService }               from '../../../services/contact.service';
 
@@ -20,7 +21,10 @@ export class ContactsComponent
     contacts: Contact[];
     selectedContact: Contact;
 
-  constructor(private contactService: ContactService, toasterService: ToasterService) {
+  constructor(
+    private contactService: ContactService, 
+    toasterService: ToasterService, 
+    public dialog: MatDialog) {
     super(toasterService)
   }
 
@@ -50,6 +54,20 @@ export class ContactsComponent
     this.selectedContact = new Contact();
   }
   
+  onDelete(contact: Contact) {
+    const dialogRef = this.dialog.open(AppConfirmDialog,{
+      height: '350px',
+      data: {
+        title: 'Confirm Delete',
+        body: `Are you sure you want to delete ${contact.firstName}?`
+      } });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if( result === true ){
+        this.delete(contact);
+      }      
+    });
+  }
   delete(contact: Contact): void {
     this.loading = true;
     this.contactService.deleteContact(contact.id).subscribe(
@@ -57,6 +75,7 @@ export class ContactsComponent
         this.loading = false; 
         this.contacts = this.contacts.filter( c => c !== contact);
         if( this.selectedContact === contact) { this.selectedContact = null; }
+        this.ShowToaster('success', 'Success', `${contact.firstName} has been deleted!`);
       },
       error => {
         this.loading = false; 

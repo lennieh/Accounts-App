@@ -5,6 +5,8 @@ import { HttpClientModule }               from '@angular/common/http';
 import { AppRoutingModule }               from './app-routing.module';
 import { AppComponent }                   from './app.component';
 
+import { ErrorInterceptorProvider }       from './interceptors/error.interceptor';
+
 // API Mocking
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }            from './in-memory-data.service';
@@ -18,13 +20,15 @@ import { MainModule }                     from './main/main.module';
 import { ContactComponent }               from './contact/contact.component';
 import { AboutComponent }                 from './about/about.component';
 import { ErrorComponent }                 from './error/error.component';
+import { AppConfirmDialog }               from './core/confirmdialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactComponent,
     AboutComponent,
-    ErrorComponent
+    ErrorComponent,
+    AppConfirmDialog
   ],
   imports: [
     HttpClientModule,
@@ -35,9 +39,13 @@ import { ErrorComponent }                 from './error/error.component';
     MainModule,
     AppRoutingModule
   ],
+  entryComponents: [
+    AppConfirmDialog
+  ],
   providers: [
     ContactService,
-    AboutService
+    AboutService,
+    ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })

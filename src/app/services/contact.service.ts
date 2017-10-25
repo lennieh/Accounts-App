@@ -1,6 +1,6 @@
 import { Injectable }           from '@angular/core';
 import { HttpClient }           from '@angular/common/http';
-import { AbstractDataService }  from '../abstract/abstractDataService.service';
+import { environment }          from '../../environments/environment';
 
 import { LoggerService }        from '../core/logger.service';
 import { ToasterService }       from 'angular2-toaster';
@@ -12,44 +12,34 @@ import 'rxjs/add/operator/map';
 import { Contact }              from '../model/contact';
 
 @Injectable()
-export class ContactService extends AbstractDataService {
+export class ContactService  {
 
-  private contactsUrl = this.apiUrl + 'contacts';
+  private _endPoint;
 
   constructor(private http: HttpClient, private loggerService: LoggerService ) {
-    super();
-   }
+    this._endPoint = environment.contactServiceEndpoint;
+  }
 
   getContacts(): Observable<Contact[]> {
-      return this.http.get<Contact[]>(this.contactsUrl)
-                .catch(this.handleError);
+      return this.http.get<Contact[]>(this._endPoint);
   }
 
   getContact(id: number): Observable<Contact> {
-    const url = `${this.contactsUrl}/${id}`;
-    return this.http.get<Contact>(url)
-            .catch(this.handleError);
+    const url = `${this._endPoint}/${id}`;
+    return this.http.get<Contact>(url);
   }
 
   createContact(contact: Contact): Observable<Contact> {
-    return this.http.post<Contact>(this.contactsUrl, contact)
-            .catch(this.handleError);
+    return this.http.post<Contact>(this._endPoint, contact);
   }
 
-  updateContact(contact: Contact): Observable<null> {
-    return this.http.put<Contact>(this.contactsUrl, contact)
-            .catch(this.handleError);
+  updateContact(contact: Contact): Observable<Contact> {
+    return this.http.put<Contact>(this._endPoint, contact);
   }
 
   deleteContact(contact: Contact | number) : Observable<Contact> {
     const id = typeof contact === 'number' ? contact : contact.id;
-    const url = `${this.contactsUrl}/${id}`;
-    return this.http.delete<Contact>(url)
-            .catch(this.handleError);
-  }
-
-  private handleError( error: any) {
-    this.loggerService.logHttpError("Contact.Service",  error);        
-    return Observable.throw(error);
+    const url = `${this._endPoint}/${id}`;
+    return this.http.delete<Contact>(url);
   }
 }

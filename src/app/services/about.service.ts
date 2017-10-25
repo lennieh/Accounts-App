@@ -1,30 +1,23 @@
 import { Injectable }           from '@angular/core';
 import { HttpClient }           from '@angular/common/http';
-import { AbstractDataService }  from '../abstract/abstractDataService.service';
-import { LoggerService }        from '../core/logger.service';
-
 import { Observable }           from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
+
+import { environment }          from '../../environments/environment';
+import { LoggerService }        from '../core/logger.service';
 
 import { About }                from '../model/about';
 
 @Injectable()
-export class AboutService extends AbstractDataService {
+export class AboutService {
 
-  private aboutUrl = this.apiUrl + 'about1';
+  private _endpoint;
 
   constructor(private http: HttpClient, private loggerService: LoggerService ) {
-    super();
+    this._endpoint = environment.aboutServiceEndpoint;
    }
 
    getAbout(): Observable<About[]> {
-      return this.http.get<About[]>(this.aboutUrl)
-              .catch(this.handleError);
+      return this.http.get<About[]>(this._endpoint);
   }
-
-  private handleError( error: any) {
-    this.loggerService.logHttpError("About.Service",  error);        
-    return Observable.throw(error);
-  }
-
 }

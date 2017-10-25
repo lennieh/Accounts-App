@@ -34,6 +34,7 @@ export class ContactFormComponent
 
   ngOnInit(): void {
     this.loading = true;
+    
     this.route.paramMap.switchMap((params: ParamMap) =>
       this.contactService.getContact(+params.get('id')))
         .subscribe(
@@ -57,6 +58,7 @@ export class ContactFormComponent
           data => { 
             this.loading = false;
             this.contact = data;
+            this.ShowToaster('success', 'Contact Updated', `${this.contact.firstName} successfully updated!`);
           },
           error => { 
             this.loading = false;
@@ -70,6 +72,7 @@ export class ContactFormComponent
           data => {
             this.loading = false;
             this.contact = data;
+            this.ShowToaster('success', 'Contact Added', `${this.contact.firstName} successfully added!`);
           },
           error => {
             this.loading = false;

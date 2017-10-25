@@ -8,12 +8,12 @@
       <mat-icon aria-label="edit contact" routerLink="edit/{{contact.id}}">edit</mat-icon>
     </button>
     <button mat-icon-button>
-      <mat-icon aria-label="delete contact" (click)="delete(contact); $event.stopPropagation()">delete</mat-icon>
+      <mat-icon aria-label="delete contact" (click)="onDelete(contact); $event.stopPropagation()">delete</mat-icon>
     </button>
   </div>
   </mat-nav-list>  
   <button mat-icon-button (click)="add();">
-    <mat-icon aria-label="add new contact" (click)="add();">add</mat-icon>
+    <mat-icon aria-label="add new contact" (click)="edit/-1">add</mat-icon>
   </button>
 
   
