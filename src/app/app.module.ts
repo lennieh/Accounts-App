@@ -20,7 +20,7 @@ import { MainModule }                     from './main/main.module';
 import { ContactComponent }               from './contact/contact.component';
 import { AboutComponent }                 from './about/about.component';
 import { ErrorComponent }                 from './error/error.component';
-import { AppConfirmDialog }               from './core/confirmdialog.component';
+import { AppConfirmDialog }               from './core/confirm-dialog.component';
 
 @NgModule({
   declarations: [

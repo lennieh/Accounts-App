@@ -4,7 +4,7 @@ import { MatDialog }                    from '@angular/material';
 import { ToasterService }               from 'angular2-toaster';
 
 import { AbstractPageWithToaster }      from '../../../abstract/abstractPageWithToaster.component';
-import { AppConfirmDialog }             from '../../../core/confirmdialog.component';
+import { AppConfirmDialog }             from '../../../core/confirm-dialog.component';
 import { Contact }                      from '../../../model/contact';
 import { ContactService }               from '../../../services/contact.service';
 

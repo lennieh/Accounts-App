@@ -13,11 +13,8 @@
   </div>
   </mat-nav-list>  
   <button mat-icon-button (click)="add();">
-    <mat-icon aria-label="add new contact" (click)="edit/-1">add</mat-icon>
-  </button>
-
-  
-
+    <mat-icon aria-label="add new contact" routerLink="new">add</mat-icon>
+  </button> 
 </div>
 
 <div *ngIf="loading">

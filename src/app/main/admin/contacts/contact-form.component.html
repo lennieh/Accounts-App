@@ -1,53 +1,52 @@
 <div class="container" *ngIf="contact">
-  <h4>Edit {{contact.firstName}} {{contact.lastName}}</h4>
-  <form (ngSubmit)="onSubmit()"   #contactForm="ngForm">
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input type="text" class="form-control" id="firstName" required [(ngModel)]="contact.firstName" name="firstName" #firstName="ngModel">
-      <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
-        First Name is required
+
+    <div class="form-group row">
+      <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="firstName" required [(ngModel)]="contact.firstName" name="firstName" #firstName="ngModel">
+        <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+            First Name is required
+        </div>
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
+    <div class="form-group row">
+      <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+      <div class="col-sm-10">
       <input type="text" class="form-control" id="lastName" required [(ngModel)]="contact.lastName" name="lastName" #lastName="ngModel">
       <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
         Last Name is required
       </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="role">Role</label>
+    <div class="form-group row">
+      <label for="role" class="col-sm-2 col-form-label">Role</label>
+      <div class="col-sm-10">
       <input type="text" class="form-control" id="role" required [(ngModel)]="contact.role" name="role" #role="ngModel">
       <div [hidden]="role.valid || role.pristine" class="alert alert-danger">
         Role is required
       </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="email">Email</label>
+    <div class="form-group row">
+      <label for="email" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
       <input type="text" class="form-control" id="email" required [(ngModel)]="contact.email" name="email" #email="ngModel">
       <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
         Email is required
       </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="phone">Phone</label>
+    <div class="form-group row">
+      <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+      <div class="col-sm-10">
       <input type="text" class="form-control" id="phone" required [(ngModel)]="contact.phone" name="phone" #phone="ngModel">
       <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
         Phone is required
       </div>
+      </div>
     </div>
-
-    <div>
-    <button mat-icon-button type="submit" [disabled]="!contactForm.form.valid" >
-      <mat-icon aria-label="save">save</mat-icon>
-    </button>
-    <button mat-icon-button type="button" (click)="goBack();" >
-      <mat-icon aria-label="cancel">cancel</mat-icon>
-    </button>
-  </div>
-  </form>
 </div>
