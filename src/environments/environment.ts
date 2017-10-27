@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   aboutServiceEndpoint: 'api/about1',
-  contactServiceEndpoint: 'api/contacts'
+  contactServiceEndpoint: 'api/contacts',
+  loggerServiceEndpoint: 'api/logger'
 };

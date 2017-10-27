@@ -12,7 +12,7 @@ import { Contact }            from '../../../model/contact';
 import { ContactService }     from '../../../services/contact.service';
 
 @Component({
-  selector: 'edit-contact',
+  selector: 'app-edit-contact',
   templateUrl: './edit-contact.component.html',
   styleUrls: ['./edit-contact.component.scss']
 })
@@ -29,39 +29,39 @@ export class EditContactComponent
     private route: ActivatedRoute,
     private location: Location,
     toasterService: ToasterService) {
-    super(toasterService)
+    super(toasterService);
    }
 
   ngOnInit(): void {
     this.loading = true;
-    
+
     this.route.paramMap.switchMap((params: ParamMap) =>
       this.contactService.getContact(+params.get('id')))
         .subscribe(
           contact => {
             this.loading = false;
-            this.contact = contact
+            this.contact = contact;
           },
           error => {
             this.loading = false;
-            this.HandleError(error, "Edit Contact", "Unexpected Error loading contact");  
+            this.HandleError('Edit Contact', error);
         });
   }
 
-  onSubmit(){ 
+  onSubmit() {
     this.loading = true;
 
     this.contactService.updateContact(this.contact)
       .subscribe(
-        data => { 
+        data => {
           this.loading = false;
- //         this.contact = data;
+          //         this.contact = data;
           this.ShowToaster('success', 'Contact Updated', `${this.contact.firstName} successfully updated!`);
           this.goBack();
         },
-        error => { 
+        error => {
           this.loading = false;
-          this.HandleError(error, "Edit Contact", "Unexpected error updating Contact")
+          this.HandleError('Edit Contact', error);
         }
       );
   }

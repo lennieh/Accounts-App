@@ -13,6 +13,8 @@ import { InMemoryDataService }            from './in-memory-data.service';
 
 import { CoreModule }                     from './core/core.module';
 import { SharedModule }                   from './shared/shared.module';
+import { LoggerService }                  from './core/logger.service';
+
 import { ContactService }                 from './services/contact.service';
 import { AboutService }                   from './services/about.service';
 
@@ -45,6 +47,7 @@ import { AppConfirmDialog }               from './core/confirm-dialog.component'
   providers: [
     ContactService,
     AboutService,
+    LoggerService,
     ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent]

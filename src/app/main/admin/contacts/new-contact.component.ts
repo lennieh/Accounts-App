@@ -12,11 +12,11 @@ import { Contact }            from '../../../model/contact';
 import { ContactService }     from '../../../services/contact.service';
 
 @Component({
-  selector: 'new-contact',
+  selector: 'app-new-contact',
   templateUrl: './new-contact.component.html',
   styleUrls: ['./new-contact.component.scss']
 })
-export class NewContactComponent 
+export class NewContactComponent
   extends AbstractPageWithToaster
   implements OnInit {
 
@@ -25,17 +25,17 @@ export class NewContactComponent
   loading = false;
 
   constructor(
-    private contactService: ContactService, 
+    private contactService: ContactService,
     private location: Location,
     toasterService: ToasterService) {
-    super(toasterService)
+    super(toasterService);
    }
 
   ngOnInit(): void {
     this.contact = new Contact();
   }
 
-  onSubmit(){ 
+  onSubmit() {
     this.loading = true;
 
     this.contactService.createContact(this.contact)
@@ -48,9 +48,9 @@ export class NewContactComponent
           },
           error => {
             this.loading = false;
-            this.HandleError(error, "Add Contact", "Unexpected error creating new Contact");
+            this.HandleError('Add Contact', error);
           }
-        )
+        );
   }
 
   goBack() {
