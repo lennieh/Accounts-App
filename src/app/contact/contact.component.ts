@@ -14,9 +14,9 @@ export class ContactComponent
   extends AbstractPageWithToaster 
   implements OnInit {
 
-  loading: boolean = false;
+  loading = false;
   contacts: Contact[];
-  
+
   constructor(private contactService: ContactService, toasterService: ToasterService) { 
     super(toasterService);
   }
@@ -27,16 +27,16 @@ export class ContactComponent
 
   private getContacts(): void {
     this.loading = true;
-    var contacts = this.contactService.getContacts().subscribe(
+    const contacts = this.contactService.getContacts().subscribe(
       data => {
         this.contacts = data;
         this.loading = false;
       },
       error => {
         this.loading = false;
-        this.HandleError(error, 'Contact', 'Unexpected Error fetching contacts');
+        this.HandleError('Contact', error);
       }
     );
-    
+
   }
 }

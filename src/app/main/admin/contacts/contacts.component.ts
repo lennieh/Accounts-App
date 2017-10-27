@@ -22,10 +22,10 @@ export class ContactsComponent
     selectedContact: Contact;
 
   constructor(
-    private contactService: ContactService, 
-    toasterService: ToasterService, 
+    private contactService: ContactService,
+    toasterService: ToasterService,
     public dialog: MatDialog) {
-    super(toasterService)
+    super(toasterService);
   }
 
   ngOnInit() {
@@ -36,12 +36,12 @@ export class ContactsComponent
     this.loading = true;
     this.contactService.getContacts().subscribe(
       data => {
-        this.loading = false; 
-        this.contacts = data;     
+        this.loading = false;
+        this.contacts = data;
       },
       error => {
         this.loading = false;
-        this.HandleError(error, 'Edit Contacts', 'Unexpected Error reading Contacts' );
+        this.HandleError('Contacts', error);
       }
     )
   }
@@ -53,7 +53,7 @@ export class ContactsComponent
   add(): void {
     this.selectedContact = new Contact();
   }
-  
+
   onDelete(contact: Contact) {
     const dialogRef = this.dialog.open(AppConfirmDialog,{
       height: '350px',
@@ -63,24 +63,25 @@ export class ContactsComponent
       } });
 
     dialogRef.afterClosed().subscribe(result => {
-      if( result === true ){
+      if ( result === true ) {
         this.delete(contact);
-      }      
+      }
     });
   }
+
   delete(contact: Contact): void {
     this.loading = true;
     this.contactService.deleteContact(contact.id).subscribe(
       data => {
-        this.loading = false; 
+        this.loading = false;
         this.contacts = this.contacts.filter( c => c !== contact);
-        if( this.selectedContact === contact) { this.selectedContact = null; }
+        if ( this.selectedContact === contact) { this.selectedContact = null; }
         this.ShowToaster('success', 'Success', `${contact.firstName} has been deleted!`);
       },
       error => {
-        this.loading = false; 
-        this.HandleError(error, "Delete Contact", "Unexpected error deleting contact");
+        this.loading = false;
+        this.HandleError('Delete Contact', error);
       }
-    )
+    );
   }
 }

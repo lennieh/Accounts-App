@@ -10,12 +10,12 @@ import { AboutService }               from '../services/about.service';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
-export class AboutComponent 
+export class AboutComponent
   extends AbstractPageWithToaster
   implements OnInit {
 
   aboutLines: About[];
-  loading: boolean;
+  loading = false;
 
   constructor(private aboutService: AboutService, toasterService: ToasterService ) {
     super(toasterService);
@@ -25,7 +25,7 @@ export class AboutComponent
     this.getAboutData();
   }
 
-  private getAboutData() : void {
+  private getAboutData(): void {
     this.loading = true;
     this.aboutService.getAbout()
       .subscribe(
@@ -36,10 +36,8 @@ export class AboutComponent
         error => {
           console.log(error);
           this.loading = false;
-          this.HandleError(error, 'About', 'Unexpected Error fetching About data');
+          this.HandleError('About', error);
         }
-
-      )
-
+      );
   }
 }
