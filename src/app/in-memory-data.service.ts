@@ -2,7 +2,11 @@ import { InMemoryDbService }        from 'angular-in-memory-web-api';
 
 import { Contact }                  from './model/contact';
 import { About }                    from './model/about';
+import { Country }                  from './model/country';
 import { LogError }                 from './model/log-error';
+
+import { QuestionBase }             from './generate/model/question-base';
+import { TextboxQuestion }          from './generate/model/question-textbox';
 
 export class InMemoryDataService implements InMemoryDbService {
     createDb() {
@@ -31,10 +35,33 @@ export class InMemoryDataService implements InMemoryDbService {
             { id: 3, text: 'By Lennie Harvey'}
         ];
 
+        const country: Country[] = [
+            { id: 1, countryCode: 'UK', countryName: 'United Kingdom' },
+            { id: 2, countryCode: 'USA', countryName: 'United States' }
+        ];
+
         const logger: LogError[] = [
             { id: 1, source: 'Somewhere', severity: 'Error', message: 'Generic error message'}
         ];
 
-        return {contacts, about, logger};
+        const questions: QuestionBase<any>[] = [
+            new TextboxQuestion({
+                id: 1,
+                key: 'countryCode',
+                label: 'Country Code',
+                value: '',
+                required: true,
+                order: 1
+              }),
+              new TextboxQuestion({
+                id: 2,
+                key: 'countryName',
+                label: 'Country name',
+                value: '',
+                required: true,
+                order: 2
+              }),
+        ];
+        return {contacts, about, logger, country, questions};
     }
 }

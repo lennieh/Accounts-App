@@ -1,0 +1,22 @@
+<h2> Edit Countries </h2>
+
+<div *ngIf="countries">
+  <mat-nav-list>
+    <div *ngFor="let country of countries" mat-list-item>
+    {{country.countryCode}} : {{country.countryName}}
+    <button mat-icon-button>
+      <mat-icon aria-label="edit country" routerLink="edit/{{country.id}}">edit</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon aria-label="delete country" (click)="onDelete(country); $event.stopPropagation()">delete</mat-icon>
+    </button>
+  </div>
+  </mat-nav-list>  
+  <button mat-icon-button (click)="add();">
+    <mat-icon aria-label="add new country" routerLink="new">add</mat-icon>
+  </button> 
+</div>
+
+<div *ngIf="loading">
+    <mat-spinner class="app-spinner"></mat-spinner>
+</div>

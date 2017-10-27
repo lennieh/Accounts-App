@@ -37,7 +37,7 @@ export class ContactService  {
     return this.http.put<Contact>(this._endPoint, contact);
   }
 
-  deleteContact(contact: Contact | number) : Observable<Contact> {
+  deleteContact(contact: Contact | number): Observable<Contact> {
     const id = typeof contact === 'number' ? contact : contact.id;
     const url = `${this._endPoint}/${id}`;
     return this.http.delete<Contact>(url);

@@ -13,7 +13,7 @@ import { ContactService }               from '../../../services/contact.service'
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.scss']
 })
-export class ContactsComponent 
+export class ContactsComponent
   extends AbstractPageWithToaster
   implements OnInit {
 
@@ -43,7 +43,7 @@ export class ContactsComponent
         this.loading = false;
         this.HandleError('Contacts', error);
       }
-    )
+    );
   }
 
   edit(contact: Contact): void {
@@ -55,7 +55,7 @@ export class ContactsComponent
   }
 
   onDelete(contact: Contact) {
-    const dialogRef = this.dialog.open(AppConfirmDialog,{
+    const dialogRef = this.dialog.open(AppConfirmDialog, {
       height: '350px',
       data: {
         title: 'Confirm Delete',
