@@ -26,8 +26,6 @@ export class NewCountryComponent
   extends AbstractPageWithToaster
   implements OnInit {
 
-  country: Country;
-
   loading = false;
 
   constructor(
@@ -41,7 +39,6 @@ export class NewCountryComponent
    questions: QuestionBase<any>[];
 
   ngOnInit(): void {
-    this.country = new Country();
     this.getQuestions();
   }
 
@@ -60,15 +57,16 @@ export class NewCountryComponent
     );
   }
 
-  onSubmit() {
+  onSave(payload: any) {
     this.loading = true;
 
-    this.countryService.createCountry(this.country)
+    const country = this.prepareCountry(payload);
+
+    this.countryService.createCountry(country)
         .subscribe(
           data => {
             this.loading = false;
-            this.country = data;
-            this.ShowToaster('success', 'Country Added', `${this.country.countryName} successfully added!`);
+            this.ShowToaster('success', 'Country Added', `${country.countryName} successfully added!`);
             this.goBack();
           },
           error => {
@@ -76,6 +74,17 @@ export class NewCountryComponent
             this.HandleError('Add Country', error);
           }
         );
+  }
+
+  prepareCountry(payload: any): Country {
+    const formModel = payload;
+
+    const saveCountry: Country = {
+      id: 0,
+      countryCode: formModel.countryCode,
+      countryName: formModel.countryName
+    };
+    return  saveCountry;
   }
 
   goBack() {

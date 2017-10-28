@@ -1,5 +1,5 @@
 <div *ngIf="questions">
-  <app-dynamic-form [questions]="questions"></app-dynamic-form>
+  <app-dynamic-form [questions]="questions" (onSave)="onSave($event);"></app-dynamic-form>
 </div>
 
 <div *ngIf="loading">
