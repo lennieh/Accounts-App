@@ -11,7 +11,9 @@ import {
     MatSidenavModule,
     MatListModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MAT_PLACEHOLDER_GLOBAL_OPTIONS
 } from '@angular/material';
 
 @NgModule({
@@ -26,7 +28,8 @@ import {
         MatSidenavModule,
         MatListModule,
         MatCardModule,
-        MatDialogModule
+        MatDialogModule,
+        MatFormFieldModule
         ],
     exports: [
         MatButtonModule,
@@ -39,7 +42,11 @@ import {
         MatSidenavModule,
         MatListModule,
         MatCardModule,
-        MatDialogModule
+        MatDialogModule,
+        MatFormFieldModule
+    ],
+    providers: [
+      {provide: MAT_PLACEHOLDER_GLOBAL_OPTIONS, useValue: {float: 'always'}}  
     ]
 })
 export class MaterialModule {}

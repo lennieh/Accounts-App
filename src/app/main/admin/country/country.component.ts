@@ -2,7 +2,7 @@ import { Component, OnInit }          from '@angular/core';
 import { ToasterService }             from 'angular2-toaster';
 import { MatDialog }                  from '@angular/material';
 
-import { AbstractPageWithToaster }    from '../../../abstract/abstractPageWithToaster.component';
+import { AbstractPage }               from '../../../abstract/abstract-page.component';
 import { AppConfirmDialog }           from '../../../core/confirm-dialog.component';
 
 import { CountryService }             from '../../../services/country.service';
@@ -14,10 +14,9 @@ import { Country }                    from '../../../model/country';
   styleUrls: ['./country.component.scss']
 })
 export class CountryComponent
-  extends AbstractPageWithToaster
+  extends AbstractPage
   implements OnInit {
 
-  loading = false;
   countries: Country[];
 
   constructor(

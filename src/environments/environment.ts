@@ -9,5 +9,5 @@ export const environment = {
   contactServiceEndpoint: 'api/contacts',
   countryServiceEndpoint: 'api/country',
   loggerServiceEndpoint: 'api/logger',
-  questionServiceEndpoint: 'api/questions'
+  questionServiceEndpoint: 'api/formQuestions'
 };

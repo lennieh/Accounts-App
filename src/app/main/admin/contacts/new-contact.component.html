@@ -1,15 +1,9 @@
 <h4>Create New Contact</h4>
-  
-<form (ngSubmit)="onSubmit()"   #contactForm="ngForm">
 
-    <app-contact-form [contact]="contact"></app-contact-form>
+<div *ngIf="questions">
+    <app-dynamic-form [questions]="questions" (onSave)="onSave($event);" (onCancel)="goBack();"></app-dynamic-form>
+</div>
 
-    <div>
-        <button mat-icon-button type="submit" [disabled]="!contactForm.form.valid" >
-            <mat-icon aria-label="save">save</mat-icon>
-        </button>
-        <button mat-icon-button type="button" (click)="goBack();" >
-            <mat-icon aria-label="cancel">cancel</mat-icon>
-        </button>
-    </div>
-</form>
+<div *ngIf="loading">
+    <mat-spinner class="app-spinner"></mat-spinner>
+</div>

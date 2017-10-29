@@ -1,7 +1,7 @@
 import { Component, OnInit }          from '@angular/core';
 import { ToasterService }             from 'angular2-toaster';
 
-import { AbstractPageWithToaster }    from '../abstract/abstractPageWithToaster.component';
+import { AbstractPage }               from '../abstract/abstract-page.component';
 import { About }                      from '../model/about';
 import { AboutService }               from '../services/about.service';
 
@@ -11,11 +11,10 @@ import { AboutService }               from '../services/about.service';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent
-  extends AbstractPageWithToaster
+  extends AbstractPage
   implements OnInit {
 
   aboutLines: About[];
-  loading = false;
 
   constructor(private aboutService: AboutService, toasterService: ToasterService ) {
     super(toasterService);

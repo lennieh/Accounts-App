@@ -1,21 +1,16 @@
 import { Component, OnInit }        from '@angular/core';
 import { ActivatedRoute}            from '@angular/router';
 import { Location }                 from '@angular/common';
-
 import 'rxjs/add/operator/switchMap';
 
 import { ToasterService }           from 'angular2-toaster';
-
-import { AbstractPageWithToaster }  from '../../../abstract/abstractPageWithToaster.component';
-
-import { Country }                  from '../../../model/country';
-import { CountryService }           from '../../../services/country.service';
-
-// import { DynamicFormComponent }     from '../../../generate/dynamic-form/dynamic-form.component';
-// import { DynamicFormQuestionComponent } from '../../../generate/dynamic-form/dynamic-form-question.component';
+import { AbstractEditPage }         from '../../../abstract/abstract-edit-page.component';
 
 import { QuestionService }          from '../../../generate/question.service';
 import { QuestionBase }             from '../../../generate/model/question-base';
+
+import { Country }                  from '../../../model/country';
+import { CountryService }           from '../../../services/country.service';
 
 @Component({
   selector: 'app-new-country',
@@ -23,38 +18,20 @@ import { QuestionBase }             from '../../../generate/model/question-base'
   styleUrls: ['./new-country.component.scss']
 })
 export class NewCountryComponent
-  extends AbstractPageWithToaster
+  extends AbstractEditPage
   implements OnInit {
-
-  loading = false;
 
   constructor(
     private countryService: CountryService,
-    private location: Location,
-    private questionService: QuestionService,
+    questionService: QuestionService,
+    location: Location,
     toasterService: ToasterService) {
-    super(toasterService);
-   }
-
-   questions: QuestionBase<any>[];
+    super(questionService, location, toasterService);
+    this.formName = 'country';
+  }
 
   ngOnInit(): void {
     this.getQuestions();
-  }
-
-  getQuestions(): void {
-    this.loading = true;
-
-    this.questionService.getQuestions().subscribe(
-      questions => {
-        this.loading = false;
-        this.questions = questions;
-      },
-      error => {
-        this.loading = false;
-        this.HandleError('New Country', error );
-      }
-    );
   }
 
   onSave(payload: any) {
@@ -87,7 +64,4 @@ export class NewCountryComponent
     return  saveCountry;
   }
 
-  goBack() {
-    this.location.back();
-  }
 }

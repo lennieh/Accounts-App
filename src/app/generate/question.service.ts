@@ -4,7 +4,7 @@ import { Observable }     from 'rxjs/Observable';
 
 import { environment }    from '../../environments/environment';
 
-import { QuestionBase }   from './model/question-base';
+import { FormQuestions }   from './model/form-questions';
 
 @Injectable()
 export class QuestionService {
@@ -15,7 +15,7 @@ export class QuestionService {
     this._endPoint = environment.questionServiceEndpoint;
   }
 
-   getQuestions(): Observable<QuestionBase<any>[]> {
-      return this.http.get<QuestionBase<any>[]>(this._endPoint);
+   getQuestions(formName: string): Observable<FormQuestions[]> {
+      return this.http.get<FormQuestions[]>(`${this._endPoint}?formName=${formName}`);
    }
 }

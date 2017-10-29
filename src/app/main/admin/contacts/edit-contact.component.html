@@ -1,16 +1,12 @@
 <div *ngIf="contact">
-  <h4>Edit {{contact.firstName}} {{contact.lastName}}</h4>
-  <form (ngSubmit)="onSubmit()"   #contactForm="ngForm">
+    <h2>Edit {{contact.firstName}} {{contact.lastName}}</h2>
 
-    <app-contact-form [contact]="contact"></app-contact-form>
-
-    <div>
-        <button mat-icon-button type="submit" [disabled]="!contactForm.form.valid" >
-            <mat-icon aria-label="save">save</mat-icon>
-        </button>
-        <button mat-icon-button type="button" (click)="goBack();" >
-            <mat-icon aria-label="cancel">cancel</mat-icon>
-        </button>
+    
+    <div *ngIf="questions && formData">
+        <app-dynamic-form [questions]="questions" [formData]="formData" (onSave)="onSave($event);" (onCancel)="goBack();"></app-dynamic-form>
     </div>
-  </form>
+
+    <div *ngIf="loading">
+        <mat-spinner class="app-spinner"></mat-spinner>
+    </div>
 </div>

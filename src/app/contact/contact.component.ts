@@ -1,7 +1,7 @@
 import { Component, OnInit }        from '@angular/core';
 import { ToasterService }           from 'angular2-toaster';
 
-import { AbstractPageWithToaster }  from '../abstract/abstractPageWithToaster.component';
+import { AbstractPage }             from '../abstract/abstract-page.component';
 import { Contact }                  from '../model/contact';
 import { ContactService }           from '../services/contact.service';
 
@@ -11,10 +11,9 @@ import { ContactService }           from '../services/contact.service';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent 
-  extends AbstractPageWithToaster 
+  extends AbstractPage
   implements OnInit {
 
-  loading = false;
   contacts: Contact[];
 
   constructor(private contactService: ContactService, toasterService: ToasterService) { 

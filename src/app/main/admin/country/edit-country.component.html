@@ -1,3 +1,12 @@
-<p>
-  edit-country works!
-</p>
+<div *ngIf="country">
+
+  <h2>Edit Country {{country.countryName}}</h2>
+
+  <div *ngIf="questions && formData">
+    <app-dynamic-form [questions]="questions" [formData]="formData" (onSave)="onSave($event);" (onCancel)="goBack();"></app-dynamic-form>
+  </div>
+</div>
+
+<div *ngIf="loading">
+  <mat-spinner class="app-spinner"></mat-spinner>
+</div>

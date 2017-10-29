@@ -1,15 +1,15 @@
 import { Component, OnInit }        from '@angular/core';
 import { ActivatedRoute}            from '@angular/router';
 import { Location }                 from '@angular/common';
-
 import 'rxjs/add/operator/switchMap';
 
 import { ToasterService }           from 'angular2-toaster';
+import { AbstractEditPage }         from '../../../abstract/abstract-edit-page.component';
 
-import { AbstractPageWithToaster }  from '../../../abstract/abstractPageWithToaster.component';
+import { QuestionService }          from '../../../generate/question.service';
 
-import { Contact }            from '../../../model/contact';
-import { ContactService }     from '../../../services/contact.service';
+import { Contact }                  from '../../../model/contact';
+import { ContactService }           from '../../../services/contact.service';
 
 @Component({
   selector: 'app-new-contact',
@@ -17,33 +17,32 @@ import { ContactService }     from '../../../services/contact.service';
   styleUrls: ['./new-contact.component.scss']
 })
 export class NewContactComponent
-  extends AbstractPageWithToaster
+  extends AbstractEditPage
   implements OnInit {
-
-  contact: Contact;
-
-  loading = false;
 
   constructor(
     private contactService: ContactService,
-    private location: Location,
+    questionService: QuestionService,
+    location: Location,
     toasterService: ToasterService) {
-    super(toasterService);
+    super(questionService, location, toasterService );
+    this.formName = 'contact'
    }
 
   ngOnInit(): void {
-    this.contact = new Contact();
+    this.getQuestions();
   }
 
-  onSubmit() {
+  onSave(payload: any) {
     this.loading = true;
+    const contact = this.prepareContact(payload);
 
-    this.contactService.createContact(this.contact)
+    this.contactService.createContact(contact)
         .subscribe(
           data => {
             this.loading = false;
-            this.contact = data;
-            this.ShowToaster('success', 'Contact Added', `${this.contact.firstName} successfully added!`);
+            //this.contact = data;
+            this.ShowToaster('success', 'Contact Added', `${contact.firstName} successfully added!`);
             this.goBack();
           },
           error => {
@@ -53,7 +52,18 @@ export class NewContactComponent
         );
   }
 
-  goBack() {
-    this.location.back();
+  prepareContact(payload: any): Contact {
+    const formModel = payload;
+
+    const saveContact: Contact = {
+      id: 0,
+      firstName: formModel.firstName,
+      lastName: formModel.lastName,
+      role: formModel.role,
+      email: formModel.email,
+      phone: formModel.phone
+    };
+    return  saveContact;
   }
+
 }

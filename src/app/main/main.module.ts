@@ -27,7 +27,6 @@ import { JobReportComponent }   from './jobreport/jobreport.component';
 
 import { CountryService }       from '../services/country.service';
 import { CountryComponent }     from './admin/country/country.component';
-import { CountryFormComponent } from './admin/country/country-form.component';
 import { EditCountryComponent } from './admin/country/edit-country.component';
 import { NewCountryComponent }  from './admin/country/new-country.component';
 
@@ -53,7 +52,6 @@ import { NewCountryComponent }  from './admin/country/new-country.component';
     JobEntryComponent,
     JobReportComponent,
     CountryComponent,
-    CountryFormComponent,
     EditCountryComponent,
     NewCountryComponent
   ],

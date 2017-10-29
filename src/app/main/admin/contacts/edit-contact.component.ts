@@ -5,11 +5,12 @@ import { Location }                 from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
 import { ToasterService }           from 'angular2-toaster';
+import { AbstractEditPage }         from '../../../abstract/abstract-edit-page.component';
 
-import { AbstractPageWithToaster }  from '../../../abstract/abstractPageWithToaster.component';
+import { QuestionService }          from '../../../generate/question.service';
 
-import { Contact }            from '../../../model/contact';
-import { ContactService }     from '../../../services/contact.service';
+import { Contact }                  from '../../../model/contact';
+import { ContactService }           from '../../../services/contact.service';
 
 @Component({
   selector: 'app-edit-contact',
@@ -17,19 +18,20 @@ import { ContactService }     from '../../../services/contact.service';
   styleUrls: ['./edit-contact.component.scss']
 })
 export class EditContactComponent
-  extends AbstractPageWithToaster
+  extends AbstractEditPage
   implements OnInit {
 
   contact: Contact;
-
-  loading = false;
+  formData: any;
 
   constructor(
     private contactService: ContactService,
     private route: ActivatedRoute,
-    private location: Location,
+    questionService: QuestionService,
+    location: Location,
     toasterService: ToasterService) {
-    super(toasterService);
+    super(questionService, location, toasterService);
+    this.formName = 'contact';
    }
 
   ngOnInit(): void {
@@ -41,6 +43,8 @@ export class EditContactComponent
           contact => {
             this.loading = false;
             this.contact = contact;
+            this.setFormData();
+            this.getQuestions();
           },
           error => {
             this.loading = false;
@@ -48,9 +52,29 @@ export class EditContactComponent
         });
   }
 
-  onSubmit() {
-    this.loading = true;
+  setFormData(): void {
+    this.formData = {
+      firstName: this.contact.firstName,
+      lastName: this.contact.lastName,
+      role: this.contact.role,
+      email: this.contact.email,
+      phone: this.contact.phone
+    }
+  }
 
+  prepareContact(payload: any): void {
+    const formModel = payload;
+    this.contact.firstName = formModel.firstName;
+    this.contact.lastName = formModel.lastName;
+    this.contact.role = formModel.role;
+    this.contact.email = formModel.email;
+    this.contact.phone = formModel.phone;
+  }
+
+  onSave(payload: any) {
+    this.loading = true;
+    this.prepareContact(payload);
+    
     this.contactService.updateContact(this.contact)
       .subscribe(
         data => {
@@ -64,9 +88,5 @@ export class EditContactComponent
           this.HandleError('Edit Contact', error);
         }
       );
-  }
-
-  goBack() {
-    this.location.back();
   }
 }

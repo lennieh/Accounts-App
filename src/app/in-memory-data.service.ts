@@ -6,7 +6,9 @@ import { Country }                  from './model/country';
 import { LogError }                 from './model/log-error';
 
 import { QuestionBase }             from './generate/model/question-base';
+import { FormQuestions }            from './generate/model/form-questions';
 import { TextboxQuestion }          from './generate/model/question-textbox';
+import { DropdownQuestion }         from './generate/model/question-dropdown';
 
 export class InMemoryDataService implements InMemoryDbService {
     createDb() {
@@ -44,7 +46,7 @@ export class InMemoryDataService implements InMemoryDbService {
             { id: 1, source: 'Somewhere', severity: 'Error', message: 'Generic error message'}
         ];
 
-        const questions: QuestionBase<any>[] = [
+        const countryQuestions: QuestionBase<any>[] = [
             new TextboxQuestion({
                 id: 1,
                 key: 'countryCode',
@@ -62,6 +64,64 @@ export class InMemoryDataService implements InMemoryDbService {
                 order: 2
               }),
         ];
-        return {contacts, about, logger, country, questions};
+
+        const contactQuestions: QuestionBase<any> [] = [
+            new TextboxQuestion({
+                id: 1,
+                key: 'firstName',
+                label: 'First Name',
+                value: '',
+                required: true,
+                order: 1
+              }),
+              new TextboxQuestion({
+                id: 2,
+                key: 'lastName',
+                label: 'Surname',
+                value: '',
+                required: true,
+                order: 2
+              }),
+              new TextboxQuestion({
+                id: 3,
+                key: 'role',
+                label: 'Role',
+                value: '',
+                required: true,
+                order: 3
+              }),
+              new TextboxQuestion({
+                id: 4,
+                key: 'email',
+                label: 'Email',
+                type: 'email',
+                value: '',
+                required: true,
+                order: 4
+              }),
+              new TextboxQuestion({
+                id: 5,
+                key: 'phone',
+                label: 'Phone',
+                value: '',
+                required: true,
+                order: 4
+              })
+        ];
+
+        const formQuestions: FormQuestions[] = [
+            {
+                id: 1,
+                formName: "country",
+                questions: countryQuestions
+            },
+            {
+                id: 2,
+                formName: 'contact',
+                questions: contactQuestions
+            }
+        ];
+
+        return {contacts, about, logger, country, formQuestions};
     }
 }

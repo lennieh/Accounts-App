@@ -3,7 +3,7 @@ import { MatDialog }                    from '@angular/material';
 
 import { ToasterService }               from 'angular2-toaster';
 
-import { AbstractPageWithToaster }      from '../../../abstract/abstractPageWithToaster.component';
+import { AbstractPage }                 from '../../../abstract/abstract-page.component';
 import { AppConfirmDialog }             from '../../../core/confirm-dialog.component';
 import { Contact }                      from '../../../model/contact';
 import { ContactService }               from '../../../services/contact.service';
@@ -14,12 +14,10 @@ import { ContactService }               from '../../../services/contact.service'
   styleUrls: ['./contacts.component.scss']
 })
 export class ContactsComponent
-  extends AbstractPageWithToaster
+  extends AbstractPage
   implements OnInit {
 
-    loading: boolean;
-    contacts: Contact[];
-    selectedContact: Contact;
+  contacts: Contact[];
 
   constructor(
     private contactService: ContactService,
@@ -46,14 +44,6 @@ export class ContactsComponent
     );
   }
 
-  edit(contact: Contact): void {
-    this.selectedContact = contact;
-  }
-
-  add(): void {
-    this.selectedContact = new Contact();
-  }
-
   onDelete(contact: Contact) {
     const dialogRef = this.dialog.open(AppConfirmDialog, {
       height: '350px',
@@ -75,7 +65,6 @@ export class ContactsComponent
       data => {
         this.loading = false;
         this.contacts = this.contacts.filter( c => c !== contact);
-        if ( this.selectedContact === contact) { this.selectedContact = null; }
         this.ShowToaster('success', 'Success', `${contact.firstName} has been deleted!`);
       },
       error => {

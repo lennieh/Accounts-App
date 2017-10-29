@@ -6,10 +6,13 @@ import 'rxjs/add/operator/switchMap';
 
 import { ToasterService }           from 'angular2-toaster';
 
-import { AbstractPageWithToaster }  from '../../../abstract/abstractPageWithToaster.component';
+import { AbstractEditPage }         from '../../../abstract/abstract-edit-page.component';
 
-import { Country }            from '../../../model/country';
-import { CountryService }     from '../../../services/country.service';
+import { QuestionBase }             from '../../../generate/model/question-base';
+import { QuestionService }          from '../../../generate/question.service';
+
+import { Country }                  from '../../../model/country';
+import { CountryService }           from '../../../services/country.service';
 
 @Component({
   selector: 'app-edit-country',
@@ -17,19 +20,20 @@ import { CountryService }     from '../../../services/country.service';
   styleUrls: ['./edit-country.component.scss']
 })
 export class EditCountryComponent
-  extends AbstractPageWithToaster
+  extends AbstractEditPage
   implements OnInit {
 
   country: Country;
-
-  loading = false;
-
+  formData: any;
+  
   constructor(
     private countryService: CountryService,
     private route: ActivatedRoute,
-    private location: Location,
+    questionService: QuestionService,
+    location: Location,
     toasterService: ToasterService) {
-    super(toasterService);
+    super(questionService, location, toasterService);
+    this.formName = 'country';
    }
 
   ngOnInit(): void {
@@ -40,33 +44,46 @@ export class EditCountryComponent
         .subscribe(
           country => {
             this.loading = false;
-            this.country = country;
+            this.country = country;           
+            this.setFormData();
+            this.getQuestions();
           },
           error => {
             this.loading = false;
             this.HandleError('Edit Country', error);
         });
+
   }
 
-  onSubmit() {
+  setFormData(): void {
+    this.formData = {
+      countryCode: this.country.countryCode,
+      countryName: this.country.countryName
+    }
+  }
+
+  onSave(payload: any) {
     this.loading = true;
 
-    this.countryService.updateCountry(this.country)
-      .subscribe(
-        data => {
-          this.loading = false;
-          //         this.contact = data;
-          this.ShowToaster('success', 'Country Updated', `${this.country.countryName} successfully updated!`);
-          this.goBack();
-        },
-        error => {
-          this.loading = false;
-          this.HandleError('Edit Country', error);
-        }
-      );
+    this.prepareCountry(payload);
+
+    this.countryService.createCountry(this.country)
+        .subscribe(
+          data => {
+            this.loading = false;
+            this.ShowToaster('success', 'Country Update', `${this.country.countryName} successfully updated!`);
+            this.goBack();
+          },
+          error => {
+            this.loading = false;
+            this.HandleError('Edit Country', error);
+          }
+        );
   }
 
-  goBack() {
-    this.location.back();
+  prepareCountry(payload: any): void {
+    const formModel = payload;
+    this.country.countryCode = formModel.countryCode;
+    this.country.countryName = formModel.countryName;
   }
 }
