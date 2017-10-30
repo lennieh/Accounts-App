@@ -1,6 +1,8 @@
 <div *ngIf="contact">
-    <h2>Edit {{contact.firstName}} {{contact.lastName}}</h2>
 
+    <div class="page-header">
+        <h2>Edit {{contact.firstName}} {{contact.lastName}}</h2>
+    </div>
     
     <div *ngIf="questions && formData">
         <app-dynamic-form [questions]="questions" [formData]="formData" (onSave)="onSave($event);" (onCancel)="goBack();"></app-dynamic-form>

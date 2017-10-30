@@ -1,11 +1,11 @@
 <div>
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
 
-    <div *ngFor="let question of questions" class="form-row" style="width: 100%">
+    <div *ngFor="let question of questions">
       <app-df-question [question]="question" [form]="form"></app-df-question>
     </div>
 
-    <div class="form-row">
+    <div>
       <button mat-icon-button type="submit" [disabled]="!form.valid">
         <mat-icon aria-label="save">save</mat-icon>
       </button>

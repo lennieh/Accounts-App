@@ -1,4 +1,6 @@
-<h2>Add New Country</h2>
+<div class="page-header">
+  <h2>Add New Country</h2>
+</div>
 
 <div *ngIf="questions">
   <app-dynamic-form [questions]="questions" (onSave)="onSave($event);" (onCancel)="goBack();" ></app-dynamic-form>

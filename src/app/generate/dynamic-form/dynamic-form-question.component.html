@@ -1,25 +1,20 @@
 <div [formGroup]="form" class="form-group row">
 
   <label [attr.for]="question.key" class="col-sm-4 col-form-label">{{question.label}}</label>
+  <div class="col-sm-8">
+    <div [ngSwitch]="question.controlType">
 
-  <div [ngSwitch]="question.controlType" class="col-sm-8" >
-    
-    <!-- textbox -->
-    <input *ngSwitchCase="'textbox'" 
-        [type]="question.type"
-        [formControlName]="question.key"
-        [id]="question.key" >
+      <!-- textbox -->
 
-    <!-- dropdown --> 
-    <select *ngSwitchCase="'dropdown'" 
-        [id]="question.key"  
-        [formControlName]="question.key">
-      <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
-    </select>
+      <input *ngSwitchCase="'textbox'" class="col-sm-8" [formControlName]="question.key" [id]="question.key">
 
-    <div class="errorMessage" [hidden]="isValid || isPristine">{{question.label}} is required</div>
-    
-  </div> 
-  
+      <!-- dropdown -->
+      <select *ngSwitchCase="'dropdown'" [id]="question.key" [formControlName]="question.key">
+        <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+      </select>
 
+      <div class="errorMessage" [hidden]="isValid || isPristine">{{question.label}} is required</div>
+
+    </div>
+  </div>
 </div>
