@@ -1,5 +1,8 @@
 import { Component, OnInit }  from '@angular/core';
 import { MatDialog }          from '@angular/material';
+import { DataSource }         from '@angular/cdk/collections';
+import { Observable }         from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 import { ToasterService }     from 'angular2-toaster';
 import { AbstractPage }       from '../../../abstract/abstract-page.component';
@@ -16,7 +19,9 @@ export class VatComponent
   extends AbstractPage
   implements OnInit {
 
+  displayedColumns = ['startDate', 'vatRate', 'actions'];
   vat: Vat[];
+  dataSource: VatDataSource;
 
   constructor(
     private vatService: VatService,
@@ -35,6 +40,7 @@ export class VatComponent
       data => {
         this.loading = false;
         this.vat = data;
+        this.dataSource = new VatDataSource(this.vat);
       },
       error => {
         this.loading = false;
@@ -72,5 +78,17 @@ export class VatComponent
       }
     );
   }
+}
 
+export class VatDataSource extends DataSource<any> {
+
+  constructor(private data: Vat[]) {
+    super();
+  }
+
+  connect(): Observable<Vat[]> {
+    return Observable.of(this.data);
+  }
+
+  disconnect() {}
 }

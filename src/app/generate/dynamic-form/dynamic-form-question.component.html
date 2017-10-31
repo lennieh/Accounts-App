@@ -7,12 +7,6 @@
   <div [ngSwitch]="question.controlType" class="form-control">
 
     <!-- textbox -->
-    <!--      <input *ngSwitchCase="'textbox'" 
-            placeholder="{{question.label}}"
-            type="{{question.type}}" 
-            [formControlName]="question.key" 
-            [id]="question.key">
--->
     <mat-form-field *ngSwitchCase="'textbox'">
       <input matInput placeholder="{{question.label}}" 
               type="{{question.type" [formControlName]="question.key" [id]="question.key">
@@ -21,22 +15,15 @@
     </mat-form-field>
 
     <!-- textarea -->
-  <mat-form-field *ngSwitchCase="'textarea'">
+    <mat-form-field *ngSwitchCase="'textarea'">
       <textarea matInput placeholder="{{question.label}}" 
                 [formControlName]="question.key" 
                 [id]="question.key"></textarea>
                 <mat-hint>{{question.hint}}</mat-hint>
                 <mat-error class="alert alert-danger" [hidden]="isValid || isPristine">{{question.label}} is required</mat-error>
             </mat-form-field>
-<!-- 
-  
-  
--->
-  <!-- dropdown -->
-    <!--      <select *ngSwitchCase="'dropdown'" [id]="question.key" [formControlName]="question.key">
-        <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
-      </select>
-    -->
+
+    <!-- dropdown -->
     <mat-form-field *ngSwitchCase="'dropdown'">
       <mat-select placeholder="Select">
         <mat-option *ngFor="let opt of question.options" [value]="opt.key">{{ opt.value }}</mat-option>
@@ -45,10 +32,15 @@
       <mat-error class="alert alert-danger" [hidden]="isValid || isPristine">{{question.label}} is required</mat-error>
     </mat-form-field>
 
-    <!--      <small class="form-text text-muted">{{question.hint}}</small>-->
-
-    <!--  <div class="alert alert-danger" [hidden]="isValid || isPristine">{{question.label}} is required</div>-->
-
-
+    <!-- datepicker -->
+    <mat-form-field *ngSwitchCase="'datepicker'">
+      <input matInput [matDatepicker]="picker" placeholder="Select Date for {{question.label}}"
+        [id]="question.key"
+        [formControlName]="question.key">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUI="true" #picker></mat-datepicker>
+      <mat-hint>{{question.hint}}</mat-hint>
+      <mat-error class="alert alert-danger" [hidden]="isValid || isPristine">{{question.label}} is required</mat-error>
+    </mat-form-field>
   </div>
 </div>

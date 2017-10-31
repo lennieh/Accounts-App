@@ -11,6 +11,7 @@ import { FormQuestions }            from './generate/model/form-questions';
 import { TextboxQuestion }          from './generate/model/question-textbox';
 import { TextareaQuestion }         from './generate/model/question-textarea';
 import { DropdownQuestion }         from './generate/model/question-dropdown';
+import { DatepickerQuestion }       from './generate/model/question-datepicker';
 
 export class InMemoryDataService implements InMemoryDbService {
     createDb() {
@@ -118,14 +119,15 @@ export class InMemoryDataService implements InMemoryDbService {
         ];
 
         const vatQuestions: QuestionBase<any>[] = [
-            new TextboxQuestion({
+            new DatepickerQuestion({
                 id: 1,
                 key: 'startDate',
                 label: 'Start Date',
                 value: '',
                 required: true,
                 type: 'date',
-                order: 1
+                order: 1,
+                hint: 'Enter the date that VAT rate took effect'
             }),
             new TextboxQuestion({
                 id: 2,

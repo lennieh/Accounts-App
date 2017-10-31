@@ -1,7 +1,8 @@
 @import 'variables';
 @import '../node_modules/bootstrap/scss/bootstrap';
 @import '../node_modules/angular2-toaster/toaster';
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+//@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import 'custom-theme';
 
 .app-spinner {
     margin:0 auto;
@@ -23,8 +24,12 @@ input.ng-invalid {
     color: #42A948;
 }
 .disabled-save-button {
-    color: grey;
+    color: lightgrey;
 }
 .cancel-button {
     color: #a94442;
+}
+
+.action-button {
+    color: $primary;
 }
