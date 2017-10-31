@@ -1,5 +1,8 @@
 import { Component, OnInit }            from '@angular/core';
 import { MatDialog }                    from '@angular/material';
+import { DataSource }                   from '@angular/cdk/collections';
+import { Observable }                   from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 import { ToasterService }               from 'angular2-toaster';
 
@@ -18,6 +21,8 @@ export class ContactsComponent
   implements OnInit {
 
   contacts: Contact[];
+  dataSource: ContactDataSource;
+  displayedColumns = ['name', 'actions'];
 
   constructor(
     private contactService: ContactService,
@@ -36,6 +41,7 @@ export class ContactsComponent
       data => {
         this.loading = false;
         this.contacts = data;
+        this.dataSource = new ContactDataSource(this.contacts);
       },
       error => {
         this.loading = false;
@@ -73,4 +79,18 @@ export class ContactsComponent
       }
     );
   }
+}
+
+export class ContactDataSource extends DataSource<any> {
+
+  constructor(private data: Contact[]) {
+    super();
+  }
+
+  connect(): Observable<Contact[]> {
+    return Observable.of(this.data);
+  }
+
+  disconnect() {}
+
 }

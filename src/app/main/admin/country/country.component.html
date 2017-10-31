@@ -1,22 +1,44 @@
-<h2> Edit Countries </h2>
+<div class="page-header">
+   <h2> Edit Countries </h2>
+</div>
 
 <div *ngIf="countries">
-  <mat-nav-list>
-    <div *ngFor="let country of countries" mat-list-item>
-    {{country.countryCode}} : {{country.countryName}}
-    <button mat-icon-button>
-      <mat-icon aria-label="edit country" routerLink="edit/{{country.id}}">edit</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon aria-label="delete country" (click)="onDelete(country); $event.stopPropagation()">delete</mat-icon>
-    </button>
+  <div class="mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="countryCode">
+        <mat-header-cell *matHeaderCellDef>Country Code</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.countryCode}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="countryName">
+        <mat-header-cell *matHeaderCellDef>Country Name</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.countryName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button>
+            <mat-icon aria-label="edit country" routerLink="edit/{{row.id}}" class="action-button" matTooltip="Edit Country">edit</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon aria-label="delete country" (click)="onDelete(row); $event.stopPropagation()" class="action-button" matTooltip="Delete Country">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
   </div>
-  </mat-nav-list>  
-  <button mat-icon-button (click)="add();">
-    <mat-icon aria-label="add new country" routerLink="new">add</mat-icon>
-  </button> 
+
+  <button mat-icon-button>
+    <mat-icon aria-label="add new country" routerLink="new" class="action-button" matTooltip="Add new Country">add</mat-icon>
+  </button>
 </div>
 
 <div *ngIf="loading">
-    <mat-spinner class="app-spinner"></mat-spinner>
+  <mat-spinner class="app-spinner"></mat-spinner>
 </div>

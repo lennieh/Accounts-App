@@ -1,23 +1,40 @@
-<h2> Edit Contacts </h2>
+<div class="page-header">
+  <h2> Edit Contacts </h2>
+</div>
 
 <div *ngIf="contacts">
-  <mat-nav-list>
-    <div *ngFor="let contact of contacts" mat-list-item>
-    {{contact.firstName}} {{contact.lastName}}
-    <button mat-icon-button>
-      <mat-icon aria-label="edit contact" routerLink="edit/{{contact.id}}">edit</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon aria-label="delete contact" (click)="onDelete(contact); $event.stopPropagation()">delete</mat-icon>
-    </button>
+  <div class="mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let contact"> {{contact.firstName}} {{contact.lastName}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let contact">
+          <button mat-icon-button>
+            <mat-icon aria-label="edit contact" routerLink="edit/{{contact.id}}" class="action-button" matTooltip="Edit Contact">edit</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon aria-label="delete contact" (click)="onDelete(contact); $event.stopPropagation()" class="action-button" matTooltip="Delete Contact">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+      
   </div>
-  </mat-nav-list>  
-  <button mat-icon-button (click)="add();">
-    <mat-icon aria-label="add new contact" routerLink="new">add</mat-icon>
-  </button> 
+  
+  <button mat-icon-button>
+    <mat-icon aria-label="add new contact" routerLink="new" class="action-button" matTooltip="Add new contact">add</mat-icon>
+  </button>
 </div>
 
 <div *ngIf="loading">
-    <mat-spinner class="app-spinner"></mat-spinner>
+  <mat-spinner class="app-spinner"></mat-spinner>
 </div>
-  

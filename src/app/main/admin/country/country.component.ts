@@ -1,6 +1,10 @@
 import { Component, OnInit }          from '@angular/core';
 import { ToasterService }             from 'angular2-toaster';
 import { MatDialog }                  from '@angular/material';
+import { DataSource }                 from '@angular/cdk/collections';
+import { Observable }                 from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+
 
 import { AbstractPage }               from '../../../abstract/abstract-page.component';
 import { AppConfirmDialog }           from '../../../core/confirm-dialog.component';
@@ -17,7 +21,9 @@ export class CountryComponent
   extends AbstractPage
   implements OnInit {
 
+  displayedColumns = ['countryCode', 'countryName', 'actions'];
   countries: Country[];
+  dataSource: CountryDataSource;
 
   constructor(
     private countryService: CountryService,
@@ -36,6 +42,7 @@ export class CountryComponent
       data => {
         this.loading = false;
         this.countries = data;
+        this.dataSource = new CountryDataSource(this.countries);
       },
       error => {
         this.loading = false;
@@ -74,5 +81,19 @@ export class CountryComponent
       }
     );
   }
+
+}
+
+export class CountryDataSource extends DataSource<any> {
+
+    constructor(private data: Country[]) {
+      super();
+    }
+
+    connect(): Observable<Country[]> {
+      return Observable.of(this.data);
+    }
+
+    disconnect() {}
 
 }

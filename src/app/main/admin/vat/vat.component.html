@@ -3,60 +3,37 @@
 </div>
 
 <div *ngIf="vat">
-<!--  <mat-nav-list>
-    <div *ngFor="let vr of vat" mat-list-item>
-      <div class="row">
-        <div class="col-sm-4">
-          {{vr.startDate | date:'dd-MM-yyyy'}}
-        </div>
-        <div class="col-sm-4">
-          {{vr.vatRate}}%
-        </div>
+  <div class="mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
 
-        <div class="col-sm-4">
+      <ng-container matColumnDef="startDate">
+        <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
+        <mat-cell *matCellDef="let vr"> {{vr.startDate | date:'dd-MM-yyyy'}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="vatRate">
+        <mat-header-cell *matHeaderCellDef> VAT Rate </mat-header-cell>
+        <mat-cell *matCellDef="let vr"> {{vr.vatRate}}% </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let vr">
           <button mat-icon-button>
-            <mat-icon aria-label="edit vat rate" routerLink="edit/{{vr.id}}">edit</mat-icon>
+            <mat-icon aria-label="edit vat rate" routerLink="edit/{{vr.id}}" matTooltip="Edit VAT Rate" class="action-button">edit</mat-icon>
           </button>
           <button mat-icon-button>
-            <mat-icon aria-label="delete vat rate" (click)="onDelete(vr); $event.stopPropagation()">delete</mat-icon>
+            <mat-icon aria-label="delete vat rate" (click)="onDelete(vr); $event.stopPropagation()" matTooltip="Delete VAT Rate" class="action-button">delete</mat-icon>
           </button>
-        </div>
-      </div>
-    </div>
-  </mat-nav-list>
--->
+        </mat-cell>
+      </ng-container>
 
-<div class="mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
 
-    <ng-container matColumnDef="startDate">
-      <mat-header-cell *matHeaderCellDef>Start Date</mat-header-cell>
-      <mat-cell *matCellDef="let vr"> {{vr.startDate | date:'dd-MM-yyyy'}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="vatRate">
-      <mat-header-cell *matHeaderCellDef> VAT Rate </mat-header-cell>
-      <mat-cell *matCellDef="let vr"> {{vr.vatRate}}% </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
-      <mat-cell *matCellDef="let vr">
-          <button mat-icon-button>
-              <mat-icon aria-label="edit vat rate" routerLink="edit/{{vr.id}}" matTooltip="Edit VAT Rate" class="action-button">edit</mat-icon>
-            </button>
-            <button mat-icon-button>
-              <mat-icon aria-label="delete vat rate" (click)="onDelete(vr); $event.stopPropagation()" matTooltip="Delete VAT Rate" class="action-button">delete</mat-icon>
-            </button>
-      </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-</div>
-
-<button mat-icon-button>
+  <button mat-icon-button>
     <mat-icon aria-label="add new vat rate" routerLink="new" matTooltip="Add new VAT Rate" class="action-button">add</mat-icon>
   </button>
 </div>

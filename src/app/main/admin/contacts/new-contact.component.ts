@@ -26,7 +26,7 @@ export class NewContactComponent
     location: Location,
     toasterService: ToasterService) {
     super(questionService, location, toasterService );
-    this.formName = 'contact'
+    this.formName = 'contact';
    }
 
   ngOnInit(): void {
@@ -41,7 +41,7 @@ export class NewContactComponent
         .subscribe(
           data => {
             this.loading = false;
-            //this.contact = data;
+            // this.contact = data;
             this.ShowToaster('success', 'Contact Added', `${contact.firstName} successfully added!`);
             this.goBack();
           },
