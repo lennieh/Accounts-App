@@ -1,7 +1,7 @@
 import { NgModule }             from '@angular/core';
 
-import { 
-    MatButtonModule, 
+import {
+    MatButtonModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatMenuModule,
@@ -13,6 +13,8 @@ import {
     MatCardModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
     MAT_PLACEHOLDER_GLOBAL_OPTIONS
 } from '@angular/material';
 
@@ -29,7 +31,9 @@ import {
         MatListModule,
         MatCardModule,
         MatDialogModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule
         ],
     exports: [
         MatButtonModule,
@@ -43,10 +47,12 @@ import {
         MatListModule,
         MatCardModule,
         MatDialogModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule
     ],
     providers: [
-      {provide: MAT_PLACEHOLDER_GLOBAL_OPTIONS, useValue: {float: 'always'}}  
+      {provide: MAT_PLACEHOLDER_GLOBAL_OPTIONS, useValue: {float: 'always'}}
     ]
 })
 export class MaterialModule {}

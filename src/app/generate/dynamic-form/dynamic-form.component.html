@@ -6,11 +6,11 @@
     </div>
 
     <div>
-      <button mat-icon-button type="submit" [disabled]="!form.valid">
-        <mat-icon aria-label="save">save</mat-icon>
+      <button mat-icon-button type="submit" [disabled]="!form.valid" matTooltip="Save Changes" >
+        <mat-icon aria-label="save" [ngClass]="{'save-button': form.valid, 'disabled-save-button': !form-valid}">save</mat-icon>
       </button>
-      <button mat-icon-button type="button" (click)="onQuit();">
-        <mat-icon aria-label="cancel">cancel</mat-icon>
+      <button mat-icon-button type="button" (click)="onQuit();" matTooltip="Cancel">
+        <mat-icon aria-label="cancel" class="cancel-button">cancel</mat-icon>
       </button>
     </div>
 

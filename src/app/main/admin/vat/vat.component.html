@@ -1,3 +1,25 @@
-<p>
-  vat works!
-</p>
+<div class="page-header">
+  <h2> VAT Rates </h2>
+</div>
+
+<div *ngIf="vat">
+  <mat-nav-list>
+    <div *ngFor="let vr of vat" mat-list-item>
+    {{vr.startDate}} {{vr.vatRate}}%
+    <button mat-icon-button>
+      <mat-icon aria-label="edit vat rate" routerLink="edit/{{vr.id}}">edit</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon aria-label="delete vat rate" (click)="onDelete(vr); $event.stopPropagation()">delete</mat-icon>
+    </button>
+  </div>
+  </mat-nav-list>  
+  <button mat-icon-button (click)="add();">
+    <mat-icon aria-label="add new vat rate" routerLink="new">add</mat-icon>
+  </button> 
+</div>
+
+<div *ngIf="loading">
+    <mat-spinner class="app-spinner"></mat-spinner>
+</div>
+  

@@ -3,11 +3,13 @@ import { InMemoryDbService }        from 'angular-in-memory-web-api';
 import { Contact }                  from './model/contact';
 import { About }                    from './model/about';
 import { Country }                  from './model/country';
+import { Vat }                      from './model/vat';
 import { LogError }                 from './model/log-error';
 
 import { QuestionBase }             from './generate/model/question-base';
 import { FormQuestions }            from './generate/model/form-questions';
 import { TextboxQuestion }          from './generate/model/question-textbox';
+import { TextareaQuestion }         from './generate/model/question-textarea';
 import { DropdownQuestion }         from './generate/model/question-dropdown';
 
 export class InMemoryDataService implements InMemoryDbService {
@@ -44,6 +46,11 @@ export class InMemoryDataService implements InMemoryDbService {
 
         const logger: LogError[] = [
             { id: 1, source: 'Somewhere', severity: 'Error', message: 'Generic error message'}
+        ];
+
+        const vat: Vat[] = [
+            { id: 1, startDate: new Date('2001-01-01'), vatRate: 17.5, notes: '' },
+            { id: 2, startDate: new Date('2014-04-01'), vatRate: 20.0, notes: 'Blurb' }
         ];
 
         const countryQuestions: QuestionBase<any>[] = [
@@ -88,7 +95,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 label: 'Role',
                 value: '',
                 required: true,
-                order: 3
+                order: 3,
+                hint: 'Enter the role in the company'
               }),
               new TextboxQuestion({
                 id: 4,
@@ -109,19 +117,56 @@ export class InMemoryDataService implements InMemoryDbService {
               })
         ];
 
+        const vatQuestions: QuestionBase<any>[] = [
+            new TextboxQuestion({
+                id: 1,
+                key: 'startDate',
+                label: 'Start Date',
+                value: '',
+                required: true,
+                type: 'date',
+                order: 1
+            }),
+            new TextboxQuestion({
+                id: 2,
+                key: 'vatRate',
+                label: 'VAT Rate',
+                value: '',
+                required: true,
+                type: 'text',
+                order: 2,
+                hint: 'Enter the VAT rate as a percentage'
+            }),
+            new TextareaQuestion({
+                id: 3,
+                key: 'notes',
+                label: 'Notes',
+                value: '',
+                required: true,
+                order: 3,
+                hint: 'Enter notes',
+                rows: 4
+            })
+        ];
+
         const formQuestions: FormQuestions[] = [
             {
                 id: 1,
-                formName: "country",
+                formName: 'country',
                 questions: countryQuestions
             },
             {
                 id: 2,
                 formName: 'contact',
                 questions: contactQuestions
+            },
+            {
+                id: 3,
+                formName: 'vat',
+                questions: vatQuestions
             }
         ];
 
-        return {contacts, about, logger, country, formQuestions};
+        return {contacts, about, logger, country, vat, formQuestions};
     }
 }

@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output }   from '@angular/core';
 import { FormGroup }                                        from '@angular/forms';
 
-import { QuestionBase }              from '../model/question-base';
-import { QuestionControlService }    from '../question-control.service';
+import { QuestionBase }                                     from '../model/question-base';
+import { QuestionControlService }                           from '../question-control.service';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -22,8 +22,8 @@ export class DynamicFormComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.qcs.toFormGroup(this.questions);
-    if( this.formData !== undefined && this.formData !== null) {
-      this.form.setValue(this.formData)
+    if ( this.formData !== undefined && this.formData !== null) {
+      this.form.setValue(this.formData);
     }
 
   }

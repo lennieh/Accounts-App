@@ -4,7 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent }        from './home/home.component';
 
 import { CompanyComponent }     from './admin/company/company.component';
+
 import { VatComponent }         from './admin/vat/vat.component';
+import { NewVatComponent }      from './admin/vat/new-vat.component';
+import { EditVatComponent }     from './admin/vat/edit-vat.component';
 
 import { ContactsComponent }    from './admin/contacts/contacts.component';
 import { NewContactComponent }  from './admin/contacts/new-contact.component';
@@ -24,6 +27,8 @@ const routes: Routes = [
     children: [
       { path: 'company',            component: CompanyComponent },
       { path: 'vat',                component: VatComponent },
+      { path: 'vat/new',            component: NewVatComponent },
+      { path: 'vat/edit/:id',       component: EditVatComponent },
 
       { path: 'contacts',           component: ContactsComponent },
       { path: 'contacts/new',       component: NewContactComponent },

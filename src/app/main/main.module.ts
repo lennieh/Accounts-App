@@ -14,11 +14,9 @@ import { QuestionControlService }         from '../generate/question-control.ser
 
 import { HomeComponent }        from './home/home.component';
 import { CompanyComponent }     from './admin/company/company.component';
-import { VatComponent }         from './admin/vat/vat.component';
 
 import { ContactService }       from '../services/contact.service';
 import { ContactsComponent }    from './admin/contacts/contacts.component';
-import { ContactFormComponent } from './admin/contacts/contact-form.component';
 import { NewContactComponent }  from './admin/contacts/new-contact.component';
 import { EditContactComponent } from './admin/contacts/edit-contact.component';
 
@@ -29,6 +27,11 @@ import { CountryService }       from '../services/country.service';
 import { CountryComponent }     from './admin/country/country.component';
 import { EditCountryComponent } from './admin/country/edit-country.component';
 import { NewCountryComponent }  from './admin/country/new-country.component';
+
+import { VatService }           from '../services/vat.service';
+import { VatComponent }         from './admin/vat/vat.component';
+import { NewVatComponent }      from './admin/vat/new-vat.component';
+import { EditVatComponent }     from './admin/vat/edit-vat.component';
 
 @NgModule({
   imports: [
@@ -44,20 +47,22 @@ import { NewCountryComponent }  from './admin/country/new-country.component';
     DynamicFormQuestionComponent,
     HomeComponent,
     CompanyComponent,
-    VatComponent,
     ContactsComponent,
     NewContactComponent,
     EditContactComponent,
-    ContactFormComponent,
     JobEntryComponent,
     JobReportComponent,
     CountryComponent,
     EditCountryComponent,
-    NewCountryComponent
+    NewCountryComponent,
+    VatComponent,
+    NewVatComponent,
+    EditVatComponent
   ],
   providers: [
     ContactService,
     CountryService,
+    VatService,
     QuestionService,
     QuestionControlService
   ]
