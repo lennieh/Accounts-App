@@ -13,20 +13,21 @@ export class QuestionControlService {
 
     questions.forEach(question => {
 
-      group[question.key] = question.required
-        ? new FormControl(question.value || '', [Validators.required])
-        : new FormControl(question.value || '', []);
+      const validators = question.required ? [Validators.required] : [];
 
-      if ( question instanceof TextboxQuestion ) {
+      const textQuestion = question as TextboxQuestion;
+      if ( textQuestion !== undefined ) {
 
-        if ( question.minLength !== null ) {
-          group[question.key].Validators.push(Validators.minLength(question.minLength));
+        if ( textQuestion.minLength !== null ) {
+          validators.push(Validators.minLength(textQuestion.minLength));
         }
 
-        if ( question.maxLength !== null ) {
-          group[question.key].Validators.push(Validators.maxLength(question.maxLength));
+        if ( textQuestion.maxLength !== null ) {
+          validators.push(Validators.maxLength(textQuestion.maxLength));
         }
       }
+
+      group[question.key] = new FormControl(question.value || '', validators);
 
     });
     return new FormGroup(group);
