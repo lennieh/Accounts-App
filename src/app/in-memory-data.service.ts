@@ -61,7 +61,9 @@ export class InMemoryDataService implements InMemoryDbService {
                 label: 'Country Code',
                 value: '',
                 required: true,
-                order: 1
+                order: 1,
+                minLength: 2,
+                maxLength: 2
               }),
               new TextboxQuestion({
                 id: 2,
