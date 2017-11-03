@@ -13,6 +13,8 @@
         <mat-error class="alert alert-danger" *ngIf="errors.maxlength">{{question.label}} should be no more than {{question.maxLength}} characters</mat-error>
         <mat-error class="alert alert-danger" *ngIf="errors.minValue">{{question.label}} should be >= {{question.minValue}}</mat-error>
         <mat-error class="alert alert-danger" *ngIf="errors.maxValue">{{question.label}} should be &lt;= {{question.maxValue}}</mat-error>
+        <mat-error class="alert alert-danger" *ngIf="errors.regex">{{question.label}} has the wrong format</mat-error>
+        <mat-error class="alert alert-danger" *ngIf="errors.ukPostCode">{{question.label}} is not a valid UK Postcode</mat-error>
       </div>
     </mat-form-field>
 
@@ -42,7 +44,11 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker touchUI="true" #picker></mat-datepicker>
       <mat-hint>{{question.hint}}</mat-hint>
-      <mat-error class="alert alert-danger" [hidden]="isValid || isPristine">{{question.label}} is required</mat-error>
+      <div *ngIf="!isPristine && errors">
+        <mat-error class="alert alert-danger" *ngIf="errors.required">{{question.label}} is required</mat-error>
+        <mat-error class="alert alert-danger" *ngIf="errors.minDate">{{question.label}} should be >= {{question.minDate | date:'dd-MM-yyyy'}}</mat-error>
+        <mat-error class="alert alert-danger" *ngIf="errors.maxDate">{{question.label}} should be <= {{question.maxDate | date:'dd-MM-yyyy'}}</mat-error>
+      </div>
     </mat-form-field>
   </div>
 </div>

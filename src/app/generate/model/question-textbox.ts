@@ -8,6 +8,8 @@ export class TextboxQuestion extends QuestionBase<string> {
   minValue?: number;
   maxValue?: number;
   case?: string;
+  regex?: RegExp;
+  isPostcode?: boolean;
 
   constructor(options: {} = {}) {
     super(options);
@@ -17,5 +19,7 @@ export class TextboxQuestion extends QuestionBase<string> {
     this.minValue = options['minValue'] !== null ? options['minValue'] : null;
     this.maxValue = options['maxValue'] || null;
     this.case = options['case'] || null;
+    this.regex = new RegExp(options['regex']) || null;
+    this.isPostcode = options['isPostCode'] || false;
   }
 }

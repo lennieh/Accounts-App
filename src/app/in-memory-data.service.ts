@@ -131,7 +131,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 required: true,
                 type: 'date',
                 order: 1,
-                hint: 'Enter the date that VAT rate took effect'
+                hint: 'Enter the date that VAT rate took effect',
+                maxDate: new Date(2017, 10, 1)
             }),
             new TextboxQuestion({
                 id: 2,
