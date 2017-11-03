@@ -7,6 +7,7 @@ export const environment = {
   production: false,
   aboutServiceEndpoint: 'api/about1',
   contactServiceEndpoint: 'api/contacts',
+  companyServiceEndpoint: 'api/company',
   countryServiceEndpoint: 'api/country',
   loggerServiceEndpoint: 'api/logger',
   questionServiceEndpoint: 'api/formQuestions',

@@ -13,25 +13,30 @@ import { QuestionService }                from '../generate/question.service';
 import { QuestionControlService }         from '../generate/question-control.service';
 
 import { HomeComponent }        from './home/home.component';
-import { CompanyComponent }     from './admin/company/company.component';
+
+import { CompanyService }       from '../services/company.service';
+import { CompaniesComponent }   from './admin/company/companies.component';
+import { NewCompanyComponent }  from './admin/company/new-company.component';
+import { EditCompanyComponent } from './admin/company/edit-company.component';
 
 import { ContactService }       from '../services/contact.service';
 import { ContactsComponent }    from './admin/contacts/contacts.component';
 import { NewContactComponent }  from './admin/contacts/new-contact.component';
 import { EditContactComponent } from './admin/contacts/edit-contact.component';
 
-import { JobEntryComponent }    from './jobentry/jobentry.component';
-import { JobReportComponent }   from './jobreport/jobreport.component';
+import { VatService }           from '../services/vat.service';
+import { VatComponent }         from './admin/vat/vat.component';
+import { NewVatComponent }      from './admin/vat/new-vat.component';
+import { EditVatComponent }     from './admin/vat/edit-vat.component';
 
 import { CountryService }       from '../services/country.service';
 import { CountryComponent }     from './admin/country/country.component';
 import { EditCountryComponent } from './admin/country/edit-country.component';
 import { NewCountryComponent }  from './admin/country/new-country.component';
 
-import { VatService }           from '../services/vat.service';
-import { VatComponent }         from './admin/vat/vat.component';
-import { NewVatComponent }      from './admin/vat/new-vat.component';
-import { EditVatComponent }     from './admin/vat/edit-vat.component';
+import { JobEntryComponent }    from './jobentry/jobentry.component';
+import { JobReportComponent }   from './jobreport/jobreport.component';
+
 
 @NgModule({
   imports: [
@@ -46,20 +51,23 @@ import { EditVatComponent }     from './admin/vat/edit-vat.component';
     DynamicFormComponent,
     DynamicFormQuestionComponent,
     HomeComponent,
-    CompanyComponent,
+    CompaniesComponent,
+    NewCompanyComponent,
+    EditCompanyComponent,
     ContactsComponent,
     NewContactComponent,
     EditContactComponent,
-    JobEntryComponent,
-    JobReportComponent,
     CountryComponent,
     EditCountryComponent,
-    NewCountryComponent,
     VatComponent,
     NewVatComponent,
-    EditVatComponent
+    EditVatComponent,
+    NewCountryComponent,
+    JobEntryComponent,
+    JobReportComponent,
   ],
   providers: [
+    CompanyService,
     ContactService,
     CountryService,
     VatService,

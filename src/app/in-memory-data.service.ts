@@ -1,5 +1,6 @@
 import { InMemoryDbService }        from 'angular-in-memory-web-api';
 
+import { Company }                  from './model/company';
 import { Contact }                  from './model/contact';
 import { About }                    from './model/about';
 import { Country }                  from './model/country';
@@ -53,6 +54,120 @@ export class InMemoryDataService implements InMemoryDbService {
             { id: 1, startDate: new Date('2001-01-01'), vatRate: 17.5, notes: '' },
             { id: 2, startDate: new Date('2014-04-01'), vatRate: 20.0, notes: 'Blurb' }
         ];
+
+        const company: Company[] = [
+            {
+                id: 1,
+                companyName: 'Kidztalk Limited',
+                mainAddress: {
+                    addressLine1: '4 Merland Rise',
+                    addressLine2: 'Epsom',
+                    addressLine3: '',
+                    postTown: 'Surrey',
+                    postCode: 'KT18 5RZ'
+                },
+                companyRegistration: '123456789',
+                vatNumber: '233 2345 22',
+                invoicePrefix: 'K{yyyy}'
+            },
+            {
+                id: 2,
+                companyName: 'Jacky Davis',
+                mainAddress: {
+                    addressLine1: '4 Merland Rise',
+                    addressLine2: 'Epsom',
+                    addressLine3: '',
+                    postTown: 'Surrey',
+                    postCode: 'KT18 5RZ'
+                },
+                companyRegistration: '987654321',
+                vatNumber: '237 3445 22',
+                invoicePrefix: 'K{yyyy}'
+            }
+        ];
+
+        const companyQuestions: QuestionBase<any>[] = [
+            new TextboxQuestion({
+                id: 1,
+                key: 'companyName',
+                label: 'Company Name',
+                value: '',
+                required: true,
+                type: 'text',
+                order: 1,
+                case: 'upperFirst'
+            }),
+            new TextboxQuestion({
+                id: 2,
+                key: 'companyRegistration',
+                label: 'Company Registration Number',
+                value: '',
+                required: true,
+                type: 'text',
+                order: 2,
+                hint: 'Enter your Companies House Reg No'
+            }),
+            new TextboxQuestion({
+                id: 3,
+                key: 'vatNumber',
+                label: 'VAT Number',
+                value: '',
+                required: true,
+                order: 3,
+                hint: 'Enter your VAT Registration Number'
+            }),
+            new TextboxQuestion({
+                id: 4,
+                key: 'invoicePrefix',
+                label: 'Invoice Prefix',
+                value: '',
+                required: true,
+                order: 4,
+                hint: 'Enter your Invoice Prefix template i.e. K{yyyy}'
+            }),
+            new TextboxQuestion({
+                id: 5,
+                key: 'addressLine1',
+                label: 'Address Line 1',
+                value: '',
+                required: true,
+                order: 5
+            }),
+            new TextboxQuestion({
+                id: 6,
+                key: 'addressLine2',
+                label: 'Address Line 2',
+                value: '',
+                required: false,
+                order: 6
+            }),
+            new TextboxQuestion({
+                id: 7,
+                key: 'addressLine3',
+                label: 'Address Line 3',
+                value: '',
+                required: false,
+                order: 7
+            }),
+            new TextboxQuestion({
+                id: 8,
+                key: 'postTown',
+                label: 'Post Town',
+                value: '',
+                required: true,
+                order: 8
+            }),
+            new TextboxQuestion({
+                id: 9,
+                key: 'postCode',
+                label: 'Post Code',
+                value: '',
+                required: true,
+                order: 9,
+                isPostCode: true
+            }),
+        ];
+
 
         const countryQuestions: QuestionBase<any>[] = [
             new TextboxQuestion({
@@ -173,9 +288,14 @@ export class InMemoryDataService implements InMemoryDbService {
                 id: 3,
                 formName: 'vat',
                 questions: vatQuestions
+            },
+            {
+                id: 4,
+                formName: 'company',
+                questions: companyQuestions
             }
         ];
 
-        return {contacts, about, logger, country, vat, formQuestions};
+        return {company, contacts, about, logger, country, vat, formQuestions};
     }
 }

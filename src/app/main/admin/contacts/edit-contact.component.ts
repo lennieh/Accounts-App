@@ -59,7 +59,7 @@ export class EditContactComponent
       role: this.contact.role,
       email: this.contact.email,
       phone: this.contact.phone
-    }
+    };
   }
 
   prepareContact(payload: any): void {
@@ -74,7 +74,7 @@ export class EditContactComponent
   onSave(payload: any) {
     this.loading = true;
     this.prepareContact(payload);
-    
+
     this.contactService.updateContact(this.contact)
       .subscribe(
         data => {

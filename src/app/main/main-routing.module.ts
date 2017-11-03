@@ -3,7 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent }        from './home/home.component';
 
-import { CompanyComponent }     from './admin/company/company.component';
+import { CompaniesComponent }   from './admin/company/companies.component';
+import { NewCompanyComponent }  from './admin/company/new-company.component';
+import { EditCompanyComponent } from './admin/company/edit-company.component';
 
 import { VatComponent }         from './admin/vat/vat.component';
 import { NewVatComponent }      from './admin/vat/new-vat.component';
@@ -25,7 +27,10 @@ const routes: Routes = [
     path: 'main',
     component: HomeComponent,
     children: [
-      { path: 'company',            component: CompanyComponent },
+      { path: 'company',            component: CompaniesComponent },
+      { path: 'company/new',        component: NewCompanyComponent },
+      { path: 'company/edit/:id',    component: EditCompanyComponent },
+
       { path: 'vat',                component: VatComponent },
       { path: 'vat/new',            component: NewVatComponent },
       { path: 'vat/edit/:id',       component: EditVatComponent },
