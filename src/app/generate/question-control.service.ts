@@ -4,6 +4,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { QuestionBase }                       from './model/question-base';
 import { TextboxQuestion }                    from './model/question-textbox';
 
+import { minValueValidator }                  from './validators/number-validator';
+import { maxValueValidator }                  from './validators/number-validator';
+
 @Injectable()
 export class QuestionControlService {
   constructor() { }
@@ -15,8 +18,9 @@ export class QuestionControlService {
 
       const validators = question.required ? [Validators.required] : [];
 
-      const textQuestion = question as TextboxQuestion;
-      if ( textQuestion !== undefined ) {
+      if ( question.controlType === 'textbox' ) {
+
+        const textQuestion = question as TextboxQuestion;
 
         if ( textQuestion.minLength !== null ) {
           validators.push(Validators.minLength(textQuestion.minLength));
@@ -24,6 +28,14 @@ export class QuestionControlService {
 
         if ( textQuestion.maxLength !== null ) {
           validators.push(Validators.maxLength(textQuestion.maxLength));
+        }
+
+        if ( textQuestion.minValue !== null ) {
+          validators.push(minValueValidator(textQuestion.minValue));
+        }
+
+        if ( textQuestion.maxValue !== null ) {
+          validators.push(maxValueValidator(textQuestion.maxValue));
         }
       }
 

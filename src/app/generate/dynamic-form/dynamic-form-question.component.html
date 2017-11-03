@@ -4,10 +4,16 @@
 
     <!-- textbox -->
     <mat-form-field *ngSwitchCase="'textbox'">
-      <input matInput placeholder="{{question.label}}" 
-              type="{{question.type" [formControlName]="question.key" [id]="question.key">
+      <input matInput placeholder="{{question.label}}"  
+              type="{{question.type}}" [formControlName]="question.key" [id]="question.key" >
       <mat-hint>{{question.hint}}</mat-hint>
-      <mat-error class="alert alert-danger" [hidden]="isValid || isPristine">{{question.label}} is required</mat-error>
+      <div *ngIf="!isPristine && errors">
+        <mat-error class="alert alert-danger" *ngIf="errors.required">{{question.label}} is required</mat-error>
+        <mat-error class="alert alert-danger" *ngIf="errors.minlength">{{question.label}} should be at least {{question.minLength}} characters</mat-error>
+        <mat-error class="alert alert-danger" *ngIf="errors.maxlength">{{question.label}} should be no more than {{question.maxLength}} characters</mat-error>
+        <mat-error class="alert alert-danger" *ngIf="errors.minValue">{{question.label}} should be >= {{question.minValue}}</mat-error>
+        <mat-error class="alert alert-danger" *ngIf="errors.maxValue">{{question.label}} should be &lt;= {{question.maxValue}}</mat-error>
+      </div>
     </mat-form-field>
 
     <!-- textarea -->

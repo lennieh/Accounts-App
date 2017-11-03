@@ -63,7 +63,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 required: true,
                 order: 1,
                 minLength: 2,
-                maxLength: 2
+                maxLength: 2,
+                case: 'upper'
               }),
               new TextboxQuestion({
                 id: 2,
@@ -71,7 +72,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 label: 'Country name',
                 value: '',
                 required: true,
-                order: 2
+                order: 2,
+                case: 'upperFirst'
               }),
         ];
 
@@ -137,9 +139,11 @@ export class InMemoryDataService implements InMemoryDbService {
                 label: 'VAT Rate',
                 value: '',
                 required: true,
-                type: 'text',
+                type: 'number',
                 order: 2,
-                hint: 'Enter the VAT rate as a percentage'
+                hint: 'Enter the VAT rate as a percentage',
+                minValue: 0,
+                maxValue: 100.0
             }),
             new TextareaQuestion({
                 id: 3,
