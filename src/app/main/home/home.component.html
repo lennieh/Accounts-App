@@ -1,6 +1,6 @@
-<div class="container-fluid">
+<div class="app-main-container">
 
-  <div class="row" style="align-content: left;">
+  <!-- <div class="row" style="align-content: left;">
     
     <div class="col-md-2 col-sm-3">
       <mat-nav-list>
@@ -23,10 +23,76 @@
       </mat-nav-list> 
     </div>
     
-    <div class="col-md-10 col-sm-9">
-      <router-outlet></router-outlet>
+    <div class="col-md-10 col-sm-9 mat-elevation-z4">
     </div>
-  
-  </div>
+    
+  </div> -->
+  <mat-sidenav-container class="app-sidenav-container">
+    <mat-sidenav class="app-sidenav mat-elevation-z4" opened="true" mode="side">
+      <nav>
+        <h3>Admin</h3>
+        <ul>
+          <li>
+            <a routerLink="company">Company Details</a>
+          </li>
+          <li>
+            <a routerLink="contacts">Contacts</a>
+          </li>
+          <li>
+            <a routerLink="vat">VAT Rates</a>
+          </li>
+          <li>
+            <a routerLink="country">Countries</a>
+          </li>
+        </ul>
+        <h3>Customers</h3>
+        <ul>
+          <li>
+            <a>New Prospects</a>
+          </li>
+          <li>
+            <a>Existing Customers</a>
+          </li>
+        </ul>
+        <h3>Jobs</h3>
+        <ul>
+          <li>
+            <a>Job Entry</a>
+          </li>
+          <li>
+            <a>Job Enquiries</a>
+          </li>
+        </ul>
+        <h3>Invoices</h3>
+        <ul>
+          <li>
+            <a>Send Invoices</a>
+          </li>
+          <li>
+            <a>Resend Invoice</a>
+          </li>
+          <li>
+            <a>View Invoices</a>
+          </li>
+        </ul>
+        <h3>Remittances</h3>
+        <ul>
+          <li>
+            <a>Send Remittances</a>
+          </li>
+          <li>
+            <a>Resend Remittance</a>
+          </li>
+          <li>
+            <a>View Remittances</a>
+          </li>
+        </ul>
+      </nav>
+    </mat-sidenav>
 
+      <div class="app-sidenav-content"> 
+        <router-outlet></router-outlet>
+      </div>
+
+  </mat-sidenav-container>
 </div>

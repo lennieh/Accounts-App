@@ -1,12 +1,14 @@
-<div [formGroup]="form" class="form-group row">
+<div [formGroup]="form">
 
-  <div [ngSwitch]="question.controlType" class="form-control">
+  <div [ngSwitch]="question.controlType">
 
     <!-- textbox -->
     <mat-form-field *ngSwitchCase="'textbox'">
       <input matInput placeholder="{{question.label}}"  
               type="{{question.type}}" [formControlName]="question.key" [id]="question.key" >
-      <mat-hint>{{question.hint}}</mat-hint>
+
+      <mat-hint style="font-style: italic;">{{question.hint}}</mat-hint>
+      
       <div *ngIf="!isPristine && errors">
         <mat-error class="alert alert-danger" *ngIf="errors.required">{{question.label}} is required</mat-error>
         <mat-error class="alert alert-danger" *ngIf="errors.minlength">{{question.label}} should be at least {{question.minLength}} characters</mat-error>
@@ -16,23 +18,31 @@
         <mat-error class="alert alert-danger" *ngIf="errors.regex">{{question.label}} has the wrong format</mat-error>
         <mat-error class="alert alert-danger" *ngIf="errors.ukPostCode">{{question.label}} is not a valid UK Postcode</mat-error>
       </div>
+    
     </mat-form-field>
 
     <!-- textarea -->
     <mat-form-field *ngSwitchCase="'textarea'">
+    
       <textarea matInput placeholder="{{question.label}}" 
                 [formControlName]="question.key" 
-                [id]="question.key"></textarea>
-                <mat-hint>{{question.hint}}</mat-hint>
-                <mat-error class="alert alert-danger" [hidden]="isValid || isPristine">{{question.label}} is required</mat-error>
-            </mat-form-field>
+                [id]="question.key">
+      </textarea>
+    
+      <mat-hint style="font-style: italic;">{{question.hint}}</mat-hint>
+    
+      <mat-error class="alert alert-danger" [hidden]="isValid || isPristine">{{question.label}} is required</mat-error>
+    
+    </mat-form-field>
 
     <!-- dropdown -->
     <mat-form-field *ngSwitchCase="'dropdown'">
       <mat-select placeholder="Select">
         <mat-option *ngFor="let opt of question.options" [value]="opt.key">{{ opt.value }}</mat-option>
       </mat-select>
-      <mat-hint>{{question.hint}}</mat-hint>
+      
+      <mat-hint style="font-style: italic;">{{question.hint}}</mat-hint>
+      
       <mat-error class="alert alert-danger" [hidden]="isValid || isPristine">{{question.label}} is required</mat-error>
     </mat-form-field>
 
@@ -43,7 +53,7 @@
         [formControlName]="question.key">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker touchUI="true" #picker></mat-datepicker>
-      <mat-hint>{{question.hint}}</mat-hint>
+      <mat-hint style="font-style: italic;">{{question.hint}}</mat-hint>
       <div *ngIf="!isPristine && errors">
         <mat-error class="alert alert-danger" *ngIf="errors.required">{{question.label}} is required</mat-error>
         <mat-error class="alert alert-danger" *ngIf="errors.minDate">{{question.label}} should be >= {{question.minDate | date:'dd-MM-yyyy'}}</mat-error>

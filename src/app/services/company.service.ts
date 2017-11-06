@@ -33,11 +33,11 @@ export class CompanyService {
   }
 
   createCompany(company: Company): Observable<Company> {
-    return this.http.post<Company>(this._endPoint, Company);
+    return this.http.post<Company>(this._endPoint, company);
   }
 
   updateCompany(company: Company): Observable<Company> {
-    return this.http.put<Company>(this._endPoint, Company);
+    return this.http.put<Company>(this._endPoint, company);
   }
 
   deleteCompany(company: Company | number): Observable<Company> {

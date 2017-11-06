@@ -1,19 +1,20 @@
 <div>
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
 
-    <div *ngFor="let question of questions">
-      <app-df-question [question]="question" [form]="form"></app-df-question>
+    <div class="row app-form-container">
+      <div *ngFor="let question of questions" class="col-sm-6 app-form-question" style="margin-top: 10px;">
+        <app-df-question [question]="question" [form]="form"></app-df-question>
+      </div>
     </div>
 
-    <div>
-      <button mat-icon-button type="submit" [disabled]="!form.valid" matTooltip="Save Changes" >
-        <mat-icon aria-label="save" [ngClass]="{'save-button': form.valid, 'disabled-save-button': !form-valid}">save</mat-icon>
-      </button>
-      <button mat-icon-button type="button" (click)="onQuit();" matTooltip="Cancel">
-        <mat-icon aria-label="cancel" class="cancel-button">cancel</mat-icon>
-      </button>
+    <div class="app-action-container">     
+        <button mat-icon-button type="submit" [disabled]="!form.valid" matTooltip="Save Changes">
+          <mat-icon aria-label="save" [ngClass]="{'save-button': form.valid, 'disabled-save-button': !form-valid}">save</mat-icon>
+        </button>
+        <button mat-icon-button type="button" (click)="onQuit();" matTooltip="Cancel">
+          <mat-icon aria-label="cancel" class="cancel-button">cancel</mat-icon>
+        </button>
     </div>
-
   </form>
 
 </div>

@@ -22,14 +22,15 @@ export abstract class AbstractEditPage extends AbstractPage
   protected getQuestions() {
     this.loading = true;
 
-    this.questionService.getQuestions(this.formName).subscribe(
-      formQuestions => {
+    this.questionService.getQuestions(this.formName)
+    .subscribe(
+      data => { 
         this.loading = false;
-        this.questions = formQuestions[0].questions;
+        this.questions = data[0].questions;
       },
       error => {
         this.loading = false;
-        this.HandleError(`${this.formName} Questions`, error);
+        this.HandleError(`${this.formName} Questions`, error );
       }
     );
   }
