@@ -5,11 +5,20 @@
 
 export const environment = {
   production: false,
-  aboutServiceEndpoint: 'api/about1',
+  aboutServiceEndpoint: 'api/about',
   contactServiceEndpoint: 'api/contacts',
   companyServiceEndpoint: 'api/company',
   countryServiceEndpoint: 'api/country',
   loggerServiceEndpoint: 'api/logger',
   questionServiceEndpoint: 'api/formQuestions',
-  vatServiceEndpoint: 'api/vat'
+  vatServiceEndpoint: 'api/vat',
+  cacheExpiryMilliseconds: 5 * 60 * 1000,  // 5 minutes
+  cacheableEndpoints: [
+    'api/about',
+    'api/contacts',
+    'api/country',
+    'api/vat',
+    'api/formQuestions'
+  ]
 };
+

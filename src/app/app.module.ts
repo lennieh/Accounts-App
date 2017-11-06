@@ -6,6 +6,7 @@ import { AppRoutingModule }               from './app-routing.module';
 import { AppComponent }                   from './app.component';
 
 import { ErrorInterceptorProvider }       from './interceptors/error.interceptor';
+import { CachingInterceptorProvider }     from './interceptors/caching.interceptor';
 
 // API Mocking
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -14,7 +15,7 @@ import { InMemoryDataService }            from './in-memory-data.service';
 import { CoreModule }                     from './core/core.module';
 import { SharedModule }                   from './shared/shared.module';
 import { LoggerService }                  from './core/logger.service';
-
+import { HttpCacheService }               from './services/http-cache.service';
 import { ContactService }                 from './services/contact.service';
 import { AboutService }                   from './services/about.service';
 
@@ -47,8 +48,10 @@ import { AppConfirmDialog }               from './core/confirm-dialog.component'
   providers: [
     ContactService,
     AboutService,
+    HttpCacheService,
     LoggerService,
-    ErrorInterceptorProvider
+    ErrorInterceptorProvider,
+    CachingInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })
