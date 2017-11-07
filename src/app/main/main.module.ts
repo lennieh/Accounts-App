@@ -12,7 +12,8 @@ import { DynamicFormQuestionComponent }   from '../generate/dynamic-form/dynamic
 import { QuestionService }                from '../generate/question.service';
 import { QuestionControlService }         from '../generate/question-control.service';
 
-import { HomeComponent }        from './home/home.component';
+import { MainComponent }        from './main.component';
+import { DashboardComponent }   from './dashboard/dashboard.component';
 
 import { CompanyService }       from '../services/company.service';
 import { CompaniesComponent }   from './admin/company/companies.component';
@@ -34,8 +35,20 @@ import { CountryComponent }     from './admin/country/country.component';
 import { EditCountryComponent } from './admin/country/edit-country.component';
 import { NewCountryComponent }  from './admin/country/new-country.component';
 
-import { JobEntryComponent }    from './jobentry/jobentry.component';
-import { JobReportComponent }   from './jobreport/jobreport.component';
+import { ReportsComponent } from './reports/reports.component';
+
+import { JobSearchComponent } from './job/job-search/job-search.component';
+import { JobEntryComponent } from './job/job-entry/job-entry.component';
+import { NewCustomerComponent } from './customer/new-customer/new-customer.component';
+import { EditCustomerComponent } from './customer/edit-customer/edit-customer.component';
+import { NewTalentComponent } from './talent/new-talent/new-talent.component';
+import { EditTalentComponent } from './talent/edit-talent/edit-talent.component';
+import { SendInvoicesComponent } from './invoice/send-invoices/send-invoices.component';
+import { ResendInvoicesComponent } from './invoice/resend-invoices/resend-invoices.component';
+import { ViewInvoicesComponent } from './invoice/view-invoices/view-invoices.component';
+import { SendRemittancesComponent } from './remit/send-remittances/send-remittances.component';
+import { ResendRemittancesComponent } from './remit/resend-remittances/resend-remittances.component';
+import { ViewRemittancesComponent } from './remit/view-remittances/view-remittances.component';
 
 
 @NgModule({
@@ -44,13 +57,13 @@ import { JobReportComponent }   from './jobreport/jobreport.component';
     FormsModule,
     ReactiveFormsModule,
     MainRoutingModule,
-    SharedModule,
-//    GenerateModule
+    SharedModule
   ],
   declarations: [
     DynamicFormComponent,
     DynamicFormQuestionComponent,
-    HomeComponent,
+    MainComponent,
+    DashboardComponent,
     CompaniesComponent,
     NewCompanyComponent,
     EditCompanyComponent,
@@ -63,8 +76,19 @@ import { JobReportComponent }   from './jobreport/jobreport.component';
     NewVatComponent,
     EditVatComponent,
     NewCountryComponent,
+    ReportsComponent,
+    ViewRemittancesComponent,
+    JobSearchComponent,
     JobEntryComponent,
-    JobReportComponent,
+    NewCustomerComponent,
+    EditCustomerComponent,
+    NewTalentComponent,
+    EditTalentComponent,
+    SendInvoicesComponent,
+    ResendInvoicesComponent,
+    ViewInvoicesComponent,
+    SendRemittancesComponent,
+    ResendRemittancesComponent,
   ],
   providers: [
     CompanyService,

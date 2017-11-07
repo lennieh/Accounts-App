@@ -34,9 +34,14 @@
     </mat-table>
   </div>
 
-  <button mat-icon-button>
-    <mat-icon aria-label="add new country" routerLink="new" class="action-button" matTooltip="Add new Country">add</mat-icon>
-  </button>
+  <div>
+    <button mat-icon-button>
+      <mat-icon aria-label="add new country" routerLink="new" class="action-button" matTooltip="Add new Country">add</mat-icon>
+    </button>
+    <button mat-icon-button type="button" routerLink="/main/dashboard" matTooltip="Quit" style="margin-right: 0;">
+      <mat-icon aria-label="cancel" class="cancel-button">cancel</mat-icon>
+    </button>
+  </div>
 </div>
 
 <div *ngIf="loading">
