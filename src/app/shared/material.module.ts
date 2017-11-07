@@ -22,6 +22,8 @@ import {
     MAT_DATE_LOCALE
 } from '@angular/material';
 
+import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
+
 @NgModule({
     imports: [
         MatButtonModule,
@@ -40,7 +42,7 @@ import {
         MatSidenavModule,
         MatTableModule,
         MatToolbarModule,
-        MatTooltipModule,
+        MatTooltipModule
         ],
     exports: [
         MatButtonModule,
@@ -62,6 +64,8 @@ import {
         MatTooltipModule,
     ],
     providers: [
+      BreakpointObserver,
+      MediaMatcher,
       {provide: MAT_PLACEHOLDER_GLOBAL_OPTIONS, useValue: {float: 'always'}},
       {provide: MAT_DATE_LOCALE, useValue: 'eb-GB'}
     ]

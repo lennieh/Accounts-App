@@ -91,3 +91,32 @@
 .app-list-container {
     width: 100%;
 }
+
+.app-main-header {
+    background: #009688;
+    color: white;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    padding: 10px;
+}
+
+.app-main-footer {
+    background: #009688;
+    color: white;
+    margin-top: 40px;
+    font-size: 12px;
+    padding: 12px; 
+}
+
+.app-main-footer-list {
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 8px;
+}
+
+.app-footer-copyright {
+    display: flex;
+    justify-content: flex-end;
+}
