@@ -1,12 +1,12 @@
-import { NgModule }           from '@angular/core';
-import { CommonModule }       from '@angular/common';
-import { FormsModule }        from '@angular/forms';
-import { ReactiveFormsModule }  from '@angular/forms';
+import { NgModule }                       from '@angular/core';
+import { CommonModule }                   from '@angular/common';
+import { FormsModule }                    from '@angular/forms';
+import { ReactiveFormsModule }            from '@angular/forms';
+import { BrowserAnimationsModule }        from '@angular/platform-browser/animations';
 
-import { MainRoutingModule }  from './main-routing.module';
-import { SharedModule }       from '../shared/shared.module';
+import { MainRoutingModule }              from './main-routing.module';
+import { SharedModule }                   from '../shared/shared.module';
 
-// import { GenerateModule }                 from '../generate/generate.module';
 import { DynamicFormComponent }           from '../generate/dynamic-form/dynamic-form.component';
 import { DynamicFormQuestionComponent }   from '../generate/dynamic-form/dynamic-form-question.component';
 import { QuestionService }                from '../generate/question.service';
@@ -56,6 +56,7 @@ import { ViewRemittancesComponent } from './remit/view-remittances/view-remittan
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     MainRoutingModule,
     SharedModule
   ],

@@ -1,7 +1,7 @@
-import { Component, OnInit }            from '@angular/core';
-import { MatDialog }                    from '@angular/material';
-import { DataSource }                   from '@angular/cdk/collections';
-import { Observable }                   from 'rxjs/Observable';
+import { Component, HostBinding, OnInit }   from '@angular/core';
+import { MatDialog }                        from '@angular/material';
+import { DataSource }                       from '@angular/cdk/collections';
+import { Observable }                       from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 import { ToasterService }               from 'angular2-toaster';
@@ -11,14 +11,19 @@ import { AppConfirmDialog }             from '../../../core/confirm-dialog.compo
 import { Contact }                      from '../../../model/contact';
 import { ContactService }               from '../../../services/contact.service';
 
+import { slideInDownAnimation }         from '../../animations';
+
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.scss']
+  styleUrls: ['./contacts.component.scss'],
+  animations: [slideInDownAnimation]
 })
 export class ContactsComponent
   extends AbstractPage
   implements OnInit {
+
+  @HostBinding ('@routeAnimation') routeAnimation = true; 
 
   contacts: Contact[];
   dataSource: ContactDataSource;

@@ -6,72 +6,14 @@
         mode="{{sidenavMode}}"
         disableClose="{{sidenavDisableClose}}">
       <nav>
-        <h3>Admin</h3>
-        <ul>
-          <li>
-            <a routerLink="company">Company Details</a>
-          </li>
-          <li>
-            <a routerLink="contacts">Contacts</a>
-          </li>
-          <li>
-            <a routerLink="vat">VAT Rates</a>
-          </li>
-          <li>
-            <a routerLink="country">Countries</a>
-          </li>
-        </ul>
-        <h3>Customers</h3>
-        <ul>
-          <li>
-            <a routerLink="newcustomer">Add New Prospects</a>
-          </li>
-          <li>
-            <a routerLink="editcustomer">Existing Customers</a>
-          </li>
-        </ul>
-        <h3>Talent</h3>
-        <ul>
-          <li>
-            <a routerLink="newtalent">Add New Talent</a>
-          </li>
-          <li>
-            <a routerLink="edittalent">Existing Talent</a>
-          </li>
-        </ul>
-        <h3>Jobs</h3>
-        <ul>
-          <li>
-            <a routerLink="jobentry">Job Entry</a>
-          </li>
-          <li>
-            <a routerLink="jobsearch">Job Enquiries</a>
-          </li>
-        </ul>
-        <h3>Invoices</h3>
-        <ul>
-          <li>
-            <a routerLink="sendinvoices">Send Invoices</a>
-          </li>
-          <li>
-            <a routerLink="resendinvoices">Resend Invoice</a>
-          </li>
-          <li>
-            <a routerLink="viewinvoices">View Invoices</a>
-          </li>
-        </ul>
-        <h3>Remittances</h3>
-        <ul>
-          <li>
-            <a routerLink="sendremittances">Send Remittances</a>
-          </li>
-          <li>
-            <a routerLink="resendremittances">Resend Remittance</a>
-          </li>
-          <li>
-            <a routerLink="viewremittances">View Remittances</a>
-          </li>
-        </ul>
+        <div *ngFor="let group of mainMenu">
+          <h3>{{group.groupName}}</h3>
+          <ul>
+            <li *ngFor="let menuItem of group.items">
+              <a (click)="goto(menuItem.link,menuItem.title)" routerLinkActive="active">{{menuItem.title}}</a>
+            </li>
+          </ul>
+        </div>
       </nav>
     </mat-sidenav>
 
@@ -83,7 +25,8 @@
             <mat-icon role="img">menu</mat-icon>
           </button>
         </div>
-        <h1>Title goes here</h1>
+        <h1 *ngIf="!router.isActive('/main/dashboard')">{{currentPage}}</h1>
+        <h1 *ngIf="router.isActive('/main/dashboard')">Dashboard</h1>
       </div>
       <router-outlet></router-outlet>
     </div>
