@@ -1,4 +1,5 @@
 import { Component, OnInit }            from '@angular/core';
+import { HostBinding }                  from '@angular/core';
 import { MatDialog }                    from '@angular/material';
 import { DataSource }                   from '@angular/cdk/collections';
 import { Observable }                   from 'rxjs/Observable';
@@ -6,7 +7,8 @@ import 'rxjs/add/observable/of';
 
 import { ToasterService }               from 'angular2-toaster';
 
-import { AbstractPage }                 from '../../../abstract/abstract-page.component';
+import { slideInDownAnimation }         from '../../animations';
+import { AbstractPageComponent }        from '../../../abstract/abstract-page.component';
 import { AppConfirmDialog }             from '../../../core/confirm-dialog.component';
 
 import { Company }                      from '../../../model/company';
@@ -15,11 +17,14 @@ import { CompanyService }               from '../../../services/company.service'
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.component.html',
-  styleUrls: ['./companies.component.scss']
+  styleUrls: ['./companies.component.scss'],
+  animations: [slideInDownAnimation]
 })
 export class CompaniesComponent
-  extends AbstractPage
+  extends AbstractPageComponent
   implements OnInit {
+
+  @HostBinding ('@routeAnimation') routeAnimation = true;
 
   companies: Company[];
   dataSource: CompanyDataSource;

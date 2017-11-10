@@ -5,10 +5,9 @@ import { FriendlyError }            from '../model/friendly-error';
 import { QuestionService }          from '../generate/question.service';
 import { QuestionBase }             from '../generate/model/question-base';
 
-import { AbstractPage }             from './abstract-page.component';
+import { AbstractPageComponent }    from './abstract-page.component';
 
-export abstract class AbstractEditPage extends AbstractPage
-{
+export abstract class AbstractEditPageComponent extends AbstractPageComponent {
   questions: QuestionBase<any>[];
   protected formName: string;
 
@@ -24,7 +23,7 @@ export abstract class AbstractEditPage extends AbstractPage
 
     this.questionService.getQuestions(this.formName)
     .subscribe(
-      data => { 
+      data => {
         this.loading = false;
         this.questions = data[0].questions;
       },
@@ -38,5 +37,4 @@ export abstract class AbstractEditPage extends AbstractPage
   protected goBack() {
     this.location.back();
   }
-
 }

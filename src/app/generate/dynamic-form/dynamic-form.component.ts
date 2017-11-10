@@ -25,7 +25,6 @@ export class DynamicFormComponent implements OnInit {
     if ( this.formData !== undefined && this.formData !== null) {
       this.form.setValue(this.formData);
     }
-
   }
 
   onSubmit() {

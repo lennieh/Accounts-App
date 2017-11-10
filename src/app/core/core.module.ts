@@ -5,7 +5,7 @@ import { LoggerService }                      from './logger.service';
 import { Toast, ToasterService }              from 'angular2-toaster';
 
 import { throwIfAlreadyLoaded }               from './module-import-guard';
-
+import { CanDeactivateGuard }                 from './can-deactivate-guard.service';
 @NgModule({
   imports: [
     CommonModule
@@ -15,13 +15,13 @@ import { throwIfAlreadyLoaded }               from './module-import-guard';
   declarations: [
   ],
   providers: [
-     LoggerService
-    ,ToasterService
+    LoggerService,
+    ToasterService,
+    CanDeactivateGuard
   ]
 })
 export class CoreModule {
-  constructor(@Optional() @SkipSelf() parentModule: CoreModule)
-  {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     throwIfAlreadyLoaded(parentModule, 'CoreModule');
   }
- }
+}

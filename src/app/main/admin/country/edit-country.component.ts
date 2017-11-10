@@ -1,34 +1,45 @@
-import { Component, OnInit }        from '@angular/core';
-import { ActivatedRoute, ParamMap}  from '@angular/router';
-import { Location }                 from '@angular/common';
-
+import { Component, OnInit }          from '@angular/core';
+import { HostBinding }                from '@angular/core';
+import { AfterViewInit, ViewChild }   from '@angular/core';
+import { ActivatedRoute, ParamMap}    from '@angular/router';
+import { Location }                   from '@angular/common';
+import { Observable }                 from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
-import { ToasterService }           from 'angular2-toaster';
+import { MatDialog }                  from '@angular/material';
+import { ToasterService }             from 'angular2-toaster';
 
-import { AbstractEditPage }         from '../../../abstract/abstract-edit-page.component';
+import { AbstractEditPageComponent }  from '../../../abstract/abstract-edit-page.component';
+import { slideInDownAnimation }       from '../../animations';
+import { QuestionBase }               from '../../../generate/model/question-base';
+import { QuestionService }            from '../../../generate/question.service';
+import { DynamicFormComponent }       from '../../../generate/dynamic-form/dynamic-form.component';
 
-import { QuestionBase }             from '../../../generate/model/question-base';
-import { QuestionService }          from '../../../generate/question.service';
+import { CanDeactivateGuard }         from '../../../core/can-deactivate-guard.service';
+import { AppConfirmDialog }           from '../../../core/confirm-dialog.component';
 
-import { Country }                  from '../../../model/country';
-import { CountryService }           from '../../../services/country.service';
+import { Country }                    from '../../../model/country';
+import { CountryService }             from '../../../services/country.service';
 
 @Component({
   selector: 'app-edit-country',
   templateUrl: './edit-country.component.html',
-  styleUrls: ['./edit-country.component.scss']
+  styleUrls: ['./edit-country.component.scss'],
+  animations: [slideInDownAnimation]
 })
 export class EditCountryComponent
-  extends AbstractEditPage
-  implements OnInit {
+  extends AbstractEditPageComponent
+  implements CanDeactivateGuard, AfterViewInit {
+
+  @HostBinding ('@routeAnimation') routeAnimation = true;
 
   country: Country;
   formData: any;
-  
+
   constructor(
     private countryService: CountryService,
     private route: ActivatedRoute,
+    private dialog: MatDialog,
     questionService: QuestionService,
     location: Location,
     toasterService: ToasterService) {
@@ -36,7 +47,19 @@ export class EditCountryComponent
     this.formName = 'country';
    }
 
-  ngOnInit(): void {
+   @ViewChild(DynamicFormComponent)
+   private dynamicFormComponent: DynamicFormComponent;
+   saving = false;
+
+   ngAfterViewInit() {
+     // wait a tick first to avoid one-time devMode
+     // unidirectional-data-flow-violation error
+     setTimeout(() => {
+       this.loadCountry();
+      });
+   }
+
+  loadCountry(): void {
     this.loading = true;
 
     this.route.paramMap.switchMap((params: ParamMap) =>
@@ -44,7 +67,7 @@ export class EditCountryComponent
         .subscribe(
           country => {
             this.loading = false;
-            this.country = country;           
+            this.country = country;
             this.setFormData();
             this.getQuestions();
           },
@@ -59,11 +82,12 @@ export class EditCountryComponent
     this.formData = {
       countryCode: this.country.countryCode,
       countryName: this.country.countryName
-    }
+    };
   }
 
   onSave(payload: any) {
     this.loading = true;
+    this.saving = true;
 
     this.prepareCountry(payload);
 
@@ -85,5 +109,21 @@ export class EditCountryComponent
     const formModel = payload;
     this.country.countryCode = formModel.countryCode;
     this.country.countryName = formModel.countryName;
+  }
+
+  canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
+
+    if ( this.dynamicFormComponent.form.pristine || this.saving ) {
+      return true;
+    }
+
+    const dialogRef = this.dialog.open(AppConfirmDialog, {
+      height: '350px',
+      data: {
+        title: 'Confirm Discard',
+        body: `Are you sure you want to discard your changes?`
+      } });
+
+    return dialogRef.afterClosed();
   }
 }

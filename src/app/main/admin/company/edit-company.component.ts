@@ -1,26 +1,29 @@
-import { Component, OnInit }        from '@angular/core';
-
-import { ActivatedRoute, ParamMap}  from '@angular/router';
-import { Location }                 from '@angular/common';
-
+import { Component, OnInit }          from '@angular/core';
+import { HostBinding }                from '@angular/core';
+import { ActivatedRoute, ParamMap}    from '@angular/router';
+import { Location }                   from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
-import { ToasterService }           from 'angular2-toaster';
-import { AbstractEditPage }         from '../../../abstract/abstract-edit-page.component';
+import { ToasterService }             from 'angular2-toaster';
 
-import { QuestionService }          from '../../../generate/question.service';
+import { slideInDownAnimation }       from '../../animations';
+import { AbstractEditPageComponent }  from '../../../abstract/abstract-edit-page.component';
+import { QuestionService }            from '../../../generate/question.service';
 
-import { Company }                  from '../../../model/company';
-import { CompanyService }           from '../../../services/company.service';
+import { Company }                    from '../../../model/company';
+import { CompanyService }             from '../../../services/company.service';
 
 @Component({
   selector: 'app-edit-company',
   templateUrl: './edit-company.component.html',
-  styleUrls: ['./edit-company.component.scss']
+  styleUrls: ['./edit-company.component.scss'],
+  animations: [slideInDownAnimation]
 })
 export class EditCompanyComponent
-  extends AbstractEditPage
+  extends AbstractEditPageComponent
   implements OnInit {
+
+  @HostBinding ('@routeAnimation') routeAnimation = true;
 
   company: Company;
   formData: any;

@@ -1,14 +1,15 @@
-import { Component, HostBinding, OnInit }   from '@angular/core';
+import { Component, OnInit }                from '@angular/core';
+import { HostBinding }                      from '@angular/core';
 import { ActivatedRoute}                    from '@angular/router';
 import { Location }                         from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
 import { ToasterService }                   from 'angular2-toaster';
-import { AbstractEditPage }                 from '../../../abstract/abstract-edit-page.component';
 
+import { AbstractEditPageComponent }        from '../../../abstract/abstract-edit-page.component';
 import { QuestionService }                  from '../../../generate/question.service';
-
 import { slideInDownAnimation }             from '../../animations';
+
 import { Contact }                          from '../../../model/contact';
 import { ContactService }                   from '../../../services/contact.service';
 
@@ -20,11 +21,11 @@ import { ContactService }                   from '../../../services/contact.serv
   animations: [slideInDownAnimation]
 })
 export class NewContactComponent
-  extends AbstractEditPage
+  extends AbstractEditPageComponent
   implements OnInit {
 
-  @HostBinding ('@routeAnimation') routeAnimation = true; 
-    
+  @HostBinding ('@routeAnimation') routeAnimation = true;
+
   constructor(
     private contactService: ContactService,
     questionService: QuestionService,
@@ -70,5 +71,4 @@ export class NewContactComponent
     };
     return  saveContact;
   }
-
 }

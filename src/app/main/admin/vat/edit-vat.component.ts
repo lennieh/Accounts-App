@@ -1,25 +1,28 @@
-import { Component, OnInit }        from '@angular/core';
-import { ActivatedRoute, ParamMap}  from '@angular/router';
-import { Location }                 from '@angular/common';
-
+import { Component, OnInit }          from '@angular/core';
+import { HostBinding }                from '@angular/core';
+import { ActivatedRoute, ParamMap}    from '@angular/router';
+import { Location }                   from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
-import { ToasterService }           from 'angular2-toaster';
-import { AbstractEditPage }         from '../../../abstract/abstract-edit-page.component';
+import { ToasterService }             from 'angular2-toaster';
+import { AbstractEditPageComponent }  from '../../../abstract/abstract-edit-page.component';
+import { QuestionService }            from '../../../generate/question.service';
+import { slideInDownAnimation }       from '../../animations';
 
-import { QuestionService }          from '../../../generate/question.service';
-
-import { Vat }                      from '../../../model/vat';
-import { VatService }               from '../../../services/vat.service';
+import { Vat }                        from '../../../model/vat';
+import { VatService }                 from '../../../services/vat.service';
 
 @Component({
   selector: 'app-edit-vat',
   templateUrl: './edit-vat.component.html',
-  styleUrls: ['./edit-vat.component.scss']
+  styleUrls: ['./edit-vat.component.scss'],
+  animations: [slideInDownAnimation]
 })
 export class EditVatComponent
-  extends AbstractEditPage
+  extends AbstractEditPageComponent
   implements OnInit {
+
+  @HostBinding ('@routeAnimation') routeAnimation = true;
 
   vat: Vat;
   formData: any;

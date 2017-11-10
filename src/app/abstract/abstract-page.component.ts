@@ -1,14 +1,14 @@
 import { Toast, ToasterService }        from 'angular2-toaster';
-import { FriendlyError }                        from '../model/friendly-error';
+import { FriendlyError }                from '../model/friendly-error';
 
-import { QuestionService }          from '../generate/question.service';
-import { QuestionBase }             from '../generate/model/question-base';
+import { QuestionService }              from '../generate/question.service';
+import { QuestionBase }                 from '../generate/model/question-base';
 
-export abstract class AbstractPage
-{
+export abstract class AbstractPageComponent {
   protected loading = false;
 
-  constructor(private toasterService: ToasterService){}
+  constructor(private toasterService: ToasterService) {
+  }
 
   protected ShowToaster(type: string, title: string, body: string) {
     const toast: Toast = {

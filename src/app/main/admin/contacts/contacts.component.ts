@@ -1,17 +1,18 @@
-import { Component, HostBinding, OnInit }   from '@angular/core';
-import { MatDialog }                        from '@angular/material';
-import { DataSource }                       from '@angular/cdk/collections';
-import { Observable }                       from 'rxjs/Observable';
+import { Component, OnInit }              from '@angular/core';
+import { HostBinding }                    from '@angular/core';
+import { MatDialog }                      from '@angular/material';
+import { DataSource }                     from '@angular/cdk/collections';
+import { Observable }                     from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
-import { ToasterService }               from 'angular2-toaster';
+import { ToasterService }                 from 'angular2-toaster';
 
-import { AbstractPage }                 from '../../../abstract/abstract-page.component';
-import { AppConfirmDialog }             from '../../../core/confirm-dialog.component';
-import { Contact }                      from '../../../model/contact';
-import { ContactService }               from '../../../services/contact.service';
+import { AbstractPageComponent }          from '../../../abstract/abstract-page.component';
+import { AppConfirmDialog }               from '../../../core/confirm-dialog.component';
+import { slideInDownAnimation }           from '../../animations';
 
-import { slideInDownAnimation }         from '../../animations';
+import { Contact }                        from '../../../model/contact';
+import { ContactService }                 from '../../../services/contact.service';
 
 @Component({
   selector: 'app-contacts',
@@ -20,10 +21,10 @@ import { slideInDownAnimation }         from '../../animations';
   animations: [slideInDownAnimation]
 })
 export class ContactsComponent
-  extends AbstractPage
+  extends AbstractPageComponent
   implements OnInit {
 
-  @HostBinding ('@routeAnimation') routeAnimation = true; 
+  @HostBinding ('@routeAnimation') routeAnimation = true;
 
   contacts: Contact[];
   dataSource: ContactDataSource;

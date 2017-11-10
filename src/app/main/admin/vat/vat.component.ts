@@ -1,23 +1,29 @@
-import { Component, OnInit }  from '@angular/core';
-import { MatDialog }          from '@angular/material';
-import { DataSource }         from '@angular/cdk/collections';
-import { Observable }         from 'rxjs/Observable';
+import { Component, OnInit }          from '@angular/core';
+import { HostBinding }                from '@angular/core';
+import { MatDialog }                  from '@angular/material';
+import { DataSource }                 from '@angular/cdk/collections';
+import { Observable }                 from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
-import { ToasterService }     from 'angular2-toaster';
-import { AbstractPage }       from '../../../abstract/abstract-page.component';
-import { AppConfirmDialog }   from '../../../core/confirm-dialog.component';
-import { Vat }                from '../../../model/vat';
-import { VatService }         from '../../../services/vat.service';
+import { ToasterService }             from 'angular2-toaster';
+import { AbstractPageComponent }      from '../../../abstract/abstract-page.component';
+import { AppConfirmDialog }           from '../../../core/confirm-dialog.component';
+import { slideInDownAnimation }       from '../../animations';
+
+import { Vat }                        from '../../../model/vat';
+import { VatService }                 from '../../../services/vat.service';
 
 @Component({
   selector: 'app-vat',
   templateUrl: './vat.component.html',
-  styleUrls: ['./vat.component.scss']
+  styleUrls: ['./vat.component.scss'],
+  animations: [slideInDownAnimation]
 })
 export class VatComponent
-  extends AbstractPage
+  extends AbstractPageComponent
   implements OnInit {
+
+  @HostBinding ('@routeAnimation') routeAnimation = true;
 
   displayedColumns = ['startDate', 'vatRate', 'actions'];
   vat: Vat[];

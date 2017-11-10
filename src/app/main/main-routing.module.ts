@@ -38,6 +38,7 @@ import { ResendRemittancesComponent }   from './remit/resend-remittances/resend-
 import { ViewRemittancesComponent }     from './remit/view-remittances/view-remittances.component';
 
 import { ReportsComponent }             from './reports/reports.component';
+import { CanDeactivateGuard }           from '../core/can-deactivate-guard.service';
 
 const routes: Routes = [
   {
@@ -58,8 +59,8 @@ const routes: Routes = [
       { path: 'contacts/edit/:id',  component: EditContactComponent },
 
       { path: 'country',            component: CountryComponent },
-      { path: 'country/new',        component: NewCountryComponent },
-      { path: 'country/edit/:id',   component: EditCountryComponent },
+      { path: 'country/new',        component: NewCountryComponent, canDeactivate: [CanDeactivateGuard] },
+      { path: 'country/edit/:id',   component: EditCountryComponent, canDeactivate: [CanDeactivateGuard] },
 
       { path: 'jobentry',           component: JobEntryComponent },
       { path: 'jobsearch',          component: JobSearchComponent },

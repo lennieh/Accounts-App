@@ -1,7 +1,7 @@
 import { Component, OnInit }          from '@angular/core';
 import { ToasterService }             from 'angular2-toaster';
 
-import { AbstractPage }               from '../abstract/abstract-page.component';
+import { AbstractPageComponent }      from '../abstract/abstract-page.component';
 import { About }                      from '../model/about';
 import { AboutService }               from '../services/about.service';
 
@@ -11,7 +11,7 @@ import { AboutService }               from '../services/about.service';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent
-  extends AbstractPage
+  extends AbstractPageComponent
   implements OnInit {
 
   aboutLines: About[];

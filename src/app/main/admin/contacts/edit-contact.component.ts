@@ -1,17 +1,17 @@
-import { Component, HostBinding, OnInit }   from '@angular/core';
-import { ActivatedRoute, ParamMap}          from '@angular/router';
-import { Location }                         from '@angular/common';
-
+import { Component, OnInit }            from '@angular/core';
+import { HostBinding }                  from '@angular/core';
+import { ActivatedRoute, ParamMap}      from '@angular/router';
+import { Location }                     from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
-import { ToasterService }           from 'angular2-toaster';
-import { AbstractEditPage }         from '../../../abstract/abstract-edit-page.component';
+import { ToasterService }               from 'angular2-toaster';
 
-import { QuestionService }          from '../../../generate/question.service';
-import { slideInDownAnimation }     from '../../animations';
+import { AbstractEditPageComponent }    from '../../../abstract/abstract-edit-page.component';
+import { QuestionService }              from '../../../generate/question.service';
+import { slideInDownAnimation }         from '../../animations';
 
-import { Contact }                  from '../../../model/contact';
-import { ContactService }           from '../../../services/contact.service';
+import { Contact }                      from '../../../model/contact';
+import { ContactService }               from '../../../services/contact.service';
 
 @Component({
   selector: 'app-edit-contact',
@@ -20,11 +20,11 @@ import { ContactService }           from '../../../services/contact.service';
   animations: [slideInDownAnimation]
 })
 export class EditContactComponent
-  extends AbstractEditPage
+  extends AbstractEditPageComponent
   implements OnInit {
 
-  @HostBinding ('@routeAnimation') routeAnimation = true; 
-    
+  @HostBinding ('@routeAnimation') routeAnimation = true;
+
   contact: Contact;
   formData: any;
 

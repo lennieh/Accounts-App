@@ -1,14 +1,23 @@
-import { Injectable, Injector } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { _throw } from 'rxjs/observable/throw';
+import {
+  HttpEvent,
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+  HttpResponse,
+  HTTP_INTERCEPTORS
+} from '@angular/common/http';
+
+import { Injectable, Injector }       from '@angular/core';
+import { Observable }                 from 'rxjs/Observable';
+import { _throw }                     from 'rxjs/observable/throw';
 import 'rxjs/add/operator/do';
 
-import { HttpCacheService }     from '../services/http-cache.service';
-import { environment }          from '../../environments/environment';
+import { HttpCacheService }           from '../services/http-cache.service';
+import { environment }                from '../../environments/environment';
 
 @Injectable()
 export class CachingInterceptor implements HttpInterceptor {
+
   constructor(private cache: HttpCacheService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
