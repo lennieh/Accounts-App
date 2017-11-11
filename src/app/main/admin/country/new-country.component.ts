@@ -1,25 +1,25 @@
-import { Component, OnInit }          from '@angular/core';
-import { HostBinding }                from '@angular/core';
-import { AfterViewInit, ViewChild }   from '@angular/core';
-import { ActivatedRoute}              from '@angular/router';
-import { Location }                   from '@angular/common';
-import { Observable }                 from 'rxjs/Observable';
+import { Component, OnInit }              from '@angular/core';
+import { HostBinding }                    from '@angular/core';
+import { AfterViewInit, ViewChild }       from '@angular/core';
+import { ActivatedRoute}                  from '@angular/router';
+import { Location }                       from '@angular/common';
+import { Observable }                     from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
-import { ToasterService }             from 'angular2-toaster';
-import { MatDialog }                  from '@angular/material';
+import { ToasterService }                 from 'angular2-toaster';
+import { MatDialog }                      from '@angular/material';
 
-import { CanDeactivateGuard }         from '../../../core/services/can-deactivate-guard.service';
-import { AppConfirmDialogComponent }  from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { CanDeactivateGuard }             from '../../../core/services/can-deactivate-guard.service';
+import { AppConfirmDialogComponent }      from '../../../shared/confirm-dialog/confirm-dialog.component';
 
-import { AbstractEditPageComponent }  from '../../../abstract/abstract-edit-page.component';
-import { slideInDownAnimation }       from '../../animations';
-import { QuestionService }            from '../../../generate/question.service';
-import { QuestionBase }               from '../../../generate/model/question-base';
-import { DynamicFormComponent }       from '../../../generate/dynamic-form/dynamic-form.component';
+import { AbstractDynamicPageComponent }   from '../../../abstract/abstract-dynamic-page.component';
+import { slideInDownAnimation }           from '../../animations';
+import { QuestionService }                from '../../../generate/question.service';
+import { QuestionBase }                   from '../../../generate/model/question-base';
+import { DynamicFormComponent }           from '../../../generate/dynamic-form/dynamic-form.component';
 
-import { Country }                    from '../../../model/country';
-import { CountryService }             from '../../../services/country.service';
+import { Country }                        from '../../../model/country';
+import { CountryService }                 from '../../../services/country.service';
 
 @Component({
   selector: 'app-new-country',
@@ -28,11 +28,8 @@ import { CountryService }             from '../../../services/country.service';
   animations: [slideInDownAnimation]
 })
 export class NewCountryComponent
-  extends AbstractEditPageComponent
+  extends AbstractDynamicPageComponent
   implements OnInit, AfterViewInit, CanDeactivateGuard {
-
-  @ViewChild(DynamicFormComponent)
-  private dynamicFormComponent: DynamicFormComponent;
 
   @HostBinding ('@routeAnimation') routeAnimation = true;
 
@@ -40,11 +37,11 @@ export class NewCountryComponent
 
   constructor(
     private countryService: CountryService,
-    private dialog: MatDialog,
+    dialog: MatDialog,
     questionService: QuestionService,
     location: Location,
     toasterService: ToasterService) {
-    super(questionService, location, toasterService);
+    super(dialog, questionService, location, toasterService);
     this.formName = 'country';
   }
 
@@ -84,22 +81,5 @@ export class NewCountryComponent
       countryName: formModel.countryName
     };
     return  saveCountry;
-  }
-
-  canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
-
-    if (this.dynamicFormComponent.form.pristine || this.saving) {
-      return true;
-    }
-
-    const dialogRef = this.dialog.open(AppConfirmDialogComponent, {
-      height: '350px',
-      data: {
-        title: 'Confirm Discard',
-        body: `Are you sure you want to discard your changes?`
-      }
-    });
-
-    return dialogRef.afterClosed();
   }
 }

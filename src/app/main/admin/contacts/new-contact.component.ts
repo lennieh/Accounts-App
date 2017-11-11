@@ -5,8 +5,9 @@ import { Location }                         from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
 import { ToasterService }                   from 'angular2-toaster';
+import { MatDialog }                        from '@angular/material';
 
-import { AbstractEditPageComponent }        from '../../../abstract/abstract-edit-page.component';
+import { AbstractDynamicPageComponent }     from '../../../abstract/abstract-dynamic-page.component';
 import { QuestionService }                  from '../../../generate/question.service';
 import { slideInDownAnimation }             from '../../animations';
 
@@ -21,17 +22,18 @@ import { ContactService }                   from '../../../services/contact.serv
   animations: [slideInDownAnimation]
 })
 export class NewContactComponent
-  extends AbstractEditPageComponent
+  extends AbstractDynamicPageComponent
   implements OnInit {
 
   @HostBinding ('@routeAnimation') routeAnimation = true;
 
   constructor(
     private contactService: ContactService,
+    dialog: MatDialog,
     questionService: QuestionService,
     location: Location,
     toasterService: ToasterService) {
-    super(questionService, location, toasterService );
+    super(dialog, questionService, location, toasterService );
     this.formName = 'contact';
    }
 
@@ -41,6 +43,8 @@ export class NewContactComponent
 
   onSave(payload: any) {
     this.loading = true;
+    this.saving = true;
+
     const contact = this.prepareContact(payload);
 
     this.contactService.createContact(contact)

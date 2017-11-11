@@ -1,17 +1,18 @@
-import { Component, OnInit }          from '@angular/core';
-import { HostBinding }                from '@angular/core';
-import { ActivatedRoute}              from '@angular/router';
-import { Location }                   from '@angular/common';
+import { Component, OnInit }              from '@angular/core';
+import { HostBinding }                    from '@angular/core';
+import { ActivatedRoute}                  from '@angular/router';
+import { Location }                       from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
-import { ToasterService }             from 'angular2-toaster';
+import { ToasterService }                 from 'angular2-toaster';
+import { MatDialog }                      from '@angular/material';
 
-import { slideInDownAnimation }       from '../../animations';
-import { AbstractEditPageComponent }  from '../../../abstract/abstract-edit-page.component';
-import { QuestionService }            from '../../../generate/question.service';
+import { slideInDownAnimation }           from '../../animations';
+import { AbstractDynamicPageComponent }   from '../../../abstract/abstract-dynamic-page.component';
+import { QuestionService }                from '../../../generate/question.service';
 
-import { Company }                    from '../../../model/company';
-import { CompanyService }             from '../../../services/company.service';
+import { Company }                        from '../../../model/company';
+import { CompanyService }                 from '../../../services/company.service';
 
 @Component({
   selector: 'app-new-company',
@@ -20,17 +21,18 @@ import { CompanyService }             from '../../../services/company.service';
   animations: [slideInDownAnimation]
 })
 export class NewCompanyComponent
-  extends AbstractEditPageComponent
+  extends AbstractDynamicPageComponent
   implements OnInit {
 
   @HostBinding ('@routeAnimation') routeAnimation = true;
 
   constructor(
     private companyService: CompanyService,
+    dialog: MatDialog,
     questionService: QuestionService,
     location: Location,
     toasterService: ToasterService) {
-    super(questionService, location, toasterService );
+    super(dialog, questionService, location, toasterService );
     this.formName = 'company';
   }
 
@@ -40,6 +42,8 @@ export class NewCompanyComponent
 
   onSave(payload: any) {
     this.loading = true;
+    this.saving = true;
+
     const company = this.prepareCompany(payload);
 
     this.companyService.createCompany(company)

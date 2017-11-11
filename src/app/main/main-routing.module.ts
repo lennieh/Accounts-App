@@ -48,16 +48,16 @@ const routes: Routes = [
     children: [
       { path: 'dashboard',          component: DashboardComponent },
       { path: 'company',            component: CompaniesComponent },
-      { path: 'company/new',        component: NewCompanyComponent },
-      { path: 'company/edit/:id',   component: EditCompanyComponent },
+      { path: 'company/new',        component: NewCompanyComponent, canDeactivate: [CanDeactivateGuard] },
+      { path: 'company/edit/:id',   component: EditCompanyComponent, canDeactivate: [CanDeactivateGuard] },
 
       { path: 'vat',                component: VatComponent },
-      { path: 'vat/new',            component: NewVatComponent },
-      { path: 'vat/edit/:id',       component: EditVatComponent },
+      { path: 'vat/new',            component: NewVatComponent, canDeactivate: [CanDeactivateGuard] },
+      { path: 'vat/edit/:id',       component: EditVatComponent, canDeactivate: [CanDeactivateGuard] },
 
       { path: 'contacts',           component: ContactsComponent },
-      { path: 'contacts/new',       component: NewContactComponent },
-      { path: 'contacts/edit/:id',  component: EditContactComponent },
+      { path: 'contacts/new',       component: NewContactComponent, canDeactivate: [CanDeactivateGuard] },
+      { path: 'contacts/edit/:id',  component: EditContactComponent, canDeactivate: [CanDeactivateGuard] },
 
       { path: 'country',            component: CountryComponent },
       { path: 'country/new',        component: NewCountryComponent, canDeactivate: [CanDeactivateGuard] },

@@ -10,6 +10,7 @@ import { AbstractPageComponent }    from './abstract-page.component';
 export abstract class AbstractEditPageComponent extends AbstractPageComponent {
   questions: QuestionBase<any>[];
   protected formName: string;
+  protected saving = false;
 
   constructor(
     private questionService: QuestionService,

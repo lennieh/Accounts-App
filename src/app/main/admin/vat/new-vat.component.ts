@@ -1,17 +1,18 @@
-import { Component, OnInit }          from '@angular/core';
-import { HostBinding }                from '@angular/core';
-import { ActivatedRoute}              from '@angular/router';
-import { Location }                   from '@angular/common';
+import { Component, OnInit }              from '@angular/core';
+import { HostBinding }                    from '@angular/core';
+import { ActivatedRoute}                  from '@angular/router';
+import { Location }                       from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
-import { ToasterService }             from 'angular2-toaster';
+import { ToasterService }                 from 'angular2-toaster';
+import { MatDialog }                      from '@angular/material';
 
-import { AbstractEditPageComponent }  from '../../../abstract/abstract-edit-page.component';
-import { QuestionService }            from '../../../generate/question.service';
-import { slideInDownAnimation }       from '../../animations';
+import { AbstractDynamicPageComponent }   from '../../../abstract/abstract-dynamic-page.component';
+import { QuestionService }                from '../../../generate/question.service';
+import { slideInDownAnimation }           from '../../animations';
 
-import { Vat }                        from '../../../model/vat';
-import { VatService }                 from '../../../services/vat.service';
+import { Vat }                            from '../../../model/vat';
+import { VatService }                     from '../../../services/vat.service';
 
 @Component({
   selector: 'app-new-vat',
@@ -20,17 +21,18 @@ import { VatService }                 from '../../../services/vat.service';
   animations: [slideInDownAnimation]
 })
 export class NewVatComponent
-  extends AbstractEditPageComponent
+  extends AbstractDynamicPageComponent
   implements OnInit {
 
   @HostBinding ('@routeAnimation') routeAnimation = true;
 
   constructor(
     private vatService: VatService,
+    dialog: MatDialog,
     questionService: QuestionService,
     location: Location,
     toasterService: ToasterService) {
-    super(questionService, location, toasterService );
+    super(dialog, questionService, location, toasterService );
     this.formName = 'vat';
    }
 
