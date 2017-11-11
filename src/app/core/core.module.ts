@@ -1,11 +1,19 @@
 import { NgModule, Optional, SkipSelf }       from '@angular/core';
 import { CommonModule }                       from '@angular/common';
 
-import { LoggerService }                      from './logger.service';
 import { Toast, ToasterService }              from 'angular2-toaster';
 
+import { AuthService }                        from './services/auth.service';
+import { HttpCacheService }                   from './services/http-cache.service';
+import { LoggerService }                      from './services/logger.service';
+import { CanDeactivateGuard }                 from './services/can-deactivate-guard.service';
+
+import { AuthInterceptorProvider }            from './interceptors/auth.interceptor';
+import { CachingInterceptorProvider }         from './interceptors/caching.interceptor';
+import { ErrorInterceptorProvider }           from './interceptors/error.interceptor';
+
 import { throwIfAlreadyLoaded }               from './module-import-guard';
-import { CanDeactivateGuard }                 from './can-deactivate-guard.service';
+
 @NgModule({
   imports: [
     CommonModule
@@ -15,9 +23,17 @@ import { CanDeactivateGuard }                 from './can-deactivate-guard.servi
   declarations: [
   ],
   providers: [
+    AuthService,
     LoggerService,
     ToasterService,
-    CanDeactivateGuard
+    HttpCacheService,
+    CanDeactivateGuard,
+    HttpCacheService,
+    LoggerService,
+    AuthService,
+    ErrorInterceptorProvider,
+    CachingInterceptorProvider,
+    AuthInterceptorProvider
   ]
 })
 export class CoreModule {

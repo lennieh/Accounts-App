@@ -9,7 +9,7 @@ import { ToasterService }               from 'angular2-toaster';
 
 import { slideInDownAnimation }         from '../../animations';
 import { AbstractPageComponent }        from '../../../abstract/abstract-page.component';
-import { AppConfirmDialog }             from '../../../core/confirm-dialog.component';
+import { AppConfirmDialogComponent }    from '../../../shared/confirm-dialog/confirm-dialog.component';
 
 import { Company }                      from '../../../model/company';
 import { CompanyService }               from '../../../services/company.service';
@@ -57,7 +57,7 @@ export class CompaniesComponent
   }
 
   onDelete(company: Company) {
-    const dialogRef = this.dialog.open(AppConfirmDialog, {
+    const dialogRef = this.dialog.open(AppConfirmDialogComponent, {
       height: '350px',
       data: {
         title: 'Confirm Delete',

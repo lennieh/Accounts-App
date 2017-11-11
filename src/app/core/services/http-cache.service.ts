@@ -1,7 +1,7 @@
 import { Injectable }                 from '@angular/core';
 import { HttpRequest, HttpResponse }  from '@angular/common/http';
 
-import { environment }                from '../../environments/environment';
+import { environment }                from '../../../environments/environment';
 
 @Injectable()
 export class HttpCacheService {
@@ -31,6 +31,12 @@ export class HttpCacheService {
     return null;
   }
 
+  /**
+   *
+   * @param req
+   * @param resp
+   * Adds the request and it's response to the cache
+   */
   put(req: HttpRequest<any>, resp: HttpResponse<any>) {
     // check if it is cachable
     for ( let i = 0; i < environment.cacheableEndpoints.length; i++ ) {
@@ -42,11 +48,23 @@ export class HttpCacheService {
     }
   }
 
-  requestMatches(inReq: HttpRequest<any>, cacheRequest: HttpRequest<any> ): boolean {
+  private requestMatches(inReq: HttpRequest<any>, cacheRequest: HttpRequest<any> ): boolean {
     if ( inReq.url === cacheRequest.url ) {
           return true;
     }
     return false;
+  }
+
+  /**
+   * invalidates cache entries that match this url
+   * @param url
+   */
+  invalidate(url: string): void {
+    for ( let i = 0; i < this.cacheEntries.length; i++ ) {
+      if ( url === this.cacheEntries[i].request.url.substring(0, url.length)) {
+          this.cacheEntries.splice(i, 1);
+      }
+    }
   }
 }
 

@@ -9,13 +9,15 @@ import 'rxjs/add/operator/switchMap';
 import { ToasterService }             from 'angular2-toaster';
 import { MatDialog }                  from '@angular/material';
 
-import { CanDeactivateGuard }         from '../../../core/can-deactivate-guard.service';
+import { CanDeactivateGuard }         from '../../../core/services/can-deactivate-guard.service';
+import { AppConfirmDialogComponent }  from '../../../shared/confirm-dialog/confirm-dialog.component';
+
 import { AbstractEditPageComponent }  from '../../../abstract/abstract-edit-page.component';
 import { slideInDownAnimation }       from '../../animations';
 import { QuestionService }            from '../../../generate/question.service';
 import { QuestionBase }               from '../../../generate/model/question-base';
 import { DynamicFormComponent }       from '../../../generate/dynamic-form/dynamic-form.component';
-import { AppConfirmDialog }           from '../../../core/confirm-dialog.component';
+
 import { Country }                    from '../../../model/country';
 import { CountryService }             from '../../../services/country.service';
 
@@ -33,6 +35,8 @@ export class NewCountryComponent
   private dynamicFormComponent: DynamicFormComponent;
 
   @HostBinding ('@routeAnimation') routeAnimation = true;
+
+  saving = false;
 
   constructor(
     private countryService: CountryService,
@@ -53,6 +57,7 @@ export class NewCountryComponent
 
   onSave(payload: any) {
     this.loading = true;
+    this.saving = true;
 
     const country = this.prepareCountry(payload);
 
@@ -83,11 +88,11 @@ export class NewCountryComponent
 
   canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
 
-    if (this.dynamicFormComponent.form.pristine) {
+    if (this.dynamicFormComponent.form.pristine || this.saving) {
       return true;
     }
 
-    const dialogRef = this.dialog.open(AppConfirmDialog, {
+    const dialogRef = this.dialog.open(AppConfirmDialogComponent, {
       height: '350px',
       data: {
         title: 'Confirm Discard',

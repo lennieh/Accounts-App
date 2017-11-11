@@ -3,10 +3,10 @@ import { MAT_DIALOG_DATA }          from '@angular/material';
 
 @Component({
     selector: 'app-confirm-dialog',
-    templateUrl: 'confirm-dialog.component.html'
-
+    templateUrl: 'confirm-dialog.component.html',
+    styleUrls: ['confirm-dialog.component.scss']
 })
-export class AppConfirmDialog {
+export class AppConfirmDialogComponent {
 
     constructor(@Inject(MAT_DIALOG_DATA) public data: any ) {
         if ( data.title === '') {

@@ -8,7 +8,7 @@ import 'rxjs/add/observable/of';
 import { ToasterService }                 from 'angular2-toaster';
 
 import { AbstractPageComponent }          from '../../../abstract/abstract-page.component';
-import { AppConfirmDialog }               from '../../../core/confirm-dialog.component';
+import { AppConfirmDialogComponent }      from '../../../shared/confirm-dialog/confirm-dialog.component';
 import { slideInDownAnimation }           from '../../animations';
 
 import { Contact }                        from '../../../model/contact';
@@ -57,7 +57,7 @@ export class ContactsComponent
   }
 
   onDelete(contact: Contact) {
-    const dialogRef = this.dialog.open(AppConfirmDialog, {
+    const dialogRef = this.dialog.open(AppConfirmDialogComponent, {
       height: '350px',
       data: {
         title: 'Confirm Delete',

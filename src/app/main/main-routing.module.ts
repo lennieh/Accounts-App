@@ -1,24 +1,26 @@
-import { NgModule }             from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule }                     from '@angular/core';
+import { Routes, RouterModule }         from '@angular/router';
 
-import { MainComponent }        from './main.component';
-import { DashboardComponent }   from './dashboard/dashboard.component';
+import { CanDeactivateGuard }           from '../core/services/can-deactivate-guard.service';
 
-import { CompaniesComponent }   from './admin/company/companies.component';
-import { NewCompanyComponent }  from './admin/company/new-company.component';
-import { EditCompanyComponent } from './admin/company/edit-company.component';
+import { MainComponent }                from './main.component';
+import { DashboardComponent }           from './dashboard/dashboard.component';
 
-import { VatComponent }         from './admin/vat/vat.component';
-import { NewVatComponent }      from './admin/vat/new-vat.component';
-import { EditVatComponent }     from './admin/vat/edit-vat.component';
+import { CompaniesComponent }           from './admin/company/companies.component';
+import { NewCompanyComponent }          from './admin/company/new-company.component';
+import { EditCompanyComponent }         from './admin/company/edit-company.component';
 
-import { ContactsComponent }    from './admin/contacts/contacts.component';
-import { NewContactComponent }  from './admin/contacts/new-contact.component';
-import { EditContactComponent } from './admin/contacts/edit-contact.component';
+import { VatComponent }                 from './admin/vat/vat.component';
+import { NewVatComponent }              from './admin/vat/new-vat.component';
+import { EditVatComponent }             from './admin/vat/edit-vat.component';
 
-import { CountryComponent }     from './admin/country/country.component';
-import { NewCountryComponent }  from './admin/country/new-country.component';
-import { EditCountryComponent } from './admin/country/edit-country.component';
+import { ContactsComponent }            from './admin/contacts/contacts.component';
+import { NewContactComponent }          from './admin/contacts/new-contact.component';
+import { EditContactComponent }         from './admin/contacts/edit-contact.component';
+
+import { CountryComponent }             from './admin/country/country.component';
+import { NewCountryComponent }          from './admin/country/new-country.component';
+import { EditCountryComponent }         from './admin/country/edit-country.component';
 
 import { JobEntryComponent }            from './job/job-entry/job-entry.component';
 import { JobSearchComponent }           from './job/job-search/job-search.component';
@@ -38,7 +40,6 @@ import { ResendRemittancesComponent }   from './remit/resend-remittances/resend-
 import { ViewRemittancesComponent }     from './remit/view-remittances/view-remittances.component';
 
 import { ReportsComponent }             from './reports/reports.component';
-import { CanDeactivateGuard }           from '../core/can-deactivate-guard.service';
 
 const routes: Routes = [
   {

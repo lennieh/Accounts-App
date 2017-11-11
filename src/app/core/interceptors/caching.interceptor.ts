@@ -13,7 +13,7 @@ import { _throw }                     from 'rxjs/observable/throw';
 import 'rxjs/add/operator/do';
 
 import { HttpCacheService }           from '../services/http-cache.service';
-import { environment }                from '../../environments/environment';
+import { environment }                from '../../../environments/environment';
 
 @Injectable()
 export class CachingInterceptor implements HttpInterceptor {

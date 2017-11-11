@@ -4,10 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import { _throw } from 'rxjs/observable/throw';
 import 'rxjs/add/operator/catch';
 
-import { environment }          from '../../environments/environment';
-import { LoggerService }        from '../core/logger.service';
+import { environment }          from '../../../environments/environment';
+import { LoggerService }        from '../services/logger.service';
 
-import { FriendlyError }        from '../model/friendly-error';
+import { FriendlyError }        from '../../model/friendly-error';
 
 /**
  * Intercepts the HTTP responses, and in case that an error/exception is thrown, handles it

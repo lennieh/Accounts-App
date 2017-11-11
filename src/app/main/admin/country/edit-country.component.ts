@@ -9,14 +9,13 @@ import 'rxjs/add/operator/switchMap';
 import { MatDialog }                  from '@angular/material';
 import { ToasterService }             from 'angular2-toaster';
 
+import { CanDeactivateGuard }         from '../../../core/services/can-deactivate-guard.service';
+import { AppConfirmDialogComponent }  from '../../../shared/confirm-dialog/confirm-dialog.component';
 import { AbstractEditPageComponent }  from '../../../abstract/abstract-edit-page.component';
 import { slideInDownAnimation }       from '../../animations';
 import { QuestionBase }               from '../../../generate/model/question-base';
 import { QuestionService }            from '../../../generate/question.service';
 import { DynamicFormComponent }       from '../../../generate/dynamic-form/dynamic-form.component';
-
-import { CanDeactivateGuard }         from '../../../core/can-deactivate-guard.service';
-import { AppConfirmDialog }           from '../../../core/confirm-dialog.component';
 
 import { Country }                    from '../../../model/country';
 import { CountryService }             from '../../../services/country.service';
@@ -29,9 +28,14 @@ import { CountryService }             from '../../../services/country.service';
 })
 export class EditCountryComponent
   extends AbstractEditPageComponent
-  implements CanDeactivateGuard, AfterViewInit {
+  implements CanDeactivateGuard, AfterViewInit, OnInit {
+
+  @ViewChild(DynamicFormComponent)
+  private dynamicFormComponent: DynamicFormComponent;
 
   @HostBinding ('@routeAnimation') routeAnimation = true;
+
+  saving = false;
 
   country: Country;
   formData: any;
@@ -47,16 +51,11 @@ export class EditCountryComponent
     this.formName = 'country';
    }
 
-   @ViewChild(DynamicFormComponent)
-   private dynamicFormComponent: DynamicFormComponent;
-   saving = false;
+   ngOnInit(): void {
+     this.loadCountry();
+   }
 
    ngAfterViewInit() {
-     // wait a tick first to avoid one-time devMode
-     // unidirectional-data-flow-violation error
-     setTimeout(() => {
-       this.loadCountry();
-      });
    }
 
   loadCountry(): void {
@@ -117,8 +116,8 @@ export class EditCountryComponent
       return true;
     }
 
-    const dialogRef = this.dialog.open(AppConfirmDialog, {
-      height: '350px',
+    const dialogRef = this.dialog.open(AppConfirmDialogComponent, {
+      // height: '350px',
       data: {
         title: 'Confirm Discard',
         body: `Are you sure you want to discard your changes?`

@@ -1,10 +1,8 @@
 import { Injectable }           from '@angular/core';
 import { HttpClient }           from '@angular/common/http';
 import { Observable }           from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
 
 import { environment }          from '../../environments/environment';
-import { LoggerService }        from '../core/logger.service';
 
 import { About }                from '../model/about';
 
@@ -13,7 +11,7 @@ export class AboutService {
 
   private _endpoint;
 
-  constructor(private http: HttpClient, private loggerService: LoggerService ) {
+  constructor(private http: HttpClient) {
     this._endpoint = environment.aboutServiceEndpoint;
    }
 

@@ -1,14 +1,9 @@
 import { Injectable }           from '@angular/core';
-
 import { HttpClient }           from '@angular/common/http';
-import { environment }          from '../../environments/environment';
-
-import { LoggerService }        from '../core/logger.service';
-import { ToasterService }       from 'angular2-toaster';
-
 import { Observable }           from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+
+import { environment }          from '../../environments/environment';
+import { HttpCacheService }     from '../core/services/http-cache.service';
 
 import { Company }              from '../model/company';
 
@@ -19,7 +14,7 @@ export class CompanyService {
 
   constructor(
     private http: HttpClient,
-    private loggerService: LoggerService) {
+    private httpCache: HttpCacheService) {
     this._endPoint = environment.companyServiceEndpoint;
   }
 
@@ -33,14 +28,17 @@ export class CompanyService {
   }
 
   createCompany(company: Company): Observable<Company> {
+    this.httpCache.invalidate(this._endPoint);
     return this.http.post<Company>(this._endPoint, company);
   }
 
   updateCompany(company: Company): Observable<Company> {
+    this.httpCache.invalidate(this._endPoint);
     return this.http.put<Company>(this._endPoint, company);
   }
 
   deleteCompany(company: Company | number): Observable<Company> {
+    this.httpCache.invalidate(this._endPoint);
     const id = typeof company === 'number' ? company : company.id;
     const url = `${this._endPoint}/${id}`;
     return this.http.delete<Company>(url);

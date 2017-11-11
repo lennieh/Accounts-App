@@ -7,8 +7,8 @@ import 'rxjs/add/observable/of';
 
 import { ToasterService }             from 'angular2-toaster';
 import { AbstractPageComponent }      from '../../../abstract/abstract-page.component';
-import { AppConfirmDialog }           from '../../../core/confirm-dialog.component';
 import { slideInDownAnimation }       from '../../animations';
+import { AppConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
 
 import { Vat }                        from '../../../model/vat';
 import { VatService }                 from '../../../services/vat.service';
@@ -56,7 +56,7 @@ export class VatComponent
   }
 
   onDelete(vat: Vat) {
-    const dialogRef = this.dialog.open(AppConfirmDialog, {
+    const dialogRef = this.dialog.open(AppConfirmDialogComponent, {
       height: '350px',
       data: {
         title: 'Confirm Delete',
