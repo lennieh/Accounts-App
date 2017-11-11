@@ -20,17 +20,29 @@ input.ng-invalid {
     margin-bottom:40px;
 }
 
-.save-button {
-    color: #42A948;
+// Buttons
+.app-save-button {
+    color: #009688;
 }
 .disabled-save-button {
     color: lightgrey;
 }
-.cancel-button {
+.app-cancel-button {
     color: #a94442;
 }
+.app-action-button {
+    color: #009688;
+}
 
-.action-button {
+.app-delete-button {
+    color: #a94442;
+}
+.app-action-icon {
+    font-size: 36px;
+}
+
+.app-dashboard-icon {
+    font-size: 48px;
     color: #009688;
 }
 
@@ -50,3 +62,4 @@ input.ng-invalid {
 .app-edit-form {
     margin: 40px;
 }
+

@@ -20,10 +20,10 @@
         <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
         <mat-cell *matCellDef="let row">
           <button mat-icon-button>
-            <mat-icon aria-label="edit country" routerLink="edit/{{row.id}}" class="action-button" matTooltip="Edit Country">edit</mat-icon>
+            <mat-icon aria-label="edit country" routerLink="edit/{{row.id}}" class="app-action-icon app-action-button" matTooltip="Edit Country">edit</mat-icon>
           </button>
           <button mat-icon-button>
-            <mat-icon aria-label="delete country" (click)="onDelete(row); $event.stopPropagation()" class="action-button" matTooltip="Delete Country">delete</mat-icon>
+            <mat-icon aria-label="delete country" (click)="onDelete(row); $event.stopPropagation()" class="app-action-icon app-action-button" matTooltip="Delete Country">delete</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
@@ -36,10 +36,10 @@
 
   <div>
     <button mat-icon-button>
-      <mat-icon aria-label="add new country" routerLink="new" class="action-button" matTooltip="Add new Country">add</mat-icon>
+      <mat-icon aria-label="add new country" routerLink="new" class="app-action-icon app-action-button" matTooltip="Add new Country">add</mat-icon>
     </button>
     <button mat-icon-button type="button" routerLink="/main/dashboard" matTooltip="Quit" style="margin-right: 0;">
-      <mat-icon aria-label="cancel" class="cancel-button">cancel</mat-icon>
+      <mat-icon aria-label="cancel" class="app-action-icon app-cancel-button">cancel</mat-icon>
     </button>
   </div>
 </div>

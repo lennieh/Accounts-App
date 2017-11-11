@@ -9,7 +9,7 @@
       <mat-card-content>
         <div class="row">
         <div class="col-sm-3">
-          <mat-icon class="dashboard-icon">{{entry.icon}}</mat-icon>
+          <mat-icon class="app-dashboard-icon primary">{{entry.icon}}</mat-icon>
         </div>
         <div class="col-sm-9">
           {{entry.description}}
@@ -18,7 +18,7 @@
       </mat-card-content>
       <mat-card-actions>
         <button mat-icon-button routerLink="{{entry.url}}" matTooltip="{{entry.title}}">
-            <mat-icon class="dashboard-icon">forward</mat-icon>
+            <mat-icon class="app-action-icon app-action-button">forward</mat-icon>
         </button>
       </mat-card-actions>
     </mat-card>
