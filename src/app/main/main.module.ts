@@ -7,10 +7,10 @@ import { BrowserAnimationsModule }        from '@angular/platform-browser/animat
 import { MainRoutingModule }              from './main-routing.module';
 import { SharedModule }                   from '../shared/shared.module';
 
-import { DynamicFormComponent }           from '../generate/dynamic-form/dynamic-form.component';
-import { DynamicFormQuestionComponent }   from '../generate/dynamic-form/dynamic-form-question.component';
-import { QuestionService }                from '../generate/question.service';
-import { QuestionControlService }         from '../generate/question-control.service';
+import { DynamicFormComponent }           from '../dynamic/dynamic-form/dynamic-form.component';
+import { DynamicFormQuestionComponent }   from '../dynamic/dynamic-form/dynamic-form-question.component';
+import { QuestionService }                from '../dynamic/question.service';
+import { QuestionControlService }         from '../dynamic/question-control.service';
 
 import { MainComponent }        from './main.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';

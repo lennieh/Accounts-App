@@ -2,8 +2,8 @@ import { Location }                 from '@angular/common';
 import { Toast, ToasterService }    from 'angular2-toaster';
 import { FriendlyError }            from '../model/friendly-error';
 
-import { QuestionService }          from '../generate/question.service';
-import { QuestionBase }             from '../generate/model/question-base';
+import { QuestionService }          from '../dynamic/question.service';
+import { QuestionBase }             from '../dynamic/model/question-base';
 
 import { AbstractPageComponent }    from './abstract-page.component';
 

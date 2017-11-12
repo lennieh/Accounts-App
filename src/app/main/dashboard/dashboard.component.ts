@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component }  from '@angular/core';
+
+import { routerTransition }   from '../../shared/router.animations';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''} 
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
   dashboardEntries: DashboardPanel[] = [
     { title: 'Job Entry', description: 'Enter new jobs', url: '/main/jobentry', icon: 'build'},
@@ -16,9 +20,6 @@ export class DashboardComponent implements OnInit {
     { title: 'Reports', description: 'Generate Reports', url: '/main/reports', icon: 'description'}
   ];
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }
 

@@ -12,13 +12,17 @@ export const environment = {
   loggerServiceEndpoint: 'api/logger',
   questionServiceEndpoint: 'api/formQuestions',
   vatServiceEndpoint: 'api/vat',
+  roleMenuEndpoint: 'api/roleMenu',
+
+  // Cache config
   cacheExpiryMilliseconds: 5 * 60 * 1000,  // 5 minutes
   cacheableEndpoints: [
     'api/about',
     'api/contacts',
     'api/country',
     'api/vat',
-    'api/formQuestions'
+    'api/formQuestions',
+    'api/roleMenu'
   ]
 };
 

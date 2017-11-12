@@ -1,16 +1,22 @@
 import { Component, OnInit }                from '@angular/core';
 import { Router }                           from '@angular/router';
 import { BreakpointObserver, Breakpoints }  from '@angular/cdk/layout';
+
+import { ToasterService }                   from 'angular2-toaster';
 import { MatSidenav }                       from '@angular/material';
 
-import { MenuGroup, MenuItem }              from '../model/menu-group';
+import { RoleMenuService }                  from '../core/services/role-menu.service';
+import { RoleMenu, MenuGroup, MenuItem }    from '../model/role-menu';
+import { AbstractPageComponent }            from '../abstract/abstract-page.component';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent 
+  extends AbstractPageComponent
+  implements OnInit {
 
   currentPage: string;
   sidenavMode: string;
@@ -18,71 +24,29 @@ export class MainComponent implements OnInit {
   sidenavDisableClose: string;
   mobileMenu: boolean;
 
-  mainMenu: MenuGroup[] = [
-    {
-      groupName: 'Admin',
-      items: [
-        { link: 'company', title: 'My Company Details' },
-        { link: 'contacts', title: 'My Contact Details' },
-        { link: 'vat', title: 'VAT Rates' },
-        { link: 'country', title: 'Countries' }
-      ]
-    },
-    {
-      groupName: 'Customers',
-      items: [
-        { link: 'newcustomer', title: 'Add New Prospects' },
-        { link: 'editcustomer', title: 'Existing Customers' }
-      ]
+  mainMenu: MenuGroup[];
 
-    },
-    {
-      groupName: 'Talent',
-      items: [
-        { link: 'newtalent', title: 'Add New Talent/Engineer' },
-        { link: 'edittalent', title: 'Existing Talent/Engineers' }
-      ]
-    },
-    {
-      groupName: 'Jobs',
-      items: [
-        { link: 'jobentry', title: 'Job Entry' },
-        { link: 'jobsearch', title: 'Job Search' }
-      ]
-    },
-    {
-      groupName: 'Invoices',
-      items: [
-        { link: 'sendinvoices', title: 'Send Invoices' },
-        { link: 'resendinvoices', title: 'Resend Invoices' },
-        { link: 'viewinvoices', title: 'View Invoices' }
-      ]
-    },
-    {
-      groupName: 'Remittances',
-      items: [
-        { link: 'sendremittances', title: 'Send Remittances' },
-        { link: 'resendremittances', title: 'Resend Remittances' },
-        { link: 'viewremittances', title: 'View Remittances' }
-      ]
-    }
-  ];
+  constructor(
+    private router: Router, 
+    private breakpointObserver: BreakpointObserver,
+    private roleMenuService: RoleMenuService,
+    toasterService: ToasterService ) {
 
-  seconds() { return ; }
+      super(toasterService);
+      breakpointObserver.observe(['(max-width:959px)']).subscribe(
+        result => {
+          if (result.matches) {
+            this.activateHandsetLayout();
+          } else {
+            this.activateWebLayout();
+          }
+        });
 
-  constructor(private router: Router, private breakpointObserver: BreakpointObserver) {
-    breakpointObserver.observe([
-      '(max-width:959px)'
-    ]).subscribe(result => {
-      if (result.matches) {
-        this.activateHandsetLayout();
-      } else {
-        this.activateWebLayout();
-      }
-    });
+      this.getMenu();
    }
 
   ngOnInit() {
+      // responsive stuff 
       this.currentPage = 'Dashboard';
       if ( this.breakpointObserver.isMatched('(max-width: 959px;)')) {
         this.activateHandsetLayout();
@@ -90,6 +54,20 @@ export class MainComponent implements OnInit {
         this.activateWebLayout();
       }
       this.router.events.subscribe()
+  }
+
+  getMenu(): void {
+    this.loading = true;
+    this.roleMenuService.getMenuItems().subscribe(
+      data => { 
+        this.loading = false;
+        this.mainMenu = data[0].menuGroups; },
+      error => {
+        this.loading = false;
+        this.HandleError('Main Menu', error);
+      }
+    );
+
   }
 
   activateHandsetLayout() {

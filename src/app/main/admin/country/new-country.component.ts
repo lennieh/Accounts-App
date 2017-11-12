@@ -1,6 +1,4 @@
 import { Component, OnInit }              from '@angular/core';
-import { HostBinding }                    from '@angular/core';
-import { AfterViewInit, ViewChild }       from '@angular/core';
 import { ActivatedRoute}                  from '@angular/router';
 import { Location }                       from '@angular/common';
 import { Observable }                     from 'rxjs/Observable';
@@ -9,14 +7,9 @@ import 'rxjs/add/operator/switchMap';
 import { ToasterService }                 from 'angular2-toaster';
 import { MatDialog }                      from '@angular/material';
 
-import { CanDeactivateGuard }             from '../../../core/services/can-deactivate-guard.service';
-import { AppConfirmDialogComponent }      from '../../../shared/confirm-dialog/confirm-dialog.component';
-
 import { AbstractDynamicPageComponent }   from '../../../abstract/abstract-dynamic-page.component';
-import { slideInDownAnimation }           from '../../animations';
-import { QuestionService }                from '../../../generate/question.service';
-import { QuestionBase }                   from '../../../generate/model/question-base';
-import { DynamicFormComponent }           from '../../../generate/dynamic-form/dynamic-form.component';
+import { QuestionService }                from '../../../dynamic/question.service';
+import { routerTransition }               from '../../../shared/router.animations';
 
 import { Country }                        from '../../../model/country';
 import { CountryService }                 from '../../../services/country.service';
@@ -25,13 +18,12 @@ import { CountryService }                 from '../../../services/country.servic
   selector: 'app-new-country',
   templateUrl: './new-country.component.html',
   styleUrls: ['./new-country.component.scss'],
-  animations: [slideInDownAnimation]
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''} 
 })
 export class NewCountryComponent
   extends AbstractDynamicPageComponent
-  implements OnInit, AfterViewInit, CanDeactivateGuard {
-
-  @HostBinding ('@routeAnimation') routeAnimation = true;
+  implements OnInit {
 
   saving = false;
 

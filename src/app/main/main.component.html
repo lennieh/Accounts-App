@@ -28,7 +28,10 @@
         <h1 *ngIf="!router.isActive('/main/dashboard')">{{currentPage}}</h1>
         <h1 *ngIf="router.isActive('/main/dashboard')">Dashboard</h1>
       </div>
+      
       <router-outlet></router-outlet>
+    
+    
     </div>
     <footer class="app-main-footer">
 

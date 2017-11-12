@@ -8,4 +8,8 @@ export class AuthService {
   getAuthorizationHeader(): string {
     return '';
   }
+
+  getRole() : string {
+    return 'user';
+  }
 }

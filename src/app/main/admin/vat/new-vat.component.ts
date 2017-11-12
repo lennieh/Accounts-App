@@ -8,8 +8,8 @@ import { ToasterService }                 from 'angular2-toaster';
 import { MatDialog }                      from '@angular/material';
 
 import { AbstractDynamicPageComponent }   from '../../../abstract/abstract-dynamic-page.component';
-import { QuestionService }                from '../../../generate/question.service';
-import { slideInDownAnimation }           from '../../animations';
+import { QuestionService }                from '../../../dynamic/question.service';
+import { routerTransition }               from '../../../shared/router.animations';
 
 import { Vat }                            from '../../../model/vat';
 import { VatService }                     from '../../../services/vat.service';
@@ -18,13 +18,12 @@ import { VatService }                     from '../../../services/vat.service';
   selector: 'app-new-vat',
   templateUrl: './new-vat.component.html',
   styleUrls: ['./new-vat.component.scss'],
-  animations: [slideInDownAnimation]
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''} 
 })
 export class NewVatComponent
   extends AbstractDynamicPageComponent
   implements OnInit {
-
-  @HostBinding ('@routeAnimation') routeAnimation = true;
 
   constructor(
     private vatService: VatService,

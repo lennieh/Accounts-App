@@ -1,5 +1,4 @@
 import { Component, OnInit }            from '@angular/core';
-import { HostBinding }                  from '@angular/core';
 import { ActivatedRoute, ParamMap}      from '@angular/router';
 import { Location }                     from '@angular/common';
 import 'rxjs/add/operator/switchMap';
@@ -7,24 +6,23 @@ import 'rxjs/add/operator/switchMap';
 import { MatDialog }                    from '@angular/material';
 import { ToasterService }               from 'angular2-toaster';
 
-import { QuestionService }              from '../../../generate/question.service';
-import { slideInDownAnimation }         from '../../animations';
+import { QuestionService }              from '../../../dynamic/question.service';
+import { AbstractDynamicPageComponent } from '../../../abstract/abstract-dynamic-page.component';
+import { routerTransition }             from '../../../shared/router.animations';
 
 import { Vat }                          from '../../../model/vat';
 import { VatService }                   from '../../../services/vat.service';
-import { AbstractDynamicPageComponent } from '../../../abstract/abstract-dynamic-page.component';
 
 @Component({
   selector: 'app-edit-vat',
   templateUrl: './edit-vat.component.html',
   styleUrls: ['./edit-vat.component.scss'],
-  animations: [slideInDownAnimation]
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''} 
 })
 export class EditVatComponent
   extends AbstractDynamicPageComponent
   implements OnInit {
-
-  @HostBinding ('@routeAnimation') routeAnimation = true;
 
   vat: Vat;
   formData: any;

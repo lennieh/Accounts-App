@@ -7,6 +7,7 @@ import { AuthService }                        from './services/auth.service';
 import { HttpCacheService }                   from './services/http-cache.service';
 import { LoggerService }                      from './services/logger.service';
 import { CanDeactivateGuard }                 from './services/can-deactivate-guard.service';
+import { RoleMenuService }                    from './services/role-menu.service';
 
 import { AuthInterceptorProvider }            from './interceptors/auth.interceptor';
 import { CachingInterceptorProvider }         from './interceptors/caching.interceptor';
@@ -31,6 +32,7 @@ import { throwIfAlreadyLoaded }               from './module-import-guard';
     HttpCacheService,
     LoggerService,
     AuthService,
+    RoleMenuService,
     ErrorInterceptorProvider,
     CachingInterceptorProvider,
     AuthInterceptorProvider

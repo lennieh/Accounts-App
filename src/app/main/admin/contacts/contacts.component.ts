@@ -1,15 +1,14 @@
 import { Component, OnInit }              from '@angular/core';
-import { HostBinding }                    from '@angular/core';
-import { MatDialog }                      from '@angular/material';
 import { DataSource }                     from '@angular/cdk/collections';
 import { Observable }                     from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 import { ToasterService }                 from 'angular2-toaster';
+import { MatDialog }                      from '@angular/material';
 
 import { AbstractPageComponent }          from '../../../abstract/abstract-page.component';
 import { AppConfirmDialogComponent }      from '../../../shared/confirm-dialog/confirm-dialog.component';
-import { slideInDownAnimation }           from '../../animations';
+import { routerTransition }               from '../../../shared/router.animations';
 
 import { Contact }                        from '../../../model/contact';
 import { ContactService }                 from '../../../services/contact.service';
@@ -18,13 +17,12 @@ import { ContactService }                 from '../../../services/contact.servic
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.scss'],
-  animations: [slideInDownAnimation]
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''} 
 })
 export class ContactsComponent
   extends AbstractPageComponent
   implements OnInit {
-
-  @HostBinding ('@routeAnimation') routeAnimation = true;
 
   contacts: Contact[];
   dataSource: ContactDataSource;

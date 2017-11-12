@@ -1,14 +1,14 @@
 import { Component, OnInit }          from '@angular/core';
-import { HostBinding }                from '@angular/core';
-import { ToasterService }             from 'angular2-toaster';
-import { MatDialog }                  from '@angular/material';
 import { DataSource }                 from '@angular/cdk/collections';
 import { Observable }                 from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
-import { slideInDownAnimation }       from '../../animations';
+import { ToasterService }             from 'angular2-toaster';
+import { MatDialog }                  from '@angular/material';
+
 import { AbstractPageComponent }      from '../../../abstract/abstract-page.component';
 import { AppConfirmDialogComponent }  from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { routerTransition }           from '../../../shared/router.animations';
 
 import { CountryService }             from '../../../services/country.service';
 import { Country }                    from '../../../model/country';
@@ -17,13 +17,12 @@ import { Country }                    from '../../../model/country';
   selector: 'app-country',
   templateUrl: './country.component.html',
   styleUrls: ['./country.component.scss'],
-  animations: [slideInDownAnimation]
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''} 
 })
 export class CountryComponent
   extends AbstractPageComponent
   implements OnInit {
-
-  @HostBinding ('@routeAnimation') routeAnimation = true;
 
   displayedColumns = ['countryCode', 'countryName', 'actions'];
   countries: Country[];

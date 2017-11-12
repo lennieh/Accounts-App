@@ -1,18 +1,19 @@
-import { InMemoryDbService }        from 'angular-in-memory-web-api';
+import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-import { Company }                  from './model/company';
-import { Contact }                  from './model/contact';
-import { About }                    from './model/about';
-import { Country }                  from './model/country';
-import { Vat }                      from './model/vat';
-import { LogError }                 from './model/log-error';
+import { Company } from './model/company';
+import { Contact } from './model/contact';
+import { About } from './model/about';
+import { Country } from './model/country';
+import { Vat } from './model/vat';
+import { LogError } from './model/log-error';
+import { RoleMenu } from './model/role-menu';
 
-import { QuestionBase }             from './generate/model/question-base';
-import { FormQuestions }            from './generate/model/form-questions';
-import { TextboxQuestion }          from './generate/model/question-textbox';
-import { TextareaQuestion }         from './generate/model/question-textarea';
-import { DropdownQuestion }         from './generate/model/question-dropdown';
-import { DatepickerQuestion }       from './generate/model/question-datepicker';
+import { QuestionBase } from './dynamic/model/question-base';
+import { FormQuestions } from './dynamic/model/form-questions';
+import { TextboxQuestion } from './dynamic/model/question-textbox';
+import { TextareaQuestion } from './dynamic/model/question-textarea';
+import { DropdownQuestion } from './dynamic/model/question-dropdown';
+import { DatepickerQuestion } from './dynamic/model/question-datepicker';
 
 export class InMemoryDataService implements InMemoryDbService {
     createDb() {
@@ -35,10 +36,10 @@ export class InMemoryDataService implements InMemoryDbService {
             }
         ];
 
-        const about:  About[] = [
+        const about: About[] = [
             { id: 1, text: 'This app was written with Angular V4' },
-            { id: 2, text: 'Using Twitter Bootsrap and Sass'},
-            { id: 3, text: 'By Lennie Harvey'}
+            { id: 2, text: 'Using Twitter Bootsrap and Sass' },
+            { id: 3, text: 'By Lennie Harvey' }
         ];
 
         const country: Country[] = [
@@ -47,7 +48,7 @@ export class InMemoryDataService implements InMemoryDbService {
         ];
 
         const logger: LogError[] = [
-            { id: 1, source: 'Somewhere', severity: 'Error', message: 'Generic error message'}
+            { id: 1, source: 'Somewhere', severity: 'Error', message: 'Generic error message' }
         ];
 
         const vat: Vat[] = [
@@ -180,8 +181,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 minLength: 2,
                 maxLength: 2,
                 case: 'upper'
-              }),
-              new TextboxQuestion({
+            }),
+            new TextboxQuestion({
                 id: 2,
                 key: 'countryName',
                 label: 'Country name',
@@ -189,10 +190,10 @@ export class InMemoryDataService implements InMemoryDbService {
                 required: true,
                 order: 2,
                 case: 'upperFirst'
-              }),
+            }),
         ];
 
-        const contactQuestions: QuestionBase<any> [] = [
+        const contactQuestions: QuestionBase<any>[] = [
             new TextboxQuestion({
                 id: 1,
                 key: 'firstName',
@@ -200,16 +201,16 @@ export class InMemoryDataService implements InMemoryDbService {
                 value: '',
                 required: true,
                 order: 1
-              }),
-              new TextboxQuestion({
+            }),
+            new TextboxQuestion({
                 id: 2,
                 key: 'lastName',
                 label: 'Surname',
                 value: '',
                 required: true,
                 order: 2
-              }),
-              new TextboxQuestion({
+            }),
+            new TextboxQuestion({
                 id: 3,
                 key: 'role',
                 label: 'Role',
@@ -217,8 +218,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 required: true,
                 order: 3,
                 hint: 'Enter the role in the company'
-              }),
-              new TextboxQuestion({
+            }),
+            new TextboxQuestion({
                 id: 4,
                 key: 'email',
                 label: 'Email',
@@ -226,15 +227,15 @@ export class InMemoryDataService implements InMemoryDbService {
                 value: '',
                 required: true,
                 order: 4
-              }),
-              new TextboxQuestion({
+            }),
+            new TextboxQuestion({
                 id: 5,
                 key: 'phone',
                 label: 'Phone',
                 value: '',
                 required: true,
                 order: 4
-              })
+            })
         ];
 
         const vatQuestions: QuestionBase<any>[] = [
@@ -296,6 +297,112 @@ export class InMemoryDataService implements InMemoryDbService {
             }
         ];
 
-        return {company, contacts, about, logger, country, vat, formQuestions};
+        const roleMenu: RoleMenu[] = [
+            {
+                id: 1,
+                role: 'default',
+                menuGroups: []
+            },
+            {
+                id: 2,
+                role: 'admin',
+                menuGroups: [
+                    {
+                        groupName: 'Admin',
+                        items: [
+                            { link: 'company', title: 'My Company Details' },
+                            { link: 'contacts', title: 'My Contact Details' },
+                            { link: 'vat', title: 'VAT Rates' },
+                            { link: 'country', title: 'Countries' }
+                        ]
+                    },
+                    {
+                        groupName: 'Customers',
+                        items: [
+                            { link: 'newcustomer', title: 'Add New Prospects' },
+                            { link: 'editcustomer', title: 'Existing Customers' }
+                        ]
+
+                    },
+                    {
+                        groupName: 'Talent',
+                        items: [
+                            { link: 'newtalent', title: 'Add New Talent/Engineer' },
+                            { link: 'edittalent', title: 'Existing Talent/Engineers' }
+                        ]
+                    },
+                    {
+                        groupName: 'Jobs',
+                        items: [
+                            { link: 'jobentry', title: 'Job Entry' },
+                            { link: 'jobsearch', title: 'Job Search' }
+                        ]
+                    },
+                    {
+                        groupName: 'Invoices',
+                        items: [
+                            { link: 'sendinvoices', title: 'Send Invoices' },
+                            { link: 'resendinvoices', title: 'Resend Invoices' },
+                            { link: 'viewinvoices', title: 'View Invoices' }
+                        ]
+                    },
+                    {
+                        groupName: 'Remittances',
+                        items: [
+                            { link: 'sendremittances', title: 'Send Remittances' },
+                            { link: 'resendremittances', title: 'Resend Remittances' },
+                            { link: 'viewremittances', title: 'View Remittances' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 3,
+                role: 'user',
+                menuGroups: [
+                    {
+                        groupName: 'Customers',
+                        items: [
+                            { link: 'newcustomer', title: 'Add New Prospects' },
+                            { link: 'editcustomer', title: 'Existing Customers' }
+                        ]
+
+                    },
+                    {
+                        groupName: 'Talent',
+                        items: [
+                            { link: 'newtalent', title: 'Add New Talent/Engineer' },
+                            { link: 'edittalent', title: 'Existing Talent/Engineers' }
+                        ]
+                    },
+                    {
+                        groupName: 'Jobs',
+                        items: [
+                            { link: 'jobentry', title: 'Job Entry' },
+                            { link: 'jobsearch', title: 'Job Search' }
+                        ]
+                    },
+                    {
+                        groupName: 'Invoices',
+                        items: [
+                            { link: 'sendinvoices', title: 'Send Invoices' },
+                            { link: 'resendinvoices', title: 'Resend Invoices' },
+                            { link: 'viewinvoices', title: 'View Invoices' }
+                        ]
+                    },
+                    {
+                        groupName: 'Remittances',
+                        items: [
+                            { link: 'sendremittances', title: 'Send Remittances' },
+                            { link: 'resendremittances', title: 'Resend Remittances' },
+                            { link: 'viewremittances', title: 'View Remittances' }
+                        ]
+                    }
+                ]
+            }
+
+        ]
+
+        return { company, contacts, about, logger, country, vat, formQuestions, roleMenu };
     }
 }

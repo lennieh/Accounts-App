@@ -1,5 +1,4 @@
 import { Component, OnInit }                from '@angular/core';
-import { HostBinding }                      from '@angular/core';
 import { ActivatedRoute}                    from '@angular/router';
 import { Location }                         from '@angular/common';
 import 'rxjs/add/operator/switchMap';
@@ -8,8 +7,8 @@ import { ToasterService }                   from 'angular2-toaster';
 import { MatDialog }                        from '@angular/material';
 
 import { AbstractDynamicPageComponent }     from '../../../abstract/abstract-dynamic-page.component';
-import { QuestionService }                  from '../../../generate/question.service';
-import { slideInDownAnimation }             from '../../animations';
+import { QuestionService }                  from '../../../dynamic/question.service';
+import { routerTransition }                 from '../../../shared/router.animations';
 
 import { Contact }                          from '../../../model/contact';
 import { ContactService }                   from '../../../services/contact.service';
@@ -19,13 +18,12 @@ import { ContactService }                   from '../../../services/contact.serv
   selector: 'app-new-contact',
   templateUrl: './new-contact.component.html',
   styleUrls: ['./new-contact.component.scss'],
-  animations: [slideInDownAnimation]
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''} 
 })
 export class NewContactComponent
   extends AbstractDynamicPageComponent
   implements OnInit {
-
-  @HostBinding ('@routeAnimation') routeAnimation = true;
 
   constructor(
     private contactService: ContactService,

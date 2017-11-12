@@ -1,6 +1,4 @@
 import { Component, OnInit }              from '@angular/core';
-import { HostBinding }                    from '@angular/core';
-import { AfterViewInit, ViewChild }       from '@angular/core';
 import { ActivatedRoute, ParamMap}        from '@angular/router';
 import { Location }                       from '@angular/common';
 import { Observable }                     from 'rxjs/Observable';
@@ -9,13 +7,9 @@ import 'rxjs/add/operator/switchMap';
 import { MatDialog }                      from '@angular/material';
 import { ToasterService }                 from 'angular2-toaster';
 
-import { CanDeactivateGuard }             from '../../../core/services/can-deactivate-guard.service';
-import { AppConfirmDialogComponent }      from '../../../shared/confirm-dialog/confirm-dialog.component';
 import { AbstractDynamicPageComponent }   from '../../../abstract/abstract-dynamic-page.component';
-import { slideInDownAnimation }           from '../../animations';
-import { QuestionBase }                   from '../../../generate/model/question-base';
-import { QuestionService }                from '../../../generate/question.service';
-import { DynamicFormComponent }           from '../../../generate/dynamic-form/dynamic-form.component';
+import { QuestionService }                from '../../../dynamic/question.service';
+import { routerTransition }               from '../../../shared/router.animations';
 
 import { Country }                        from '../../../model/country';
 import { CountryService }                 from '../../../services/country.service';
@@ -24,15 +18,12 @@ import { CountryService }                 from '../../../services/country.servic
   selector: 'app-edit-country',
   templateUrl: './edit-country.component.html',
   styleUrls: ['./edit-country.component.scss'],
-  animations: [slideInDownAnimation]
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''} 
 })
 export class EditCountryComponent
   extends AbstractDynamicPageComponent
-  implements CanDeactivateGuard, AfterViewInit, OnInit {
-
-  @HostBinding ('@routeAnimation') routeAnimation = true;
-
-  saving = false;
+  implements OnInit {
 
   country: Country;
   formData: any;

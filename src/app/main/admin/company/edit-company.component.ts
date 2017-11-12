@@ -1,5 +1,4 @@
 import { Component, OnInit }              from '@angular/core';
-import { HostBinding }                    from '@angular/core';
 import { ActivatedRoute, ParamMap}        from '@angular/router';
 import { Location }                       from '@angular/common';
 import 'rxjs/add/operator/switchMap';
@@ -7,9 +6,9 @@ import 'rxjs/add/operator/switchMap';
 import { ToasterService }                 from 'angular2-toaster';
 import { MatDialog }                      from '@angular/material';
 
-import { slideInDownAnimation }           from '../../animations';
 import { AbstractDynamicPageComponent }   from '../../../abstract/abstract-dynamic-page.component';
-import { QuestionService }                from '../../../generate/question.service';
+import { QuestionService }                from '../../../dynamic/question.service';
+import { routerTransition }               from '../../../shared/router.animations';
 
 import { Company }                        from '../../../model/company';
 import { CompanyService }                 from '../../../services/company.service';
@@ -18,13 +17,12 @@ import { CompanyService }                 from '../../../services/company.servic
   selector: 'app-edit-company',
   templateUrl: './edit-company.component.html',
   styleUrls: ['./edit-company.component.scss'],
-  animations: [slideInDownAnimation]
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''} 
 })
 export class EditCompanyComponent
   extends AbstractDynamicPageComponent
   implements OnInit {
-
-  @HostBinding ('@routeAnimation') routeAnimation = true;
 
   company: Company;
   formData: any;

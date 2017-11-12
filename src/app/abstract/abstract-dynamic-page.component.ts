@@ -6,13 +6,12 @@ import { Observable }                   from 'rxjs/Observable';
 import { MatDialog }                    from '@angular/material';
 import { ToasterService }               from 'angular2-toaster';
 
+import { AbstractEditPageComponent }    from './abstract-edit-page.component';
 import { CanDeactivateGuard }           from '../core/services/can-deactivate-guard.service';
 import { AppConfirmDialogComponent }    from '../shared/confirm-dialog/confirm-dialog.component';
-import { slideInDownAnimation }         from '../main/animations';
 
-import { QuestionService }              from '../generate/question.service';
-import { DynamicFormComponent }         from '../generate/dynamic-form/dynamic-form.component';
-import { AbstractEditPageComponent }    from './abstract-edit-page.component';
+import { QuestionService }              from '../dynamic/question.service';
+import { DynamicFormComponent }         from '../dynamic/dynamic-form/dynamic-form.component';
 
 export abstract class AbstractDynamicPageComponent
     extends AbstractEditPageComponent

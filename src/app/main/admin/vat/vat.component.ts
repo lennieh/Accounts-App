@@ -1,14 +1,14 @@
 import { Component, OnInit }          from '@angular/core';
-import { HostBinding }                from '@angular/core';
-import { MatDialog }                  from '@angular/material';
 import { DataSource }                 from '@angular/cdk/collections';
 import { Observable }                 from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 import { ToasterService }             from 'angular2-toaster';
+import { MatDialog }                  from '@angular/material';
+
 import { AbstractPageComponent }      from '../../../abstract/abstract-page.component';
-import { slideInDownAnimation }       from '../../animations';
-import { AppConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { AppConfirmDialogComponent }  from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { routerTransition }           from '../../../shared/router.animations';
 
 import { Vat }                        from '../../../model/vat';
 import { VatService }                 from '../../../services/vat.service';
@@ -17,13 +17,12 @@ import { VatService }                 from '../../../services/vat.service';
   selector: 'app-vat',
   templateUrl: './vat.component.html',
   styleUrls: ['./vat.component.scss'],
-  animations: [slideInDownAnimation]
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''} 
 })
 export class VatComponent
   extends AbstractPageComponent
   implements OnInit {
-
-  @HostBinding ('@routeAnimation') routeAnimation = true;
 
   displayedColumns = ['startDate', 'vatRate', 'actions'];
   vat: Vat[];
