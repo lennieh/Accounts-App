@@ -9,6 +9,7 @@ import { AppComponent }                   from './app.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }            from './in-memory-data.service';
 
+import { LoginRoutingModule }             from './login/login-routing.module';
 import { CoreModule }                     from './core/core.module';
 import { SharedModule }                   from './shared/shared.module';
 import { MainModule }                     from './main/main.module';
@@ -19,6 +20,7 @@ import { AboutService }                   from './services/about.service';
 import { ContactComponent }               from './contact/contact.component';
 import { AboutComponent }                 from './about/about.component';
 import { ErrorComponent }                 from './error/error.component';
+import { LoginComponent }                 from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,14 +28,15 @@ import { ErrorComponent }                 from './error/error.component';
     ContactComponent,
     AboutComponent,
     ErrorComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,
-//    BrowserModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),
     CoreModule,
     SharedModule,
     MainModule,
+    LoginRoutingModule,
     AppRoutingModule
   ],
   providers: [

@@ -319,8 +319,8 @@ export class InMemoryDataService implements InMemoryDbService {
                     {
                         groupName: 'Customers',
                         items: [
-                            { link: 'newcustomer', title: 'Add New Prospects' },
-                            { link: 'editcustomer', title: 'Existing Customers' }
+                            { link: 'customer', title: 'View/Amend Customers'},
+                            { link: 'customer/new', title: 'Add New Prospects' },
                         ]
 
                     },
@@ -341,9 +341,9 @@ export class InMemoryDataService implements InMemoryDbService {
                     {
                         groupName: 'Invoices',
                         items: [
-                            { link: 'sendinvoices', title: 'Send Invoices' },
-                            { link: 'resendinvoices', title: 'Resend Invoices' },
-                            { link: 'viewinvoices', title: 'View Invoices' }
+                            { link: 'invoice', title: 'View Invoices' },
+                            { link: 'invoice/send', title: 'Send Invoices' },
+                            { link: 'invoice/resend', title: 'Resend Invoices' },
                         ]
                     },
                     {
@@ -363,8 +363,8 @@ export class InMemoryDataService implements InMemoryDbService {
                     {
                         groupName: 'Customers',
                         items: [
-                            { link: 'newcustomer', title: 'Add New Prospects' },
-                            { link: 'editcustomer', title: 'Existing Customers' }
+                            { link: 'customer', title: 'View/Amend Customers'},
+                            { link: 'customer/new', title: 'Add New Prospects' },
                         ]
 
                     },
@@ -385,9 +385,9 @@ export class InMemoryDataService implements InMemoryDbService {
                     {
                         groupName: 'Invoices',
                         items: [
-                            { link: 'sendinvoices', title: 'Send Invoices' },
-                            { link: 'resendinvoices', title: 'Resend Invoices' },
-                            { link: 'viewinvoices', title: 'View Invoices' }
+                            { link: 'invoice', title: 'View Invoices' },
+                            { link: 'invoice/send', title: 'Send Invoices' },
+                            { link: 'invoice/resend', title: 'Resend Invoices' },
                         ]
                     },
                     {
@@ -400,8 +400,7 @@ export class InMemoryDataService implements InMemoryDbService {
                     }
                 ]
             }
-
-        ]
+        ];
 
         return { company, contacts, about, logger, country, vat, formQuestions, roleMenu };
     }
