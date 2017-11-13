@@ -1,7 +1,8 @@
 import { NgModule }                     from '@angular/core';
 import { Routes, RouterModule }         from '@angular/router';
 
-import { AuthGuard }                    from '../../core/services/auth-guard.service';
+import { AuthGuardUser }                from '../../core/services/auth-guard.service';
+import { AuthGuardView }                from '../../core/services/auth-guard.service';
 import { CanDeactivateGuard }           from '../../core/services/can-deactivate-guard.service';
 
 import { CustomersComponent }           from './customers/customers.component';
@@ -11,9 +12,10 @@ import { EditCustomerComponent }        from './edit-customer/edit-customer.comp
 const routes: Routes = [
   {
     path: '',
+    canActivate: [AuthGuardView],
     children: [
-      { path: 'new',        component: NewCustomerComponent, canActivateChild:[AuthGuard], canDeactivate: [CanDeactivateGuard] },
-      { path: 'edit/:id',   component: EditCustomerComponent, canActivateChild:[AuthGuard], canDeactivate: [CanDeactivateGuard] },
+      { path: 'new',        component: NewCustomerComponent, canActivate: [AuthGuardUser], canDeactivate: [CanDeactivateGuard] },
+      { path: 'edit/:id',   component: EditCustomerComponent, canActivate: [AuthGuardUser], canDeactivate: [CanDeactivateGuard] },
       { path: '',           component: CustomersComponent }
     ]
    }

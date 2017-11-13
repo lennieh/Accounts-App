@@ -17,20 +17,22 @@ import { ResendRemittancesComponent }   from './remit/resend-remittances/resend-
 import { ViewRemittancesComponent }     from './remit/view-remittances/view-remittances.component';
 
 import { ReportsComponent }             from './reports/reports.component';
+import { AuthGuardAdmin, AuthGuardView } from '../core/services/auth-guard.service';
 
 const routes: Routes = [
   {
     path: 'main',
     component: MainComponent,
+    canActivate: [AuthGuardView],
     children: [
       { path: 'dashboard',          component: DashboardComponent },
-      { path: 'admin',              loadChildren: 'app/main/admin/admin.module#AdminModule'},
-
-      { path: 'jobentry',           component: JobEntryComponent },
-      { path: 'jobsearch',          component: JobSearchComponent },
+      { path: 'admin',              loadChildren: 'app/main/admin/admin.module#AdminModule', canActivate: [AuthGuardAdmin]},
 
       { path: 'customer',           loadChildren: 'app/main/customer/customer.module#CustomerModule'},
       { path: 'invoice',            loadChildren: 'app/main/invoice/invoice.module#InvoiceModule'},
+
+      { path: 'jobentry',           component: JobEntryComponent },
+      { path: 'jobsearch',          component: JobSearchComponent },
 
       { path: 'newtalent',          component: NewTalentComponent },
       { path: 'edittalent',         component: EditTalentComponent },

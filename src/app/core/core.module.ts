@@ -4,7 +4,9 @@ import { CommonModule }                       from '@angular/common';
 import { Toast, ToasterService }              from 'angular2-toaster';
 
 import { AuthService }                        from './services/auth.service';
-import { AuthGuard }                          from './services/auth-guard.service';
+import { AuthGuardAdmin }                     from './services/auth-guard.service';
+import { AuthGuardUser }                      from './services/auth-guard.service';
+import { AuthGuardView }                      from './services/auth-guard.service';
 import { HttpCacheService }                   from './services/http-cache.service';
 import { LoggerService }                      from './services/logger.service';
 import { CanDeactivateGuard }                 from './services/can-deactivate-guard.service';
@@ -26,7 +28,9 @@ import { throwIfAlreadyLoaded }               from './module-import-guard';
   ],
   providers: [
     AuthService,
-    AuthGuard,
+    AuthGuardAdmin,
+    AuthGuardUser,
+    AuthGuardView,
     LoggerService,
     ToasterService,
     HttpCacheService,

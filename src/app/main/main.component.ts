@@ -46,20 +46,20 @@ export class MainComponent
    }
 
   ngOnInit() {
-      // responsive stuff 
+      // responsive stuff
       this.currentPage = 'Dashboard';
       if ( this.breakpointObserver.isMatched('(max-width: 959px;)')) {
         this.activateHandsetLayout();
       } else {
         this.activateWebLayout();
       }
-      this.router.events.subscribe()
+      this.router.events.subscribe();
   }
 
   getMenu(): void {
     this.loading = true;
     this.roleMenuService.getMenuItems().subscribe(
-      data => { 
+      data => {
         this.loading = false;
         this.mainMenu = data[0].menuGroups; },
       error => {

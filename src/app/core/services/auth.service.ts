@@ -8,9 +8,15 @@ import 'rxjs/add/operator/delay';
 export class AuthService {
 
   isLoggedIn = false;
+  roles: string[] = [];
   redirectUrl: string;
 
   login(): Observable<boolean> {
+    // todo: will capture the roles here with user credentials
+   // this.roles.push('admin');
+    // this.roles.push('user');
+    this.roles.push('view');
+
     return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
   }
 
@@ -23,8 +29,23 @@ export class AuthService {
   }
 
   getRole(): string {
-    return 'admin';
+    return this.roles ? this.roles[0] : '';
   }
 
+  isInRole(role: string): boolean {
+
+    // View-Only role is blank
+    if ( role === '') {
+      return true;
+    }
+
+    // otherwise search roles
+    for ( let i = 0; i < this.roles.length; i++ ) {
+      if ( this.roles[i] === role ) {
+        return true;
+      }
+      return false;
+    }
+  }
 
 }
