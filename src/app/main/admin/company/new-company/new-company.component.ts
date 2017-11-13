@@ -1,4 +1,5 @@
 import { Component, OnInit }              from '@angular/core';
+import { HostBinding }                    from '@angular/core';
 import { ActivatedRoute}                  from '@angular/router';
 import { Location }                       from '@angular/common';
 import 'rxjs/add/operator/switchMap';
@@ -6,23 +7,24 @@ import 'rxjs/add/operator/switchMap';
 import { ToasterService }                 from 'angular2-toaster';
 import { MatDialog }                      from '@angular/material';
 
-import { AbstractDynamicPageComponent }   from '../../../abstract/abstract-dynamic-page.component';
-import { QuestionService }                from '../../../dynamic/question.service';
-import { routerTransition }               from '../../../shared/router.animations';
+import { AbstractDynamicPageComponent }   from '../../../../abstract/abstract-dynamic-page.component';
+import { QuestionService }                from '../../../../dynamic/question.service';
+import { routerTransition }               from '../../../../shared/router.animations';
 
-import { Company }                        from '../../../model/company';
-import { CompanyService }                 from '../../../services/company.service';
+import { Company }                        from '../../../../model/company';
+import { CompanyService }                 from '../../../../services/company.service';
 
 @Component({
   selector: 'app-new-company',
   templateUrl: './new-company.component.html',
   styleUrls: ['./new-company.component.scss'],
-  animations: [routerTransition()],
-  host: {'[@routerTransition]': ''} 
+  animations: [routerTransition()]
 })
 export class NewCompanyComponent
   extends AbstractDynamicPageComponent
   implements OnInit {
+
+  @HostBinding('@routerTransition') routerTransition = '';
 
   constructor(
     private companyService: CompanyService,

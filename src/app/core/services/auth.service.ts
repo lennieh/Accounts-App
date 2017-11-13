@@ -9,7 +9,7 @@ export class AuthService {
     return '';
   }
 
-  getRole() : string {
-    return 'user';
+  getRole(): string {
+    return 'admin';
   }
 }

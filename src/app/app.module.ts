@@ -29,7 +29,7 @@ import { ErrorComponent }                 from './error/error.component';
   ],
   imports: [
     HttpClientModule,
-    BrowserModule,
+//    BrowserModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),
     CoreModule,
     SharedModule,

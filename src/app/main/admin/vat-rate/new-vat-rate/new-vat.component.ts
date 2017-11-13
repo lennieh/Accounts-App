@@ -7,12 +7,12 @@ import 'rxjs/add/operator/switchMap';
 import { ToasterService }                 from 'angular2-toaster';
 import { MatDialog }                      from '@angular/material';
 
-import { AbstractDynamicPageComponent }   from '../../../abstract/abstract-dynamic-page.component';
-import { QuestionService }                from '../../../dynamic/question.service';
-import { routerTransition }               from '../../../shared/router.animations';
+import { AbstractDynamicPageComponent }   from '../../../../abstract/abstract-dynamic-page.component';
+import { QuestionService }                from '../../../../dynamic/question.service';
+import { routerTransition }               from '../../../../shared/router.animations';
 
-import { Vat }                            from '../../../model/vat';
-import { VatService }                     from '../../../services/vat.service';
+import { Vat }                            from '../../../../model/vat';
+import { VatService }                     from '../../../../services/vat.service';
 
 @Component({
   selector: 'app-new-vat',

@@ -310,10 +310,10 @@ export class InMemoryDataService implements InMemoryDbService {
                     {
                         groupName: 'Admin',
                         items: [
-                            { link: 'company', title: 'My Company Details' },
-                            { link: 'contacts', title: 'My Contact Details' },
-                            { link: 'vat', title: 'VAT Rates' },
-                            { link: 'country', title: 'Countries' }
+                            { link: 'admin/company', title: 'My Company Details' },
+                            { link: 'admin/contact', title: 'My Contact Details' },
+                            { link: 'admin/vat', title: 'VAT Rates' },
+                            { link: 'admin/country', title: 'Countries' }
                         ]
                     },
                     {

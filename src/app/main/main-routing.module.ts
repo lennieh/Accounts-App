@@ -6,22 +6,6 @@ import { CanDeactivateGuard }           from '../core/services/can-deactivate-gu
 import { MainComponent }                from './main.component';
 import { DashboardComponent }           from './dashboard/dashboard.component';
 
-import { CompaniesComponent }           from './admin/company/companies.component';
-import { NewCompanyComponent }          from './admin/company/new-company.component';
-import { EditCompanyComponent }         from './admin/company/edit-company.component';
-
-import { VatComponent }                 from './admin/vat/vat.component';
-import { NewVatComponent }              from './admin/vat/new-vat.component';
-import { EditVatComponent }             from './admin/vat/edit-vat.component';
-
-import { ContactsComponent }            from './admin/contacts/contacts.component';
-import { NewContactComponent }          from './admin/contacts/new-contact.component';
-import { EditContactComponent }         from './admin/contacts/edit-contact.component';
-
-import { CountryComponent }             from './admin/country/country.component';
-import { NewCountryComponent }          from './admin/country/new-country.component';
-import { EditCountryComponent }         from './admin/country/edit-country.component';
-
 import { JobEntryComponent }            from './job/job-entry/job-entry.component';
 import { JobSearchComponent }           from './job/job-search/job-search.component';
 
@@ -47,21 +31,7 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       { path: 'dashboard',          component: DashboardComponent },
-      { path: 'company',            component: CompaniesComponent },
-      { path: 'company/new',        component: NewCompanyComponent, canDeactivate: [CanDeactivateGuard] },
-      { path: 'company/edit/:id',   component: EditCompanyComponent, canDeactivate: [CanDeactivateGuard] },
-
-      { path: 'vat',                component: VatComponent },
-      { path: 'vat/new',            component: NewVatComponent, canDeactivate: [CanDeactivateGuard] },
-      { path: 'vat/edit/:id',       component: EditVatComponent, canDeactivate: [CanDeactivateGuard] },
-
-      { path: 'contacts',           component: ContactsComponent },
-      { path: 'contacts/new',       component: NewContactComponent, canDeactivate: [CanDeactivateGuard] },
-      { path: 'contacts/edit/:id',  component: EditContactComponent, canDeactivate: [CanDeactivateGuard] },
-
-      { path: 'country',            component: CountryComponent },
-      { path: 'country/new',        component: NewCountryComponent, canDeactivate: [CanDeactivateGuard] },
-      { path: 'country/edit/:id',   component: EditCountryComponent, canDeactivate: [CanDeactivateGuard] },
+      { path: 'admin',              loadChildren: 'app/main/admin/admin.module#AdminModule'},
 
       { path: 'jobentry',           component: JobEntryComponent },
       { path: 'jobsearch',          component: JobSearchComponent },

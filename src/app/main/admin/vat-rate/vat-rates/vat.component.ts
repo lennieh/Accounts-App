@@ -6,12 +6,12 @@ import 'rxjs/add/observable/of';
 import { ToasterService }             from 'angular2-toaster';
 import { MatDialog }                  from '@angular/material';
 
-import { AbstractPageComponent }      from '../../../abstract/abstract-page.component';
-import { AppConfirmDialogComponent }  from '../../../shared/confirm-dialog/confirm-dialog.component';
-import { routerTransition }           from '../../../shared/router.animations';
+import { AbstractPageComponent }      from '../../../../abstract/abstract-page.component';
+import { AppConfirmDialogComponent }  from '../../../../shared/confirm-dialog/confirm-dialog.component';
+import { routerTransition }           from '../../../../shared/router.animations';
 
-import { Vat }                        from '../../../model/vat';
-import { VatService }                 from '../../../services/vat.service';
+import { Vat }                        from '../../../../model/vat';
+import { VatService }                 from '../../../../services/vat.service';
 
 @Component({
   selector: 'app-vat',

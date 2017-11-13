@@ -7,12 +7,12 @@ import 'rxjs/add/operator/switchMap';
 import { MatDialog }                      from '@angular/material';
 import { ToasterService }                 from 'angular2-toaster';
 
-import { AbstractDynamicPageComponent }   from '../../../abstract/abstract-dynamic-page.component';
-import { QuestionService }                from '../../../dynamic/question.service';
-import { routerTransition }               from '../../../shared/router.animations';
+import { AbstractDynamicPageComponent }   from '../../../../abstract/abstract-dynamic-page.component';
+import { QuestionService }                from '../../../../dynamic/question.service';
+import { routerTransition }               from '../../../../shared/router.animations';
 
-import { Country }                        from '../../../model/country';
-import { CountryService }                 from '../../../services/country.service';
+import { Country }                        from '../../../../model/country';
+import { CountryService }                 from '../../../../services/country.service';
 
 @Component({
   selector: 'app-edit-country',
