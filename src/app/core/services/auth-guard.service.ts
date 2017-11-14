@@ -80,6 +80,6 @@ export class AuthGuardView
 
     constructor(authService: AuthService, router: Router) {
         super(authService, router);
-        this.role = '';
+        this.role = 'view';
     }
 }

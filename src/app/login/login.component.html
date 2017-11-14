@@ -1,6 +1,13 @@
 <h2>LOGIN</h2>
 <p>{{message}}</p>
-<p>
+<div>
+<mat-radio-group [(ngModel)]="userRole" class="example-radio-group">
+    <mat-radio-button value="admin" class="example-radio-button">admin</mat-radio-button>
+    <mat-radio-button value="user" class="example-radio-button">user</mat-radio-button>
+    <mat-radio-button value="view" class="example-radio-button">view</mat-radio-button>
+</mat-radio-group>
+</div>
+<div>
 <button (click)="login()"  *ngIf="!authService.isLoggedIn">Login</button>
 <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
-</p>
+</div>

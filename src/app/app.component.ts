@@ -1,5 +1,8 @@
 import { Component }                        from '@angular/core';
+import { Router }                           from '@angular/router';
 import { ToasterService, ToasterConfig }    from 'angular2-toaster';
+
+import { AuthService }                      from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +12,10 @@ import { ToasterService, ToasterConfig }    from 'angular2-toaster';
 export class AppComponent {
   title = 'Accounts-App';
 
-  constructor(private toasterService: ToasterService) {
+  constructor(
+    private toasterService: ToasterService,
+    private router: Router,
+    private authService: AuthService ) {
   }
 
   public toasterconfig: ToasterConfig = new ToasterConfig({
@@ -17,4 +23,21 @@ export class AppComponent {
       animation: 'slideDown',
       limit: 5
     });
+
+  login(): void {
+    this.router.navigate(['login']);
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['login']);
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn;
+  }
+
+  username(): string {
+    return this.authService.name;
+  }
 }

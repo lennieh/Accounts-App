@@ -361,6 +361,15 @@ export class InMemoryDataService implements InMemoryDbService {
                 role: 'user',
                 menuGroups: [
                     {
+                        groupName: 'Admin',
+                        items: [
+                            { link: 'admin/company', title: 'My Company Details' },
+                            { link: 'admin/contact', title: 'My Contact Details' },
+                            { link: 'admin/vat', title: 'VAT Rates' },
+                            { link: 'admin/country', title: 'Countries' }
+                        ]
+                    },
+                    {
                         groupName: 'Customers',
                         items: [
                             { link: 'customer', title: 'View/Amend Customers'},
@@ -395,6 +404,51 @@ export class InMemoryDataService implements InMemoryDbService {
                         items: [
                             { link: 'sendremittances', title: 'Send Remittances' },
                             { link: 'resendremittances', title: 'Resend Remittances' },
+                            { link: 'viewremittances', title: 'View Remittances' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 4,
+                role: 'view',
+                menuGroups: [
+                    {
+                        groupName: 'Admin',
+                        items: [
+                            { link: 'admin/company', title: 'My Company Details' },
+                            { link: 'admin/contact', title: 'My Contact Details' },
+                            { link: 'admin/vat', title: 'VAT Rates' },
+                            { link: 'admin/country', title: 'Countries' }
+                        ]
+                    },
+                    {
+                        groupName: 'Customers',
+                        items: [
+                            { link: 'customer', title: 'View Customers'},
+                        ]
+                    },
+                    {
+                        groupName: 'Talent',
+                        items: [
+                            { link: 'talent', title: 'View Talent/Engineers' },
+                        ]
+                    },
+                    {
+                        groupName: 'Jobs',
+                        items: [
+                            { link: 'jobsearch', title: 'Job Search' }
+                        ]
+                    },
+                    {
+                        groupName: 'Invoices',
+                        items: [
+                            { link: 'invoice', title: 'View Invoices' },
+                        ]
+                    },
+                    {
+                        groupName: 'Remittances',
+                        items: [
                             { link: 'viewremittances', title: 'View Remittances' }
                         ]
                     }

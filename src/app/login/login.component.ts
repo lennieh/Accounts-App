@@ -10,6 +10,7 @@ import { AuthService }        from '../core/services/auth.service';
 export class LoginComponent implements OnInit {
 
   message: string;
+  userRole: string;
 
   constructor(public authService: AuthService, public router: Router ) {
     this.setMessage();
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.message = 'Trying to log in...';
-    this.authService.login().subscribe(() => {
+    this.authService.login(this.userRole).subscribe(() => {
       this.setMessage();
       if ( this.authService.isLoggedIn) {
         const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'main';

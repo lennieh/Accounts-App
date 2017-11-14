@@ -9,18 +9,25 @@ export class AuthService {
 
   isLoggedIn = false;
   roles: string[] = [];
+  name: string;
   redirectUrl: string;
 
-  login(): Observable<boolean> {
-    // todo: will capture the roles here with user credentials
-   // this.roles.push('admin');
-    // this.roles.push('user');
+  login(role: string): Observable<boolean> {
     this.roles.push('view');
+    if ( role === 'user' || role === 'admin') {
+      this.roles.push('user');
+    }
+    if ( role === 'admin') {
+      this.roles.push('admin');
+    }
+    this.name = 'Lennie';
 
     return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
   }
 
   logout(): void {
+    this.name = '';
+    this.roles = [];
     this.isLoggedIn = false;
   }
 
@@ -29,15 +36,10 @@ export class AuthService {
   }
 
   getRole(): string {
-    return this.roles ? this.roles[0] : '';
+    return this.roles ? this.roles[this.roles.length - 1] : '';
   }
 
   isInRole(role: string): boolean {
-
-    // View-Only role is blank
-    if ( role === '') {
-      return true;
-    }
 
     // otherwise search roles
     for ( let i = 0; i < this.roles.length; i++ ) {
