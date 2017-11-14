@@ -2,3 +2,10 @@
     font-style: italic;
 }
 
+.mat-input-element:disabled {
+    color: rgba(0, 0, 0, 1);
+}
+input:disabled {
+    font-style: bold;
+}
+

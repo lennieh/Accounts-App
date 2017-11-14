@@ -66,6 +66,10 @@ export class HttpCacheService {
       }
     }
   }
+
+  invalidateAll(): void {
+    this.cacheEntries = [];
+  }
 }
 
 export class CachedRequest {

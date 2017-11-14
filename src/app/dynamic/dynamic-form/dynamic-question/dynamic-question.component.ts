@@ -6,7 +6,8 @@ import { TextboxQuestion }          from '../../model/question-textbox';
 
 @Component({
   selector: 'app-df-question',
-  templateUrl: './dynamic-question.component.html'
+  templateUrl: './dynamic-question.component.html',
+  styleUrls: ['./dynamic-question.component.scss']
 })
 export class DynamicQuestionComponent implements OnInit {
   @Input() question: QuestionBase<any>;

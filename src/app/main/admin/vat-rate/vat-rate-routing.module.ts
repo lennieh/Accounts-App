@@ -2,18 +2,21 @@ import { NgModule }                     from '@angular/core';
 import { Routes, RouterModule }         from '@angular/router';
 
 import { CanDeactivateGuard }           from '../../../core/services/can-deactivate-guard.service';
+import { AuthGuardAdmin }               from '../../../core/services/auth-guard.service';
 
-import { VatComponent }                 from './vat-rates/vat.component';
-import { NewVatComponent }              from './new-vat-rate/new-vat.component';
-import { EditVatComponent }             from './edit-vat-rate/edit-vat.component';
+import { VatRatesComponent }            from './vat-rates/vat-rates.component';
+import { NewVatRateComponent }          from './new-vat-rate/new-vat-rate.component';
+import { EditVatRateComponent }         from './edit-vat-rate/edit-vat-rate.component';
+import { ViewVatRateComponent }         from './view-vat-rate/view-vat-rate.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
-      { path: '',           component: VatComponent },
-      { path: 'new',        component: NewVatComponent, canDeactivate: [CanDeactivateGuard] },
-      { path: 'edit/:id',   component: EditVatComponent, canDeactivate: [CanDeactivateGuard] },
+      { path: '',           component: VatRatesComponent },
+      { path: 'new',        component: NewVatRateComponent, canActivate: [AuthGuardAdmin], canDeactivate: [CanDeactivateGuard] },
+      { path: 'edit/:id',   component: EditVatRateComponent, canActivate: [AuthGuardAdmin], canDeactivate: [CanDeactivateGuard] },
+      { path: 'view/:id',   component: ViewVatRateComponent, canDeactivate: [CanDeactivateGuard] },
     ]
    }
 ];
@@ -22,4 +25,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class VatRoutingModule { }
+export class VatRateRoutingModule { }

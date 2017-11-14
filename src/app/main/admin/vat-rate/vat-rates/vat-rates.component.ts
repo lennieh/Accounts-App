@@ -15,12 +15,12 @@ import { VatService }                 from '../../../../services/vat.service';
 
 @Component({
   selector: 'app-vat',
-  templateUrl: './vat.component.html',
-  styleUrls: ['./vat.component.scss'],
+  templateUrl: './vat-rates.component.html',
+  styleUrls: ['./vat-rates.component.scss'],
   animations: [routerTransition()],
   host: {'[@routerTransition]': ''} 
 })
-export class VatComponent
+export class VatRatesComponent
   extends AbstractPageComponent
   implements OnInit {
 

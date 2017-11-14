@@ -15,12 +15,12 @@ import { VatService }                   from '../../../../services/vat.service';
 
 @Component({
   selector: 'app-edit-vat',
-  templateUrl: './edit-vat.component.html',
-  styleUrls: ['./edit-vat.component.scss'],
+  templateUrl: './edit-vat-rate.component.html',
+  styleUrls: ['./edit-vat-rate.component.scss'],
   animations: [routerTransition()],
   host: {'[@routerTransition]': ''} 
 })
-export class EditVatComponent
+export class EditVatRateComponent
   extends AbstractDynamicPageComponent
   implements OnInit {
 

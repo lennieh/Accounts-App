@@ -1,6 +1,8 @@
 import { Component, OnInit }  from '@angular/core';
 import { Router }             from '@angular/router';
+
 import { AuthService }        from '../core/services/auth.service';
+import { HttpCacheService }   from '../core/services/http-cache.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,10 @@ export class LoginComponent implements OnInit {
   message: string;
   userRole: string;
 
-  constructor(public authService: AuthService, public router: Router ) {
+  constructor(
+    public authService: AuthService,
+    public router: Router,
+    private httpCache: HttpCacheService ) {
     this.setMessage();
   }
 
@@ -37,5 +42,6 @@ export class LoginComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.setMessage();
+    this.httpCache.invalidateAll();
   }
 }

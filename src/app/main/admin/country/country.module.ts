@@ -12,6 +12,7 @@ import { CountryRoutingModule }         from './country-routing.module';
 import { CountryComponent }             from './countries/country.component';
 import { NewCountryComponent }          from './new-country/new-country.component';
 import { EditCountryComponent }         from './edit-country/edit-country.component';
+import { ViewCountryComponent } from './view-country/view-country.component';
 
 @NgModule({
 imports: [
@@ -24,7 +25,8 @@ declarations: [
 //    DynamicFormQuestionComponent,
     CountryComponent,
     NewCountryComponent,
-    EditCountryComponent
+    EditCountryComponent,
+    ViewCountryComponent
 ],
 providers: [
     CountryService

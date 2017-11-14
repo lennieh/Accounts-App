@@ -21,7 +21,6 @@ import { ContactComponent }               from './contact/contact.component';
 import { AboutComponent }                 from './about/about.component';
 import { ErrorComponent }                 from './error/error.component';
 import { LoginComponent }                 from './login/login.component';
-import { DynamicViewonlyQuestionComponent } from './dynamic-form/dynamic-viewonly-question/dynamic-viewonly-question.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,7 @@ import { DynamicViewonlyQuestionComponent } from './dynamic-form/dynamic-viewonl
     ContactComponent,
     AboutComponent,
     ErrorComponent,
-    LoginComponent,
-    DynamicViewonlyQuestionComponent
+    LoginComponent
   ],
   imports: [
     HttpClientModule,
