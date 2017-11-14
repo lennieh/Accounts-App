@@ -19,11 +19,23 @@
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
         <mat-cell *matCellDef="let vr">
-          <button mat-icon-button>
-            <mat-icon aria-label="edit vat rate" routerLink="edit/{{vr.id}}" matTooltip="Edit VAT Rate" class="app-action-icon app-action-button">edit</mat-icon>
+          <button mat-icon-button *ngIf="viewOnly">
+            <mat-icon aria-label="view vat rate" 
+              routerLink="view/{{vr.id}}" 
+              matTooltip="Edit VAT Rate" 
+              class="app-action-icon app-action-button">description</mat-icon>
           </button>
-          <button mat-icon-button>
-            <mat-icon aria-label="delete vat rate" (click)="onDelete(vr); $event.stopPropagation()" matTooltip="Delete VAT Rate" class="app-action-icon app-delete-button">delete</mat-icon>
+          <button mat-icon-button *ngIf="!viewOnly">
+            <mat-icon aria-label="edit vat rate" 
+              routerLink="edit/{{vr.id}}" 
+              matTooltip="Edit VAT Rate" 
+              class="app-action-icon app-action-button">edit</mat-icon>
+          </button>
+          <button mat-icon-button *ngIf="!viewOnly">
+            <mat-icon aria-label="delete vat rate" 
+              (click)="onDelete(vr); $event.stopPropagation()" 
+              matTooltip="Delete VAT Rate" 
+              class="app-action-icon app-delete-button">delete</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
@@ -34,8 +46,11 @@
   </div>
 
   <div>
-    <button mat-icon-button>
-      <mat-icon aria-label="add new vat rate" routerLink="new" matTooltip="Add new VAT Rate" class="app-action-icon app-action-button">add</mat-icon>
+    <button mat-icon-button *ngIf="!viewOnly">
+      <mat-icon aria-label="add new vat rate" 
+        routerLink="new" 
+        matTooltip="Add new VAT Rate" 
+        class="app-action-icon app-action-button">add</mat-icon>
     </button>
     <button mat-icon-button type="button" routerLink="/main/dashboard" matTooltip="Quit" style="margin-right: 0;">
       <mat-icon aria-label="cancel" class="app-action-icon app-cancel-button">cancel</mat-icon>

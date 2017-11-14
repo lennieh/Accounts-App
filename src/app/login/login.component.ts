@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.userRole).subscribe(() => {
       this.setMessage();
       if ( this.authService.isLoggedIn) {
-        const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'main';
+        const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'main/dashboard';
         this.router.navigate([redirect]);
       }
     });

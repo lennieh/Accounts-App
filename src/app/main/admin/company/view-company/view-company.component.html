@@ -5,7 +5,11 @@
   </div>
 
   <div *ngIf="questions && formData">
-    <app-dynamic-form [questions]="questions" [formData]="formData" [viewOnly]="true" (onSave)="onSave($event);" (onCancel)="goBack();" ></app-dynamic-form>
+    <app-dynamic-form 
+      [questions]="questions" 
+      [formData]="formData" 
+      [viewOnly]="true" 
+      (onCancel)="goBack();" ></app-dynamic-form>
   </div>
 
   <div *ngIf="loading">

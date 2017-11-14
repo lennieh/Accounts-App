@@ -46,8 +46,8 @@ export class AuthService {
       if ( this.roles[i] === role ) {
         return true;
       }
-      return false;
     }
+    return false;
   }
 
 }

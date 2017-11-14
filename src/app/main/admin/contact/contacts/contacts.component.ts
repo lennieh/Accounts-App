@@ -6,6 +6,7 @@ import 'rxjs/add/observable/of';
 import { ToasterService }                 from 'angular2-toaster';
 import { MatDialog }                      from '@angular/material';
 
+import { AuthService }                    from '../../../../core/services/auth.service';
 import { AbstractPageComponent }          from '../../../../abstract/abstract-page.component';
 import { AppConfirmDialogComponent }      from '../../../../shared/confirm-dialog/confirm-dialog.component';
 import { routerTransition }               from '../../../../shared/router.animations';
@@ -27,15 +28,18 @@ export class ContactsComponent
   contacts: Contact[];
   dataSource: ContactDataSource;
   displayedColumns = ['name', 'actions'];
+  viewOnly = true;
 
   constructor(
     private contactService: ContactService,
+    private authService: AuthService,
     toasterService: ToasterService,
     public dialog: MatDialog) {
     super(toasterService);
   }
 
   ngOnInit() {
+    this.viewOnly = !this.authService.isInRole('admin');
     this.getContacts();
   }
 

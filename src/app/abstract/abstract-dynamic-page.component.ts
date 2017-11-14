@@ -10,7 +10,7 @@ import { AbstractEditPageComponent }    from './abstract-edit-page.component';
 import { CanDeactivateGuard }           from '../core/services/can-deactivate-guard.service';
 import { AppConfirmDialogComponent }    from '../shared/confirm-dialog/confirm-dialog.component';
 
-import { QuestionService }              from '../dynamic/question.service';
+import { QuestionService }              from '../dynamic/services/question.service';
 import { DynamicFormComponent }         from '../dynamic/dynamic-form/dynamic-form.component';
 
 export abstract class AbstractDynamicPageComponent

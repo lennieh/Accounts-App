@@ -6,6 +6,7 @@ import 'rxjs/add/observable/of';
 import { ToasterService }             from 'angular2-toaster';
 import { MatDialog }                  from '@angular/material';
 
+import { AuthService }                from '../../../../core/services/auth.service';
 import { AbstractPageComponent }      from '../../../../abstract/abstract-page.component';
 import { AppConfirmDialogComponent }  from '../../../../shared/confirm-dialog/confirm-dialog.component';
 import { routerTransition }           from '../../../../shared/router.animations';
@@ -27,15 +28,18 @@ export class VatRatesComponent
   displayedColumns = ['startDate', 'vatRate', 'actions'];
   vat: Vat[];
   dataSource: VatDataSource;
+  viewOnly = true;
 
   constructor(
     private vatService: VatService,
+    private authService: AuthService,
     public dialog: MatDialog,
     toasterService: ToasterService) {
     super(toasterService);
    }
 
   ngOnInit() {
+    this.viewOnly = !this.authService.isInRole('admin');
     this.getVat();
   }
 

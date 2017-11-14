@@ -1,18 +1,18 @@
 import { Injectable }                         from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { QuestionBase }                       from './model/question-base';
-import { TextboxQuestion }                    from './model/question-textbox';
-import { DatepickerQuestion }                 from './model/question-datepicker';
+import { QuestionBase }                       from '../model/question-base';
+import { TextboxQuestion }                    from '../model/question-textbox';
+import { DatepickerQuestion }                 from '../model/question-datepicker';
 
-import { minValueValidator }                  from './validators/number-validator';
-import { maxValueValidator }                  from './validators/number-validator';
+import { minValueValidator }                  from '../validators/number-validator';
+import { maxValueValidator }                  from '../validators/number-validator';
 
-import { minDateValidator }                  from './validators/date-validator';
-import { maxDateValidator }                  from './validators/date-validator';
+import { minDateValidator }                  from '../validators/date-validator';
+import { maxDateValidator }                  from '../validators/date-validator';
 
-import { regexValidator }                    from './validators/text-validator';
-import { ukPostCodeValidator }               from './validators/text-validator';
+import { regexValidator }                    from '../validators/text-validator';
+import { ukPostCodeValidator }               from '../validators/text-validator';
 
 @Injectable()
 export class QuestionControlService {

@@ -14,9 +14,9 @@ const routes: Routes = [
     path: '',
     children: [
       { path: '',           component: CountryComponent },
-      { path: 'new',        component: NewCountryComponent, canActivate:[AuthGuardAdmin], canDeactivate: [CanDeactivateGuard] },
+      { path: 'new',        component: NewCountryComponent, canActivate: [AuthGuardAdmin], canDeactivate: [CanDeactivateGuard] },
       { path: 'edit/:id',   component: EditCountryComponent, canActivate: [AuthGuardAdmin],  canDeactivate: [CanDeactivateGuard] },
-      { path: 'view/:id',   component: EditCountryComponent, canDeactivate: [CanDeactivateGuard] },
+      { path: 'view/:id',   component: ViewCountryComponent, canDeactivate: [CanDeactivateGuard] },
     ]
    }
 ];

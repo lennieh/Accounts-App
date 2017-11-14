@@ -8,7 +8,7 @@ import { ToasterService }                 from 'angular2-toaster';
 import { MatDialog }                      from '@angular/material';
 
 import { AbstractDynamicPageComponent }   from '../../../../abstract/abstract-dynamic-page.component';
-import { QuestionService }                from '../../../../dynamic/question.service';
+import { QuestionService }                from '../../../../dynamic/services/question.service';
 import { routerTransition }               from '../../../../shared/router.animations';
 
 import { Vat }                            from '../../../../model/vat';

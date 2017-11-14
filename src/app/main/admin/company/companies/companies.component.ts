@@ -1,5 +1,4 @@
 import { Component, OnInit }            from '@angular/core';
-import { HostBinding }                  from '@angular/core';
 import { MatDialog }                    from '@angular/material';
 import { DataSource }                   from '@angular/cdk/collections';
 import { Observable }                   from 'rxjs/Observable';
@@ -19,13 +18,12 @@ import { CompanyService }               from '../../../../services/company.servi
   selector: 'app-companies',
   templateUrl: './companies.component.html',
   styleUrls: ['./companies.component.scss'],
-  animations: [routerTransition()]
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''}
 })
 export class CompaniesComponent
   extends AbstractPageComponent
   implements OnInit {
-
-  @HostBinding('@routerTransition') routerTransition = '';
 
   companies: Company[];
   dataSource: CompanyDataSource;

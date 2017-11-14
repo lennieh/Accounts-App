@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup }                from '@angular/forms';
 
-import { QuestionBase }             from '../../model/question-base';
-import { TextboxQuestion }          from '../../model/question-textbox';
+import { QuestionBase }             from '../model/question-base';
+import { TextboxQuestion }          from '../model/question-textbox';
 
 @Component({
   selector: 'app-df-question',
