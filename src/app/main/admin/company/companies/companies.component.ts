@@ -10,6 +10,7 @@ import { ToasterService }               from 'angular2-toaster';
 import { AbstractPageComponent }        from '../../../../abstract/abstract-page.component';
 import { AppConfirmDialogComponent }    from '../../../../shared/confirm-dialog/confirm-dialog.component';
 import { routerTransition }             from '../../../../shared/router.animations';
+import { AuthService }                  from '../../../../core/services/auth.service';
 
 import { Company }                      from '../../../../model/company';
 import { CompanyService }               from '../../../../services/company.service';
@@ -29,15 +30,19 @@ export class CompaniesComponent
   companies: Company[];
   dataSource: CompanyDataSource;
   displayedColumns = ['name', 'actions'];
+  viewOnly = true;
 
   constructor(
     private companyService: CompanyService,
+    private authService: AuthService,
     toasterService: ToasterService,
     public dialog: MatDialog ) {
       super(toasterService);
     }
 
   ngOnInit() {
+    this.viewOnly = !this.authService.isInRole('admin');
+
     this.getCompanies();
   }
 

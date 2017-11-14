@@ -1,4 +1,5 @@
-import { Component, OnInit }              from '@angular/core';
+import { Component, OnInit }                from '@angular/core';
+
 import { HostBinding }                    from '@angular/core';
 import { ActivatedRoute, ParamMap}        from '@angular/router';
 import { Location }                       from '@angular/common';
@@ -15,12 +16,12 @@ import { Company }                        from '../../../../model/company';
 import { CompanyService }                 from '../../../../services/company.service';
 
 @Component({
-  selector: 'app-edit-company',
-  templateUrl: './edit-company.component.html',
-  styleUrls: ['./edit-company.component.scss'],
+  selector: 'app-view-company',
+  templateUrl: './view-company.component.html',
+  styleUrls: ['./view-company.component.scss'],
   animations: [routerTransition()]
 })
-export class EditCompanyComponent
+export class ViewCompanyComponent
   extends AbstractDynamicPageComponent
   implements OnInit {
 
@@ -38,7 +39,7 @@ export class EditCompanyComponent
     toasterService: ToasterService) {
       super(dialog, questionService, location, toasterService);
       this.formName = 'company';
-  }
+     }
 
   ngOnInit() {
     this.loading = true;
@@ -72,38 +73,5 @@ export class EditCompanyComponent
     };
   }
 
-  prepareCompany(payload: any): void {
-    const formModel = payload;
-    this.company.companyName = formModel.companyName;
-    this.company.mainAddress.addressLine1 = formModel.addressLine1;
-    this.company.mainAddress.addressLine2 = formModel.addressLine1;
-    this.company.mainAddress.addressLine3 = formModel.addressLine1;
-    this.company.mainAddress.postTown = formModel.postTown;
-    this.company.mainAddress.postCode = formModel.postCode;
-    this.company.companyRegistration = formModel.companyRegistration;
-    this.company.vatNumber = formModel.vatNumber;
-    this.company.invoicePrefix = formModel.invoicePrefix;
-  }
-
-  onSave(payload: any) {
-    this.loading = true;
-    this.saving = true;
-
-    this.prepareCompany(payload);
-
-    this.companyService.updateCompany(this.company)
-      .subscribe(
-        data => {
-          this.loading = false;
-          //         this.contact = data;
-          this.ShowToaster('success', 'Company Updated', `${this.company.companyName} successfully updated!`);
-          this.goBack();
-        },
-        error => {
-          this.loading = false;
-          this.HandleError('Edit Company', error);
-        }
-      );
-  }
 
 }

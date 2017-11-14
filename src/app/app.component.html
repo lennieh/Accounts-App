@@ -8,13 +8,13 @@
   <span class="toolbar-spacer"></span>
   <div *ngIf="!isLoggedIn()">
     <button mat-icon-button (click)="login()" matTooltip="login">
-      <mat-icon class="toolbar-icon">perm_identity</mat-icon>
+      <mat-icon class="toolbar-icon">account_circle</mat-icon>
     </button>
   </div>
   <div *ngIf="isLoggedIn()">
     {{username()}}
     <button mat-icon-button (click)="logout()" matTooltip="logout">
-      <mat-icon class="toolbar-icon">account_circle</mat-icon>
+      <mat-icon class="toolbar-icon">verified_user</mat-icon>
     </button>
   </div>
   <button mat-icon-button routerLink="contact" mat-tooltip="Contact Details">

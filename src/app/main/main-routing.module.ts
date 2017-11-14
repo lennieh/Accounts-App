@@ -26,7 +26,7 @@ const routes: Routes = [
     canActivate: [AuthGuardView],
     children: [
       { path: 'dashboard',          component: DashboardComponent },
-      { path: 'admin',              loadChildren: 'app/main/admin/admin.module#AdminModule', canActivate: [AuthGuardAdmin]},
+      { path: 'admin',              loadChildren: 'app/main/admin/admin.module#AdminModule'},
 
       { path: 'customer',           loadChildren: 'app/main/customer/customer.module#CustomerModule'},
       { path: 'invoice',            loadChildren: 'app/main/invoice/invoice.module#InvoiceModule'},

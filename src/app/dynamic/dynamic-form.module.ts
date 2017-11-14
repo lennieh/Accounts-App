@@ -5,7 +5,7 @@ import { ReactiveFormsModule }              from '@angular/forms';
 import { SharedModule }                     from '../shared/shared.module';
 
 import { DynamicFormComponent }             from './dynamic-form/dynamic-form.component';
-import { DynamicFormQuestionComponent }     from './dynamic-form/dynamic-form-question.component';
+import { DynamicQuestionComponent }         from './dynamic-form/dynamic-question/dynamic-question.component';
 import { QuestionService }                  from './question.service';
 import { QuestionControlService }           from './question-control.service';
 
@@ -17,17 +17,18 @@ import { QuestionControlService }           from './question-control.service';
     ],
     declarations: [
          DynamicFormComponent,
-         DynamicFormQuestionComponent
+         DynamicQuestionComponent
     ],
     providers: [
         QuestionService,
         QuestionControlService
     ],
+    // TODO: do we need these??
     exports: [
         FormsModule,
         ReactiveFormsModule,
         DynamicFormComponent,
-        DynamicFormQuestionComponent
+        DynamicQuestionComponent
     ]
 })
 export class DynamicFormModule { }

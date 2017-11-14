@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup }        from '@angular/forms';
+import { FormGroup }                from '@angular/forms';
 
-import { QuestionBase }     from '../model/question-base';
-import { TextboxQuestion }  from '../model/question-textbox';
+import { QuestionBase }             from '../../model/question-base';
+import { TextboxQuestion }          from '../../model/question-textbox';
 
 @Component({
   selector: 'app-df-question',
-  templateUrl: './dynamic-form-question.component.html'
+  templateUrl: './dynamic-question.component.html'
 })
-export class DynamicFormQuestionComponent implements OnInit {
+export class DynamicQuestionComponent implements OnInit {
   @Input() question: QuestionBase<any>;
   @Input() form: FormGroup;
 
@@ -19,7 +19,7 @@ export class DynamicFormQuestionComponent implements OnInit {
     if ( this.question.controlType === 'textbox') {
       const question = this.question as TextboxQuestion;
       if ( question.case !== null ) {
-        this.setUppercase(question.case);
+        this.setCase(question.case);
       }
     }
   }
@@ -36,7 +36,7 @@ export class DynamicFormQuestionComponent implements OnInit {
     return this.form.controls[this.question.key].errors;
   }
 
-  setUppercase(fldCase: string) {
+  setCase(fldCase: string) {
     const thisControl = this.form.controls[this.question.key];
 
     thisControl.valueChanges.forEach(

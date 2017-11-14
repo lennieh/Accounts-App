@@ -14,6 +14,7 @@ export class DynamicFormComponent implements OnInit {
 
   @Input() questions: QuestionBase<any>[] = [];
   @Input() formData: any;
+  @Input() viewOnly: boolean;
   @Output() onSave = new EventEmitter<any>();
   @Output() onCancel = new EventEmitter();
 
@@ -25,6 +26,9 @@ export class DynamicFormComponent implements OnInit {
     this.form = this.qcs.toFormGroup(this.questions);
     if ( this.formData !== undefined && this.formData !== null) {
       this.form.setValue(this.formData);
+      if ( this.viewOnly ) {
+        this.form.disable();
+      }
     }
   }
 

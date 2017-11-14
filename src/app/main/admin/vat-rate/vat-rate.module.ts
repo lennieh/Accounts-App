@@ -3,9 +3,6 @@ import { NgModule }                     from '@angular/core';
 import { SharedModule }                 from '../../../shared/shared.module';
 import { DynamicFormModule }            from '../../../dynamic/dynamic-form.module';
 
-import { DynamicFormComponent }         from '../../../dynamic/dynamic-form/dynamic-form.component';
-import { DynamicFormQuestionComponent } from '../../../dynamic/dynamic-form/dynamic-form-question.component';
-
 import { VatService }                   from '../../../services/vat.service';
 import { VatRoutingModule }             from './vat-rate-routing.module';
 
@@ -20,8 +17,6 @@ imports: [
     VatRoutingModule
 ],
 declarations: [
-//    DynamicFormComponent,
-//    DynamicFormQuestionComponent,
     VatComponent,
     NewVatComponent,
     EditVatComponent
