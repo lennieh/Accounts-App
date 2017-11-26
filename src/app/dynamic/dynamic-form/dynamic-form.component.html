@@ -9,7 +9,7 @@
 
     <div class="app-action-container">  
         <button mat-icon-button type="submit" [disabled]="!form.valid" matTooltip="Save Changes" *ngIf="!viewOnly">
-          <mat-icon aria-label="save" [ngClass]="{'save-button': form.valid, 'disabled-save-button': !form-valid}" class="app-action-icon app-action-button">save</mat-icon>
+          <mat-icon aria-label="save" [ngClass]="{'app-save-button': form.valid, 'disabled-save-button': !form.valid}" class="app-action-icon app-action-button">save</mat-icon>
         </button>
         <button mat-icon-button type="button" (click)="onQuit();" matTooltip="Cancel">
           <mat-icon aria-label="cancel" class="app-action-icon app-cancel-button">cancel</mat-icon>
