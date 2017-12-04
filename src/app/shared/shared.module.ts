@@ -3,7 +3,7 @@ import { CommonModule }             from '@angular/common';
 import { FormsModule }              from '@angular/forms';
 // import { BrowserAnimationsModule }  from '@angular/platform-browser/animations';
 
-import { ToasterModule }            from 'angular2-toaster';
+// import { ToasterModule }            from 'angular2-toaster';
 
 import { MaterialModule }           from './material.module';
 
@@ -14,7 +14,7 @@ import { AppConfirmDialogComponent }  from './confirm-dialog/confirm-dialog.comp
     CommonModule,
     FormsModule,
 //    BrowserAnimationsModule,
-    ToasterModule,
+//    ToasterModule,
     MaterialModule
   ],
   declarations: [AppConfirmDialogComponent],
@@ -24,7 +24,7 @@ import { AppConfirmDialogComponent }  from './confirm-dialog/confirm-dialog.comp
   exports: [
     CommonModule,
     FormsModule,
-    ToasterModule,
+//    ToasterModule,
 //    BrowserAnimationsModule,
     MaterialModule
   ]
